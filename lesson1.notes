@@ -3,7 +3,7 @@
 -----------------------------------------------------------
 
 ---The Document Object Model (DOM)
-DOM: an !!in-memory!! object representation of an HTML document. It provides a way to interact with a web page using JavaScript and provides functionality needed to build modern interactive user experiences.
+DOM: an in-memory object representation of an HTML document. It provides a way to interact with a web page using JavaScript and provides functionality needed to build modern interactive user experiences.
 
 ---A Hierarchy of Nodes
 Browsers insert possibly missing elemets like `HEAD` and `BODY` since a fundamental tenet of the web is permissiveness; they always do their best to display HTML even when it has errors.
@@ -64,5 +64,105 @@ JavaScript provides two useful ways to determine a node type:
 2. If you're writing a program, you should probably use the `instanceof` function or `tagName` property.
 
 ---Traversing Nodes
+You should know these properties of parent nodes:
+- `firstChild`: `childNodes[0]` or `null`
+- `lastChild`: `childNodes[childNodes.length - 1]` or `null`
+- `childNodes`: *Live collection* of all child nodes (a live collection automatically updates to refelct changes in the DOM)
 
+You should know these properties of child nodes:
+- `nextSibling`: `parentNode.childNodes[n + 1]` or `null`
+- `previousSibling`: `parentNode.childNodes[n - 1]` or `null`
+- `parentNode`: Immediate parent of this node
 
+Recursive `walk` function by LS:
+[js]
+  function walk(node, callback) {
+    callback(node);
+    var i;
+    for (i = 0; i < node.childNodes.length; i++) {
+      walk(node.childNodes[i], callback);
+    }
+  }
+
+  walk(document.body, function(node) {
+    console.log(node.nodeName);
+  });
+[\js]
+
+---Element Attributes
+We can access the attributes of an Element using these methods:
+- `getAttribute(name)`
+- `setAttribute(name, newValue)`
+- `hasAttribute(name)`
+
+`getAttribute` and `setAttribute` work for all attributes, but you can access some attributes another way.
+The DOM exposes these special attributes as properties of the Element: `id`, `name`, `title`, `value`, and `className`.
+
+Working with the `class` attribute via `className` is inconvenient when elements have more than one class.
+The `classList` property references a special array-like `DOMTokenList` object that has these properties and methods:
+- `add(name)`: Add class name to element
+- `remove(name)`:  Remove class name from element
+- `toggle(name)`:  Add class name to element if it doesn't exist, remove if it does exist
+- `contains(name)`:  Return true or false depending on whether element has class name
+- `length`:  The number of classes to which element belongs
+
+The `style` attribute on an Element references a `CSSStyleDeclaration` Object, and can be used to alter any CSS property.
+When a CSS property's name contains dashes, you must use a camelCased version of the name to access that property.
+
+---Finding DOM Nodes
+The built-in method `getElementById` on `document` allows us to find an element based on its `id` attribute.
+
+However, we more often want all elements that match some criteria.
+
+#LS provides some practice problems to manually get all elements that match a certain criteria#
+
+These built-in methods provide a way to get collections of elements that meet a certain criteria:
+- `document.getElementsByTagName(tagName)`: returns `HTMLCollection` or `NodeList` of matching elements
+- `document.getElementsByClassName(className)`: returns `HTMLCollection` or `NodeList` of matching elements
+
+Note that these methods return array-like objects, not actual arrays. To loop through the elements returned by these methods, use a `for` loop or convert the object into an array and then use the higher-order array functions.
+
+Web browsers provide built-in support for selector searches with these two methods:
+1. `document.querySelector(selectors)`: returns first matching element or `null`
+2. `document.querySelectorAll(selectors)`: returns `NodeList` of matching elements
+- Learn to use these methods; they will save you a lot of time.
+- Note that both these methods are available on all elements, not just `document`.
+
+---Traversing Elements
+Earlier, we looked at some properties that you can use to traverse DOM nodes.
+However, there is another set of properties that allows you to traverse element nodes...
+Parent Element Properties:
+- `firstElementChild`: `children[0]` or `null`
+- `lastElementChild`: `children[children.length - 1]` or `null`
+- `children`: *Live collection* of all child elements
+- `childElementCount`: `children.length`
+
+Child Element Properties:
+- `nextElementSibling`: `parentNode.children[n + 1]` or `null`
+- `previousElementSibling`: `parentNode.children[n - 1]` or `null`
+
+The `textContent` property provides access to the text:
+- #Be careful# when setting `textContent`; doing so removes all child nodes from the element and replaces them with a text node that contains the value.
+- The best strategy for updating text with JavaScript is to place the text you need to update within an element; the element type doesn't matter -- even a bare `span` or `div` element will suffice. This approach makes using `textContent` simpler and safer to use.
+
+---Creating and Moving DOM Nodes
+You can create new empty nodes with the `document.create*` methods, or you can clone an existing node hierarchy:
+- `document.createElement(tagName)`: Returns a new Element node
+- `document.createTextNode(text)`: Returns a new Text node
+- `node.cloneNode(deepClone)`: Returns a copy of `node`
+  - If `deepClone` is `true`, `cloneNode` makes copies of `node` and *all its children*; otherwise, it merely copies `node`
+  - The default value for `deepClone` has changed over time, so always specify `true` or `false`
+  - The clone creates a new object -- changing one does not change the other
+
+You can append, insert, and replace nodes with methods on the node's parent:
+- `parent.appendChild(node)`: Append `node` to the end of `parent.childNodes`
+- `parent.insertBefore(node, targetNode)`: Insert `node` into `parent.childNodes` before `targetNode`
+- `parent.replaceChild(node, targetNode)`: Remove `targetNode` from `parent.childNodes` and insert `node` in its place
+
+`document.appendChild` causes an error. Use `document.body.appendChild` instead.
+
+#No Node may appear twice in the DOM#. If you try to add a node that is already in the DOM, it gets removed from the original location.
+
+These methods insert a node before, after, or within an Element:
+- `element.insertAdjacentElement(position, newElement)`: Inserts `newElement` at `position` relative to `element`
+- `element.insertAdjacentText(position, text)`:  Inserts Text node that contains `text` at `position` relative to `element`
