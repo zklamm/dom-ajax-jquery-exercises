@@ -1,0 +1,68 @@
+-----------------------------------------------------------
+    The DOM
+-----------------------------------------------------------
+
+---The Document Object Model (DOM)
+DOM: an in-memory object representation of an HTML document. It provides a way to interact with a web page using JavaScript and provides functionality needed to build modern interactive user experiences.
+
+---A Hierarchy of Nodes
+Browsers insert possibly missing elemets like `HEAD` and `BODY` since a fundamental tenet of the web is permissiveness; they always do their best to display HTML even when it has errors.
+
+DOM nodes have different types:
+- Elements represent HTML tags
+- Text nodes represent text that appears in the document
+- Comments represent the HTML comments
+- (The DOM includes some other types that we can ignore for now)
+
+Empty nodes: text nodes that only contain whitespace (e.g., the gap between `</h1>` and `<p>` forms an empty node that contains a newline and two space characters). Developers often forget about these empty nodes since they aren't visible in the HTML, which can lead to bugs. Empty nodes are *not* reflected visually in the browser.
+
+---Node Properties
+`querySelector`: This method returns the first node in the DOM that matches a specified CSS selector.
+
+The `document` node, which represents the entire HTML document, is the top-most DOM node.
+
+Using `toString` is a handy way to determine an object's type.
+
+`nodeName`: property that contains a String that represents the node type.
+- For Elements (anything that represents an HTML tag), this is the name of the corresponding tag in uppercase. The use of uppercase is a historical throwback to a time when standard practice was to write uppercase HTML tags; contemporary HTML uses lowercase tags, but this method still returns uppercase names.
+- For text nodes -- even empty nodes -- the nodeName is "#text". For comments, it's "#comment".
+
+`nodeType`: can use to determine a node's type: returns a number that matches a node type constant.
+- ELEMENT_NODE = 1, TEXT_NODE = 3, COMMENT_NODE = 8, DOCUMENT_NODE = 9, etc.
+- Use the constant names instead of the numeric values to write clear code
+
+`nodeValue`: references the value of a node.
+- Element nodes don't have values (return null)
+- Text nodes return the textual content of the node
+
+`textContent`: represents the textual content of all nodes inside the Element.
+
+---Determining the Type of a Node
+The Element type is further broken down into dozens of subtypes:
+- All DOM objects are Nodes
+- All DOM objects have a type that inherits from Node
+- The most common DOM object types you will use are Element and Text
+
+. Event Target
+  . Node
+    . Text
+    . Comment
+    . Document
+      .HTMLDocument
+    . Element
+      . HTMLElement
+        . HTMLAnchorElement
+        . HTMLBodyElement
+        . etc.
+      . SVGElement
+        . SVGColorElement
+        . SVGRectElement
+        . etc.
+
+JavaScript provides two useful ways to detemine a node type:
+1. The technique most useful on the console uses the `toString` method or the `String` constructor on the node; you can read the name from the display
+2. If you're writing a program, you should probably use the `instanceof` function or `tagName` property.
+
+---Traversing Nodes
+
+
