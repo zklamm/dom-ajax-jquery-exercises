@@ -3,7 +3,7 @@
 -----------------------------------------------------------
 
 ---The Document Object Model (DOM)
-DOM: an in-memory object representation of an HTML document. It provides a way to interact with a web page using JavaScript and provides functionality needed to build modern interactive user experiences.
+DOM: an !!in-memory!! object representation of an HTML document. It provides a way to interact with a web page using JavaScript and provides functionality needed to build modern interactive user experiences.
 
 ---A Hierarchy of Nodes
 Browsers insert possibly missing elemets like `HEAD` and `BODY` since a fundamental tenet of the web is permissiveness; they always do their best to display HTML even when it has errors.
@@ -59,7 +59,7 @@ The Element type is further broken down into dozens of subtypes:
         . SVGRectElement
         . etc.
 
-JavaScript provides two useful ways to detemine a node type:
+JavaScript provides two useful ways to determine a node type:
 1. The technique most useful on the console uses the `toString` method or the `String` constructor on the node; you can read the name from the display
 2. If you're writing a program, you should probably use the `instanceof` function or `tagName` property.
 
