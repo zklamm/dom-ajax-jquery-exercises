@@ -166,3 +166,19 @@ You can append, insert, and replace nodes with methods on the node's parent:
 These methods insert a node before, after, or within an Element:
 - `element.insertAdjacentElement(position, newElement)`: Inserts `newElement` at `position` relative to `element`
 - `element.insertAdjacentText(position, text)`:  Inserts Text node that contains `text` at `position` relative to `element`
+
+`position` must be one of the following `String` values:
+- "beforebegin": Before the element
+- "afterbegin": Before the first child of the element
+- "beforeend":After the last child of the element
+- "afterend": After the element
+
+When you remove a node from the DOM, it becomes eligible for garbage collection unless you keep a reference to the node in a variable:
+`node.remove()`: Remove `node` from the DOM
+`parent.removeChild(node)`: Remove `node` from `parent.childNodes`
+
+---The Browser Object Model (BOM)
+You can access other components of the browser with JavaScript that go beyond the page contents. These components include:
+- The windows used to display web pages
+- The browser's history
+- Sensors, including location
