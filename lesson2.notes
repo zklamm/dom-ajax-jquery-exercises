@@ -17,3 +17,68 @@ Ultimately, working with asynchronous code means you must reason about both *wha
 `setInterval`:
 - Instead of invoking the callback once, it invokes it again and again at intervals until told to stop
 - returns an identifier that we can later pass to `clearInterval` to cancel the timer and stop the repeated execution of the callback
+
+---User Interfaces and Events
+Event:
+- an object that represents some occurrence; it contains information about what happened and where it happened
+- the browser can trigger events as the page loads, when the user interacts with the page, and when the browser performs some action required by the program
+
+The code within a user interface has two main tasks:
+1. Set up the user interface and display it
+2. Handle events resulting from user or browser actions
+
+Event listener: code that the browser runs in response to the event.
+
+---Page Lifecycle Events
+The (simplified) steps a browser goes through to load a page:
+HTML code received from server -> HTML parsed and JavaScript evaluated -> DOM constructed from parsed HTML -> `DOMContentLoaded` event fires on `document` -> Page displayed on screen -> Embedded assets are loaded -> `load` event fires on `window`
+
+- We typically use the `DOMContentLoaded` event when we have JavaScript code that must access the DOM.
+- The `load` event fires much later, after everything on the page loads, including images, videos, etc. This `load` event is not useful in mose cases because it may not occur for a long time after the page first appears.
+
+---User Events
+Keyboard: keydown, keyup, keypress
+Mouse: mouseenter, mouseleave, mousedown, mouseup, click
+Touch: touchdown, touchup, touchmove
+Window: scroll, resize
+Form: submit
+#This is not an exhaustive list#
+
+Keep in mind that an event's type determines the kind of code it makes sense to run within an event handler, but registering and triggering events is the same for all.
+
+---Adding Event Listeners
+There are four steps needed to setup an event listener (handler):
+1. Identify the event you need to handle.
+2. Identify the element that will receive the event.
+3. Define a function to call when this event occurs.
+4. Register the function as an event listener.
+
+We can call `addEventListener` on the object to which we want to register the listener.
+
+#The `GlobalEventHandlers` mixin provides an alternate way to register a function as an event listener for an element.#
+
+---The Event Object
+Useful properties that appear in Event objects include:
+`type`: The name of the event (e.g., 'click')
+`currentTarget`: The current object that the event object is on. It always refers to the element that has the event listener attached to it
+`target`: The initial object to receive notification of the event, e.g., the element clicked by the user
+
+Mouse Events:
+`button`: This is a read-only property that indicates which button was pressed
+`clientX`: The horizontal position of the mouse when the event occurred
+`clientY`: The vertical position of the mouse when the event occurred
+- Both `clientX` and `clientY` return values *relative to the visible area of the page*: the number of pixels from the upper-left corner of the browser's viewport
+
+Keyboard Events:
+`key`: The string value of the pressed key. *Older browsers do not support this property*
+`shiftKey`:  Boolean value that indicates whether the user pressed the shift key
+`altKey`:  Boolean value that indicates whether the user pressed the alt (or option)
+`ctrlKey`: Boolean value that indicates whether the user pressed the control key
+`metaKey`: Boolean value that indicates whether the user pressed the meta (or command) key
+
+---Capturing and Bubbling(1)
+!!There are downsides to having event listeners attached to each element of interest on the page:!! (#make sure these points make sense to you after you complete the lesson#)
+- you must wait until the `DOMContentLoaded` event fires
+- you must add event handlers manually when you add new elements to the page after `DOMContentLoaded` fires
+- adding handlers to many elements can be slow, and can lead to complicated, difficult to maintain code
+
