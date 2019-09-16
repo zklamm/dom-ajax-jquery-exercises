@@ -1,0 +1,19 @@
+-----------------------------------------------------------
+    Event-Driven and Asynchronous Programming
+-----------------------------------------------------------
+
+---Asynchronous Execution with setTimeout
+Sequential code: for each line of code, the next line of code must wait until the current line completes.
+Asynchronous code: runs partly now, then pauses and continues to run later after a delay of milliseconds, minutes, hours, or even days.
+
+`setTimeout`:
+- a function that takes two arguments: a callback function and a time to wait specified in milliseconds
+- It sets a timer that waits until the given time delay elapses, then invokes the callback function
+- No other code executes until the delay time elapses, then the callback function runs as expected
+
+Ultimately, working with asynchronous code means you must reason about both *what* the code does and *when* it does it.
+
+---Repeating Execution with setInterval
+`setInterval`:
+- Instead of invoking the callback once, it invokes it again and again at intervals until told to stop
+- returns an identifier that we can later pass to `clearInterval` to cancel the timer and stop the repeated execution of the callback
