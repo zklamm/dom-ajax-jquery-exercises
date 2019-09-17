@@ -76,9 +76,37 @@ Keyboard Events:
 `ctrlKey`: Boolean value that indicates whether the user pressed the control key
 `metaKey`: Boolean value that indicates whether the user pressed the meta (or command) key
 
----Capturing and Bubbling(1)
+---Capturing and Bubbling
 !!There are downsides to having event listeners attached to each element of interest on the page:!! (#make sure these points make sense to you after you complete the lesson#)
 - you must wait until the `DOMContentLoaded` event fires
 - you must add event handlers manually when you add new elements to the page after `DOMContentLoaded` fires
 - adding handlers to many elements can be slow, and can lead to complicated, difficult to maintain code
+
+A technique called *event delegation* provides a solution for these problems, but before we can learn how to use it, we first need to talk about *capturing* and *bubbling*.
+
+*Capturing* and *bubbling*:
+- phases that an event goes through after it initially fires
+- the event gets dispatched to each element twice, once during the capturing phase and once during the bubbling phase
+- the actual event listener gets called/fired in only one phase
+- by default the listener is set to fire during the "bubbling" phase
+- when event listeners fire on the target element it is also described as the *target phase*
+
+---Preventing Propagation and Default Behaviors
+- `event.stopPropagation`: stops the `event` from continuing its path along the capturing and bubbling phases
+- `event.preventDefault`: tells the browser that it shouldn't perform any actions that it might otherwise perform in response to a user's action
+
+It's good practice to call `preventDefault` or `stopPropagation` as soon as possible in an event handler:
+- emphasizes the presence of those methods to people reading the code
+- ensures that these methods run before any errors occur; not running these methods before and error occurs can lead to unexpected behavior that is hard to debug
+
+Important observations about `preventDefault`:
+1. The default behavior isn't for the element that the event listener is attached to, but rather for the `event` object.
+2. The browser waits for the event object to go through the propagation phases (capturing and bubbling) before it performs the default action of the event. If there's an event handler with a `preventDefault` call somewhere in the propagation path, the default behavior is skipped.
+
+Default behavior can still happen even if one of the listeners had a call to `preventDefault`:
+`event.stopPropagation` stops the event object from heading to a next listener which might contain a `preventDefault` method call. Consequently, `event.preventDefault` is never called and the default behavior is allowed to happen.
+
+---Event Delegation
+Instead of adding listeners to every element you're watching, you can add a single handler to any of their parents.
+
 
