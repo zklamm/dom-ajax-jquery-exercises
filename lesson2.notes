@@ -71,13 +71,13 @@ Mouse Events:
 
 Keyboard Events:
 `key`: The string value of the pressed key. *Older browsers do not support this property*
-`shiftKey`:  Boolean value that indicates whether the user pressed the shift key
-`altKey`:  Boolean value that indicates whether the user pressed the alt (or option)
+`shiftKey`: Boolean value that indicates whether the user pressed the shift key
+`altKey`: Boolean value that indicates whether the user pressed the alt (or option)
 `ctrlKey`: Boolean value that indicates whether the user pressed the control key
 `metaKey`: Boolean value that indicates whether the user pressed the meta (or command) key
 
 ---Capturing and Bubbling
-!!There are downsides to having event listeners attached to each element of interest on the page:!! (#make sure these points make sense to you after you complete the lesson#)
+There are downsides to having event listeners attached to each element of interest on the page:
 - you must wait until the `DOMContentLoaded` event fires
 - you must add event handlers manually when you add new elements to the page after `DOMContentLoaded` fires
 - adding handlers to many elements can be slow, and can lead to complicated, difficult to maintain code
@@ -108,5 +108,71 @@ Default behavior can still happen even if one of the listeners had a call to `pr
 
 ---Event Delegation
 Instead of adding listeners to every element you're watching, you can add a single handler to any of their parents.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---What is the Event Loop?
+What the heck is the event loop anyway (video by Philip Roberts):
+- link: https://www.youtube.com/watch?v=8aGhZQkoFbQ
+
+JavaScript:
+- a single-threaded, non-blocking, asynchronous, concurrent langauge
+- has a call stack, an event loop, a callback queue, and other APIs
+
+V8 (Chrome's runtime):
+- has a call stack and a heap
+
+The call stack:
+- one thread == one call stack == one thing at a time
+- basically a data structure which records where in the program we are
+- stack trace is the state of the call stack when an error occurs
+
+Blocking (what happens when things are slow?):
+
 
 
