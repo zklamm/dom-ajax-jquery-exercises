@@ -107,7 +107,13 @@ Default behavior can still happen even if one of the listeners had a call to `pr
 `event.stopPropagation` stops the event object from heading to a next listener which might contain a `preventDefault` method call. Consequently, `event.preventDefault` is never called and the default behavior is allowed to happen.
 
 ---Event Delegation
-Instead of adding listeners to every element you're watching, you can add a single handler to any of their parents.
+- Instead of adding listeners to every element you're watching, you can add a single handler to any of their parents.
+- You don't have to wait until the DOM is ready if you are able to add the event listener directly to `document` because it is available to start with.
+- The trade-off of delegation is that the listener may become more complicated if it must handle multiple situations.
+- The best approach is to start by binding event handlers directly to elements when a project is new and small.
+- jQuery, which we'll look at in an upcoming lesson, includes functionality that makes delegation comparatively easy whil avoiding the complexity drawback.
+
+---What is the Event Loop?
 
 
 
