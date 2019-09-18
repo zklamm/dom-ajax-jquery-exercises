@@ -1,7 +1,6 @@
 -----------------------------------------------------------
     The DOM
 -----------------------------------------------------------
-
 ---The Document Object Model (DOM)
 DOM: an in-memory object representation of an HTML document. It provides a way to interact with a web page using JavaScript and provides functionality needed to build modern interactive user experiences.
 

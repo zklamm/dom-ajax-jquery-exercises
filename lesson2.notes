@@ -155,3 +155,15 @@ This explains why `setTimeout` with a delay of 0 will still be asynchronous (the
 
 The browser would like to repaint (render) the screen every 16.6 milliseconds (60 Hz), but it can't do a render if there is code on the stack. This is similar to the callback queue, but the render is given higher priority than the callback queue.
 The takeaway is to not put slow code on the stack (don't block it) because then the browser can't do what it needs to do, which is create a nice fluid UI.
+
+---Douglas Crockford: An Inconvenient API
+- video: https://www.youtube.com/watch?time_continue=1&v=Y2Y0U-2qJMs
+
+The Misconceived Web:
+- The original vision of the WWW was as a hyperlinked docment-retrieval system
+- It did not anticipate presentation, session, or interactivity
+
+How We Got Here:
+- Rule Breaking
+- Corporate Warfare
+- Extreme Time Pressure
