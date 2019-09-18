@@ -1,7 +1,6 @@
 -----------------------------------------------------------
     Event-Driven and Asynchronous Programming
 -----------------------------------------------------------
-
 ---Asynchronous Execution with setTimeout
 Sequential code: for each line of code, the next line of code must wait until the current line completes.
 Asynchronous code: runs partly now, then pauses and continues to run later after a delay of milliseconds, minutes, hours, or even days.
@@ -114,71 +113,45 @@ Default behavior can still happen even if one of the listeners had a call to `pr
 - jQuery, which we'll look at in an upcoming lesson, includes functionality that makes delegation comparatively easy whil avoiding the complexity drawback.
 
 ---What is the Event Loop?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----What is the Event Loop?
-What the heck is the event loop anyway (video by Philip Roberts):
-- link: https://www.youtube.com/watch?v=8aGhZQkoFbQ
+- video: https://www.youtube.com/watch?v=8aGhZQkoFbQ
 
 JavaScript:
 - a single-threaded, non-blocking, asynchronous, concurrent langauge
 - has a call stack, an event loop, a callback queue, and other APIs
-
 V8 (Chrome's runtime):
-- has a call stack and a heap
+- has a call stack and a heap (a heap is where memory allocation happens)
+
+`setTimeout`, `DOM`, `XHR` aren't found in V8 code base. They are actually *Web APIs* that are provided by the browser.
+Other items provdied by the broswer are the *event loop* and the *callback queue*.
+
+Visual breakdown:
+Broswer
+  V8
+    Call Stack
+    Heap
+  Web APIs
+    `setTimeout`
+    `DOM`
+    `XHR`
+    etc...
+  The Event Loop
+  Callback Queue
 
 The call stack:
 - one thread == one call stack == one thing at a time
-- basically a data structure which records where in the program we are
+- data structure which records where in the program we are
 - stack trace is the state of the call stack when an error occurs
 
-Blocking (what happens when things are slow?):
+Blocking: code that is slow (e.g. image processing, network requests)
+The solution to blocking is asynchronous callbacks (not having to wait synchronously until the slow code runs)
 
+Concurrency and the Event Loop:
+- Whenever the *Call Stack* encounters an asynchronous callback, it is popped off the stack by essentially passing the callback to its respective *Web APIs*, which will listen for the event to occur.
+- Once the event fires, the callback is added to the *Callback Queue*.
+- From there, the *Event Loop* will push the callback to the *Call Stack*, but #only# when the *Call Stack* is empty.
 
+This explains why `setTimeout` with a delay of 0 will still be asynchronous (the event loop can't push it to the stack until the stack is empty)
+`setTimeout` is not a guaranteed time to execution, it's a #minimum# time to execution.
 
+The browser would like to repaint (render) the screen every 16.6 milliseconds (60 Hz), but it can't do a render if there is code on the stack. This is similar to the callback queue, but the render is given higher priority than the callback queue.
+The takeaway is to not put slow code on the stack (don't block it) because then the browser can't do what it needs to do, which is create a nice fluid UI.
