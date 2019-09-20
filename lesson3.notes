@@ -1,0 +1,9 @@
+-----------------------------------------------------------
+    Making HTTP Requests from JavaScript
+-----------------------------------------------------------
+---Introduction
+XMLHttpRequest:
+- one of the browser APIs that provide network programming functionality to JavaScript applications
+- libraries or utility functions often wrap this web API
+
+
