@@ -1,23 +1,46 @@
-<!doctype html>
-<html lang="en-US">
+<html>
   <head>
+    <title>Tests</title>
     <meta charset="utf-8">
-    <title>Event Delegation Function</title>
+    <style>
+     #red, #blue, #green, #orange {
+         cursor: pointer;
+         color: white;
+         padding: 10px;
+         margin: 10px;
+     }
+     #red {
+         width: 400px;
+         height: 400px;
+         background: red;
+     }
+
+     #blue {
+         width: 200px;
+         height: 200px;
+         background: blue;
+     }
+
+     #orange {
+         width: 100px;
+         height: 100px;
+         background: orange;
+     }
+
+     #green {
+         width: 50px;
+         height: 50px;
+         background: green;
+     }
+    </style>
   </head>
   <body>
-    <main>
-      <section>
-        <h1>Header</h1>
-        <p>Content</p>
-      </section>
-      <aside>
-        <h2>Sub Side Notes</h2>
-        <p>Note 1</p>
-        <p>Note 2</p>
-      </aside>
-    </main>
-    <nav>
-      <p>Side Note</p>
-    </nav>
+    <div id="red">Red
+      <div id="blue">Blue</div>
+      <div id="orange">Orange
+        <div id="green">Green</div>
+      </div>
+    </div>
+    <script src="test.js"></script>
   </body>
 </html>
