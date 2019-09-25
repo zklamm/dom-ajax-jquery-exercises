@@ -48,6 +48,8 @@ Become familiar with the following `XMLHttpRequest` methods:
 - `abort()`: Cancel an active request
 - `getResponseHeader(header)`: Return the response's value for header
 
+Setting headers using the `XMLHttpRequest.setRequestHeader` method must only be done once the `XMLHttpRequest.open` method has been called.
+
 Become familiar with the following `XMLHttpRequest` properties:
 - `timeout`: Maximum time a request can take to complete (in milliseconds)
 - `readyState`: What state the request is in (see below)

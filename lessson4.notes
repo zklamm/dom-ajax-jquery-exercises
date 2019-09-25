@@ -1,0 +1,48 @@
+-----------------------------------------------------------
+    jQuery
+-----------------------------------------------------------
+---Introduction
+jQuery:
+- a JavaScript library that provides a convenient and consistent API across most browsers and platforms
+- can use JavaScript and the DOM API to accomplish much of what jQuery provides, but differences between DOM implementations have historically made it difficult to share code between browsers
+- many projects still use jQuery, and that will probably be the case for a long time to come
+
+---Read: Introduction to jQuery
+jQuery:
+- takes a lot of the browser support code and wraps it in universal methods that work with all browsers
+- by far the most popular JavaScript library available
+- at its core, it's a function that wraps a collection of DOM elements and some convenience methods into an object
+
+DOM ready callback:
+[js]
+$(document).ready(function() {
+  // DOM loaded and ready, referenced image on img tags are not ready
+});
+[/js]
+
+`ready` doesn't wait for the browser to load images included via `<img>` tags. In some cases, you must delay execution until the window finishes loading:
+[js]
+$(window).load(function() {
+  // DOM loaded and ready, referenced image on img tags loaded and ready
+});
+[\js]
+
+Even shorter way to write a DOM ready callback:
+[js]
+$(function() {
+  // DOM is now loaded
+});
+[\js]
+
+The jQuery function, `$()`:
+- if the argument passed to the function is a string or DOM element, it wraps a collection of jQuery objects and returns them
+- if the argument is a function, jQuery uses that function as a callback when the document is ready
+- `$` is the alias of `jQuery`
+
+Airbnb recommends prefixing names that reference jQuery objects with a `$` to instantly distinguish from other objects.
+
+Check the `jQuery` property of a variable to determine if that variable references a jQuery object.
+
+Whenever you have a CSS property that includes one or more hyphens, you can omit the hyphens and capitalize the next letter instead (camelCase).
+
+---Read: jQuery Events
