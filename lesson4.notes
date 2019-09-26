@@ -46,3 +46,17 @@ Check the `jQuery` property of a variable to determine if that variable referenc
 Whenever you have a CSS property that includes one or more hyphens, you can omit the hyphens and capitalize the next letter instead (camelCase).
 
 ---Read: jQuery Events
+The `on` method, like most jQuery methods, has more than one calling format:
+- the most common is where the first argument is the event type and the second is the callback function
+
+In order to access jQuery's convenience methods, we need to pass non-jQuery objects to the jQuery function
+
+jQuery has many convenience methods. Here's an example:
+[js] $('a').on('click', function(event) {}); [/js]
+vs.
+[js] $('a').click(function(e) {}); [/js]
+
+The `.on()` method attaches event handlers to the currently selected set of elements in the jQuery object.
+
+---Read: jQuery DOM Traversal
+
