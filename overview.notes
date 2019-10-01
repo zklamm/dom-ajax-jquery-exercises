@@ -1,24 +1,24 @@
 -----------------------------------------------------------
     Launch School - Overview
 -----------------------------------------------------------
----Core Curriculum
-#Programming & Back-end Development
+#Core Curriculum
+---Programming & Back-end Development
   *Programming Foundations*
-    Preparations
-    Small Programs
-    Practice Problems
-    Ruby Collections
-    Advanced Ruby Collections
-    Slightly Larger Programs
+    `Preparations`
+    `Small Programs`
+    `Practice Problems`
+    `Ruby Collections`
+    `Advanced Ruby Collections`
+    `Slightly Larger Programs`
   *Object Oriented Programming*
-    OO Readings
-    Object Oriented Programming
-    More OO Ruby
-    OO Practice Problems
-    Slightly Larger OO Programs
+    `OO Readings`
+    `Object Oriented Programming`
+    `More OO Ruby`
+    `OO Practice Problems`
+    `Slightly Larger OO Programs`
   *Ruby Foundations  More Topics*
-    Blocks
-    Introduction to Testing
+    `Blocks`
+    `Introduction to Testing`
     Packaging Code Into a Project
   *Networking Foundations*
     The Internet
@@ -37,7 +37,7 @@
   *Database Applications*
     Interacting with a Database in Code
     Database-backed Web Applications
-#Front-end Development
+---Front-end Development
   *HTML and CSS*
     Your First Web Pages
     The Box Model
@@ -72,8 +72,8 @@
     Advanced jQuery and Dynamic Content Creation
     New JavaScript Features
 
----Advanced Electives
-#Frameworks and Integrations
+#Advanced Electives
+---Frameworks and Integrations
   *Building Applications with Client Side MVC*
     JavaScript MVC Frameworks
     Backbone Basics
@@ -96,7 +96,7 @@
     Building Applications
     Production Application Considerations
     Workflows
-#Other Courses
+---Other Courses
   *Practical Programming and Automation*
     The File System
     Console Applications

@@ -58,5 +58,18 @@ vs.
 
 The `.on()` method attaches event handlers to the currently selected set of elements in the jQuery object.
 
----Read: jQuery DOM Traversal
+From jQuery docs:
+The `.find()` and `.children()` methods are similar, but the latter only travels a single level down the DOM tree.
 
+---Read: jQuery DOM Traversal
+To look outward from an object:
+1. `.parent()`: used with and without a selector
+2. `.closest()`: allows you to look further out than the immediate parent
+
+`parent` never looks at the current element for consideration, while `closest` sees if the current element is a match.
+
+The `closest` method is very useful for finding the first ancestor element that meets the criteria passed in to the method.
+
+The `nextAll` (`prevAll`) method will return all siblings after (before) the current element, with an optional selector passed in.
+
+Use `siblings` with an optional selector to get all the current element's siblings.
