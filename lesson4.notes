@@ -73,3 +73,21 @@ The `closest` method is very useful for finding the first ancestor element that 
 The `nextAll` (`prevAll`) method will return all siblings after (before) the current element, with an optional selector passed in.
 
 Use `siblings` with an optional selector to get all the current element's siblings.
+
+---Practice Problems: jQuery Events
+Similar to `on`, jQuery has a complimentary method called `off` that allows you to unbind an event by its type.
+
+The `trigger` method can be called with any of the events, and if the event exists it will call the callback. This is a great way to avoid repeating code.
+
+---Assignment: Grocery List
+To have a stylesheet be used only for print, change the media attribute on the `link` element to "print" rather than "screen" or "all".
+
+[js]
+var $form = $(`form`);
+
+// Both of these statements return the form DOM element
+$form[0];
+$form.get(0);
+[/js]
+
+The big advantage to using jQuery's `get` method is that you can pass in negative values to count backwards from the end of the collection.
