@@ -91,3 +91,25 @@ $form.get(0);
 [/js]
 
 The big advantage to using jQuery's `get` method is that you can pass in negative values to count backwards from the end of the collection.
+
+---Assignment: Team Member Profile Modals
+Modal:
+- acts like a separate sub-window of content that can be closed in order to return to the main content, all without leaving the page
+- always use CSS positioning to place the modal and an optional overlay element over the top of the content
+- the overlay acts as a blocking element to prevent interacting with the page underneath the modal
+- it is good practice to have at least a close link and a close action bound to clicking on the overlay that will remove the modal and the overlay
+
+---Lecture: Chrome Debugging Tools for Front End Development
+`console` has more methods than just `log()`!
+
+There are several command line API methods available in the console that are super useful:
+-`copy()`
+-`inspect()`
+-`getEventListeners()`
+-`keys()`
+-`values()`
+-`$()` (assuming jQuery is not loaded in your browser)
+-`$$()`
+
+Blackboxing a script in the Sources tab will prevent the debugger from stepping into that file.
+Can permanently blackbox files in settings.
