@@ -1,0 +1,66 @@
+-----------------------------------------------------------
+    Putting it All Together
+-----------------------------------------------------------
+---Read: jQuery Animations
+jQuery provides us with a well-organized and succint way of animating CSS properties and elements, such as modals that fade in, menus that slide-out, and elements that move around on the screen.
+
+These convenience methods all work the same way: you can call them on a jQuery collection with or without arguments and jQuery will handle changing the CSS properties using an animation loop.
+
+`.fadeIn`, `.fadeOut`, `.fadeTo`, and `.fadeToggle` are all methods that handle animating the `opacity` property of elements. All but `.fadeTo` can be called without arguments.
+
+By default, all animation methods will use a duration of 400 milliseconds, and will update every 13 milliseconds.
+
+The duration can be changed by passing in a different time in milliseconds or by using the two keywords, "slow" and "fast", which represent values of 600 and 200 milliseconds.
+
+Other than our `fadeTo` call, the second argument for these methods can be a callback that is called when the animation is complete. Within these callbacks, the context is the DOM element that was animated. If you want to have a callback on the `fadeTo` methods, pass it in as the third argument.
+
+Just like the fade methods, there are slide methods that can be used in the same manner. With all of these methods, the easing function used to determine the severity of the change between frames can also be changed (default is "swing", but can be changed to "linear").
+
+These methods can all take an options object instead of multiple arguments as well, making it easier to not only know what each argument is for, but also to call the same method with differing values for each option.
+
+If you ever need to animate (most of) the other CSS properties you would use the `.animate` method.
+
+This method takes its arguments in two different forms:
+1. an object that represents the CSS properties to be animated and what values to end on for each, the duration, the optional easing method, and the callback
+[js]
+$p.animate({
+  left: 500,
+  top: 250
+}, 400, function() {
+  $(this).text('All done!');
+});
+[/js]
+
+2. two objects: The first contains the final CSS properties, while the second is an options object that contains the duration, easing, and callback
+[js]
+$p.animate({
+  left: 500,
+  top: 250
+}, {
+  duration: 1000,
+  complete: function() {
+    $(this).text('All done!');
+  }
+});
+[/js]
+
+Pretty much every CSS property that allows for a numeric value can be animated using this method (complex values like colors cannot).
+
+All properties that can use a pixel measurement are animated using pixel values unless you specify a measurement with `em` or `%` at the end of it.
+
+If you chain two animations together, the first will run and the second will only start once the first is completed.
+
+jQuery has a method named `.delay` that you can place between animation methods.
+
+The `stop` method will stop all current and future animations in the queue if you pass in a value of true as the first argument.
+
+`.finish` will not only stop the current animation and all queued animations, it will also jump to the end of the frame of every one of the queued and currently running animations on the element.
+
+If you ever want to turn off all animations and instead have the results take effect immediately, you can turn off effects globally by setting `$.fx.off` to true.
+
+---HTML Data Attributes
+With the introduction of HTML5 came the ability to create custom data attributes:
+- can be added to any HTML element
+- bear no significance other than to store data for you
+- always start with `data-` and need at least one character after the hyphen
+= the value you give to the attribute can be anything that can be contained within a string
