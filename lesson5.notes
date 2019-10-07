@@ -63,4 +63,13 @@ With the introduction of HTML5 came the ability to create custom data attributes
 - can be added to any HTML element
 - bear no significance other than to store data for you
 - always start with `data-` and need at least one character after the hyphen
-= the value you give to the attribute can be anything that can be contained within a string
+- the value you give to the attribute can be anything that can be contained within a string
+- no limit to the number of data attributes that can be added to an element
+
+In jQuery, can read the value of a data attribute using two different methods:
+1. `.attr`: use if you want to get or set the value of an HTML data attribute
+2. `.data`: use if you want to set and retrieve custom data on an element after the page has been rendered
+
+You can work with data attributes using native DOM APIs:
+- a DOM element will have a a property called `dataset` that is a specialized object of key-value pairs
+- the keys are the data attribute names and the values are the values of the attributes
