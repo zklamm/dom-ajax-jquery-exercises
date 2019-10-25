@@ -1,0 +1,1349 @@
+-----------------------------------------------------------
+    Launch School - Overview
+-----------------------------------------------------------
+#Core Curriculum
+---Programming & Back-end Development
+  *Programming Foundations*
+    Preparations
+    Small Programs
+    Practice Problems
+    Ruby Collections
+    Advanced Ruby Collections
+    Slightly Larger Programs
+  *Object Oriented Programming*
+    OO Readings
+    Object Oriented Programming
+    More OO Ruby
+    OO Practice Problems
+    Slightly Larger OO Programs
+  *Ruby Foundations  More Topics*
+    Blocks
+    Introduction to Testing
+    Packaging Code Into a Project
+  *Networking Foundations*
+    The Internet
+    TCP and UDP
+    The HTTP Protocol
+    Security
+  *Networked Applications*
+    Handling HTTP Requests
+    Project - Build a Book Reading App
+    Project - Build a Todo List
+    Securing Applications
+    Adding JavaScript
+  *Database Foundations*
+    Schema, Data, and SQL
+    Relational Data and JOINs
+  *Database Applications*
+    Interacting with a Database in Code
+    Database-backed Web Applications
+---Front-end Development
+  *HTML and CSS*
+    `Your First Web Pages`
+    `The Box Model`
+    `Images`
+    `Lists and Tables`
+    `Forms`
+    `Advanced Layout`
+    !Design Files
+  *Fundamentals of JavaScript for Programmers*
+    JavaScript Basics
+    Functions and Variable Scope
+    Exercises - Logics and Procedural Thinking
+    Arrays
+    Objects
+    Writing Better Code
+  *Computational Thinking and Problem Solving*
+    List Processing and Functional Abstractions
+    String and Text Processing
+    A General Problem Solving Approach
+  *Object Oriented JavaScript*
+    About this Course
+    Objects
+    Function Contexts and Objects
+    Closures and Function Scope
+    Object Creation Patterns
+  *DOM and Asynchronous Programming with JavaScript*
+    `The DOM`
+    `Event-Driven and Asynchronous Programming`
+    `Making HTTP Requests from JavaScript`
+    `jQuery`
+    !Putting it All Together
+    Advanced jQuery and Dynamic Content Creation
+    New JavaScript Features
+
+#Advanced Electives
+---Frameworks and Integrations
+  *Building Applications with Client Side MVC*
+    JavaScript MVC Frameworks
+    Backbone Basics
+    Advanced Browser-based JavaScript
+    JavaScript Tools and Testing
+    Creating a Single Page Application
+    Express.js and Preprocessors
+    Build a Music Store
+  *Rapid Prototyping with Ruby on Rails*
+    Code Like a Real Rails Developer
+    Understand -The Rails Way-
+    Persistence and Models
+    Forms
+    Advanced Topics
+    Projects
+  *Build Robust and Production Quality Applications*
+    Processes
+    Team Collaboration
+    Testing and Test Driven Development (TDD)
+    Building Applications
+    Production Application Considerations
+    Workflows
+---Other Courses
+  *Practical Programming and Automation*
+    The File System
+    Console Applications
+    Media Transcoding
+    Data Serialization
+    Interacting with the Web
+    Working with CSV
+    Network and Socket Programming
+    Working with Images
+    Web Scraping
+    Report generation
+  *Working with Web APIs*
+    Build a Simple API Client
+    Logging, Error Handling and Authentication
+    Client Side Architecture with Middlewares
+    Client Side Caching
+    Working with Paginated Data
+    Non-indempotent Methods, Testing and Tooling
+    Working with APIs in Web Apps
+    Projects
+
+###################################################################################################
+    *HTML and CSS*
+###################################################################################################
+-----------------------------------------------------------
+    Your First Web Pages
+-----------------------------------------------------------
+---Getting Started
+Attributes:
+- use double quotes when possible
+- boolean attributes don't need an `=` or a value
+- every HTML element may contain one or more attributes or none at all
+- most attributes are specific to individual tags
+- browsers do no check whether your attributes are valid (they'll just ignore them if they're not)
+
+---Creating an HTML Skeleton
+Typical HTML skeleton:
+[html]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Title</title>
+  <meta charset="utf-8" />
+</head>
+<body>
+</body>
+</html>
+[/html]
+
+DOCTYPE:
+- Document Type Definition or DTD
+- isn't part of HTML, merely a message that tells browser specific markup language to expect
+- must be the first item in an HTML document, not even whitespace can precede
+- must use uppercase when defining versions of HTML before HTML5 or non-HTML languages such as XML
+
+`html`:
+- encloses entire HTML document
+- attribute `lang="en"` informs user's browser which language to use
+
+`head`:
+- encloses document header, which consists of elements that provide meta-information to the browser
+- `title` gives the page a title
+- `<meta charset="utf-8">` tells the browser to expect the UTF-8 encoding, which is used by most web pages
+
+`body`:
+- the content area of the page
+
+---Classes, IDs, and Names
+Classes:
+- identifies a set of page elements that you wish to style consistently
+- any number of elements may belong to the same class
+- any elements can belong to one or more classes
+- prefer semantic class names (they should provide meaning)
+- class selectors have lower CSS specificity than ID selectors, but higher than tag name selectors
+
+IDs:
+- applies a unique identification string to a single element
+- each element can have one ID or none
+- use semantic ID names (they should provide meaning)
+- #the browser won't tell you when you use the same ID on more than one element#
+
+Names:
+- ties form elements to data on the server
+- typically doesn't play a role in styling
+- when submitting a form, the browser sends the form data to the server using name/value pairs
+- not all tags accept the `name` attribute; it applies to input controls on forms
+- always use a `name` attribute on form elements that accept it
+- use descriptive `name` values, not semantic
+- avoid trying to select elements in CSS by using the `name` attribute
+
+---Walkthrough Project: A Simple Web Page
+It is possible to pre-format text using the `<pre>` tag, but, in general, it's a poor choice.
+
+HTML entities:
+- an ampersand followed by one or more alphanumeric characters terminated by a semicolon
+- example: use &lt; and &gt; for literal < and > characters (there are thousands of these entities)
+- for safety, replace `&` with `&amp;` even when not needed
+- all entities also have numeric version (`&#38;` is equivalent to `&amp;`) but alphanumeric is preferred
+
+`strong`, `em`, `b`, and `i`:
+strong: The text has greater importance than the surrounding text; most browsers use boldface. Example: You *must* remember to turn the light off.
+em: Adds emphasis to the text; most browsers use italics. Example: We do them because they are #hard#!
+b: Stylistically offset text, such as keywords. Example: ES6 adds the keywords *const* and *let*.
+i: Alternate voice text. Example: I said "Hello." She said #"Goodbye."#
+
+---Guided Project: A Personal Profile
+`target="_blank"`:
+- attribute of an anchor element that tells the browser that it should open the link in a separate tab or window
+- typically used when linking to a different site
+
+---Practice Problems: CSS Selectors
+Add a `>` after a selector to tell the browser we only want direct children (e.g. `ul > li`)
+
+---HTML and CSS Style Guide
+HTML:
+- avoid cramming more than two elements on a single line
+- use `/>` with self-closing tags
+- with Flex or Grid, place the most significant content blocks near the top of the file
+
+CSS:
+- don't put more than one property on the same line
+- exception to above rule is when using *fallbacks* (fallback properties to support older browses)
+
+-----------------------------------------------------------
+    The Box Model
+-----------------------------------------------------------
+---Everything is a Box
+- every element requires a box-shaped segment of the page
+- every character of text content also needs a boxed portion of the page
+- the browser calculates the dimensions of that box by using the browser defaults and CSS
+
+Box Properties:
+- width/height: horizontal and vertical space needed for the content area of the box, which may or may not include the padding and borders
+- padding: area that surrounds the content area of the box and separates the content from its border, typically opaque and hides anything that it overlays
+- border: boundary that surrounds the padding
+- margin: transparent area that lies outside the border and supplies separation between elements
+- display: determines how the browser lays out an element relative to its neighbors
+
+---The Visual Formatting Model
+The `display` property of an element is called the visual formatting model.
+
+Block Elements:
+- by default, a `block` element occupies all horizontal space available within its container, with nothing to the left or right of the block
+- though a `block` element takes up an entire row in a container, this does not alter the width of the element
+- you can convert any element to a `block` element with the `display: block` CSS property
+
+Inline Elements:
+- handle left and right margins and left and right padding the same way as `block` elements
+- ignore the width and height properties (except with `img` element), but instead use values calculated from the element content
+- ignore top and bottom margins
+- don't ignore borders, but the results may look odd
+- don't ignore top and bottom padding, but you won't notice this unless you have a border or background
+- you can convert any element to an `inline` element with the `display: inline` CSS property
+- the left/right factors affect the flow, while the top and bottom do not
+
+Inline-Block Elements:
+- mixture of both previous types
+- act like `block` elements except that they do not take up an entire row when the `width` property is less than the available width
+- differ from `inline` in that they observe the `width` and `height` properties
+- typically no inconsistencies in how browsers set default display, but if there is you can explicitly set the property
+- contrary to popular belief, `img` elements are `inline`, not `inline-block`
+- you can convert any element to an `inline-block` element with the `display: inline-block` CSS property
+- horizontal navigation bars often use list elements defined as `inline-block`
+
+You cannot nest `block` and `inline-block` elements within `inline` elements (there is an exception with `a` tags but it is seldom used).
+
+There are several other diplay models:
+- list items deault to a `list-item` display model
+- table cells have a `table-cell` display model
+- `flex` and `grid` are two newer display models that are gaining popularity because of the problems they solve
+
+---Box Sizing
+The usable `box-sizing` property values are `content-box` and `border-box`
+
+`content-box`:
+- the default for all elements in all modern browsers
+- the `width` and `height` properties specify the size of the actual content area
+- need to add padding and borders to get the size of the visible box
+
+`border-box`:
+- causes the browser to interpret the `width` and `height` properties as the total width and height of the box excluding the margins (the width and height include the content area as well as the padding and borders)
+- "best" since it simplifies the math
+- to use border-box pretty much everywhere, add the following to your CSS:
+[css]
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+[/css]
+Code is explained here: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+
+---Padding and Margins
+- margins are typically transparent while the padding is opaque
+- padding is part of the visible and clickable bounds of an element, while a margin is spacing between adjacent elements
+- if you position two adjacent `block`s one above the other, the margin between them isn't the sum of the bottom margin of the first and the top margin of the second, but the margin collapes to the larger of the two margins in question
+- margin collapse occurs with top and bottom margins, not with left and right margins
+- padding does not collapse
+- guideline: use padding to separate the left and right sides of a conatiner from its content, use margins for the vertical gap
+
+---Dimensions
+Absolute Units:
+- CSS has one absolute unit of significance: the pixel
+- Be aware that there are differences between a physical pixel (or device or diplay pixel) and a CSS reference pixel
+
+Relative Units:
+- ems and rems are proportional to the *calculated* and *root* font sizes, respectively
+- the calculated font size is the height of the current font in pixels
+- the root font size is the height of the base font for the document
+- bugs in some older browsers make it a good idea to set the root font size in both the `html` and `body` elements
+- once you've set the root font size for a document, `1.5rem` means the same everywhere, whereas ems compound
+- compounding makes ems hard to use and maintain, so prefer rems
+- use percentages to define dimensions as a fraction of the container's width or height
+
+`auto`:
+- as a `width` or `height`, tells the browser to try to fit the entire element (including its margins) in its container
+- as a left or right `margin`, tells the browser to push the element all the way to the right or left (note reversal) in its container, so you can center a block element by setting both the left and right margins to `auto`
+- as a top or bottom `margin`, it's equivalent to `0`
+- padding does not accept `auto` values
+- `auto` is not the same as `100%`
+
+You can freely mix units anywhere you want on a page, but this can lead to problems when you need to determine the "right" length of something
+
+When to use different units:
+- use absolute units sparingly, and stick with pixels.
+- use relative units liberally
+
+---Practice Problems: Spacing and Dimensions
+`auto` margins work for `block` elements, but not `inline` or `inline-block`, so you must also set the `display` style when trying to center an `img`.
+
+-----------------------------------------------------------
+    Images
+-----------------------------------------------------------
+---Image Types
+The three types of images you'll see the most often are jpg, png, and gif.
+
+JPG:
+- most common format for images used in web documents
+- provide an exceptional balance of quality and compression
+- uses a *lossy* form of compression; they lose information in exchange for a file size reduction
+- in general, don't work well as CSS background images
+
+PNG:
+- often the best choice for backgrounds and non-photographic images
+- png compression is non-lossy
+- provides both single-color and alpha transparency
+- single-color transparency allows part of an image to be entirely clear by reserving a single color - any pixel that matches that color in the png reveals the content behind the image
+- alpha transparency adds an alpha channel to images, which allows up to 63,536 different levels of transparency tinted by color
+- ideal for images that need all their detail, transparency, or that must support more than 16.7 million colors
+
+GIF:
+- suitable for small images used as user interface icons in an application
+- limited color range (256), but this allows for miniscule file sizes
+- perfect for images where size, detail, and a broad color palette aren't significant
+
+---Adding Images to Web Pages
+`<img />`:
+- a self-closing tag that tells the browser to load an image from a separate resource
+- `src` is a required attribute that tells the browser where to find the image
+- `alt` attribute describes the content of the image as an aid for users who cannot view the images
+- search engines use `alt` to index images, which makes it relevant for search engine optimization(SEO)
+
+Figure and Figcaption:
+- `figure` element designates an item as a representation of information discussed in the content and customarily encloses some media that illustrates the surrounding content
+- can also supply can optional `figcaption` tag, short for figure caption
+
+To make an image clickable and have it link to another page, put the `img` tag inside an `a` tag:
+[html]
+<a href="url-of-link">
+  <img src="url-of-image" alt="alt-text" />
+</a>
+[/html]
+
+Background Images:
+- can add to page by applying the CSS `background` or `background-image` property
+- appear behind the content for the element that requested the background and its descendants
+- use `url()` method as property value
+
+---Guided Project: A Simple Photo Gallery
+`outline` property:
+- outlines are like borders, but they lie outside them
+- they don't interact with the box model, so they don't change the page layout
+- useful during development and debugging
+
+-----------------------------------------------------------
+    Lists and Tables
+-----------------------------------------------------------
+---Lists Overview
+Unordered Lists:
+- contain a series of unordered items
+- by default, browsers render unordered lists vertically
+- uses `<ul>` and `<li>` tags
+
+Ordered Lists:
+- have a sequence that is a visual component of the list
+- by default, most browsers render a vertical list of numbered items
+- uses `<ol>` and `<li>` tags
+
+Description Lists:
+- contain a list of terms and definitions
+- each item in the list contains one or more terms and one or more definitions
+- uses `<dl>`, `<dt>`, and `<dd>` tags
+
+Nested Lists:
+- can nest any list within another list, regardless of types
+- most browsers will cycle through several different bullets as you nest unordered lists more deeply
+
+Navigation Menus:
+- developers frequently use unordered lists to construct navigation menus, both vertical and horizontal
+
+---Tables Overview
+Back in the earliest days of the web, long before CSS took off, most developers employed tables to implement layouts.
+
+Today, you should use tables for strictly tabular data, not layout.
+
+Table Tags:
+- `<table>`: defines a table
+- `<tr>`: defines a single row in a table
+- `<td>`: defines a single cell of content in a table (each row includes zero or more cells)
+- `<th>`: defines a single heading (the first cell in a row or column is typically a heading, but this is not required)
+- `<thead>`, `<tbody>`, and `<tfoot>`: each define a set of one or more rows that comprise the header, body, and footer rows of a table
+- can also add the `scope` attribute to identify `th` elements as row (`scope="row"`) or column (`scope="col"`) headings
+
+Example Table:
+[html]
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Color Name</th>
+      <th scope="col">Color Hex</th>
+      <th scope="col">Color Decimal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">red</th>
+      <td>#f00</td>
+      <td>255, 0, 0</td>
+    </tr>
+    <tr>
+      <th scope="row">green</th>
+      <td>#0f0</td>
+      <td>0, 255, 0</td>
+    </tr>
+    <tr>
+      <th scope="row">blue</th>
+      <td>#00f</td>
+      <td>0, 0, 255</td>
+    </tr>
+  </tbody>
+</table>
+[/html]
+
+-----------------------------------------------------------
+    Forms
+-----------------------------------------------------------
+---Forms Overview
+Forms:
+- are the point where front-end and back-end concerns come together
+- displays information to the user, solicits updates, performs some optional rudimentary validation, and then sends the form data to the server
+
+`form` tag:
+- the parent for all form-related tags
+- tells the browser where and how to send the data
+- should contain at least one `input`, `textarea`, or `select` tag; without one, the form is useless
+- most important attributes are `action` and `method`
+- `method` attribute tells the browser whether it should use the HTTP GET or HTTP POST method when sending the data to the server
+- HTTP supports several other methods, but HTML limits you to GET and POST
+- `action` attribute provides the URL to which the browser sends requests
+- individual action items (`button` and `input type="submit"` elements) in a form can override the form's `action` value by using the `formaction` attribute
+
+`fieldset` tag:
+- optional tag that groups together form content as a set of related data
+- forms can have multiple `fieldset` tags
+
+`input` tag:
+- describes a control or widget; that is, a mechanism that lets the user supply information or a request to the application on the server
+- each `input` requires a `type` attribute, which has a large number of valid values
+- most `input` controls require a `name` attribute to specify the name of each item-- the browser uses these names to identify each data item in the form, while the back-end application looks for that name to find the appropriate value
+- `input` is a self-closing tag
+
+`label` tag:
+- provides a way to associate some identifying text with an input field
+- the browser uses the `for` attribute in the `label` tag and the `id` attribute in the `input` tag to associate the two items
+- the user can click on the label to make the cursor jump to the desired field
+- can be used as containers, which eliminates the need for the `for` and `id` attributes
+
+---Input Types
+Types:
+- `text`: creates a simple text entry field
+- `password`: creates a single-line text field with an obscured value
+- `email`: allows entry of an email address in the form `username@domain`
+- `tel`: allows entry of a telephone number
+- `checkbox`: lets the user choose one or more items from a series of yes/no type options
+- `radio`: lets the user choose zero or one item from a list of options
+- `submit`: creates a button that the user can click to submit the contents of a form to the server
+- `reset`: creates a button that the user can click to reset the contents of a form to its default values
+- there are other form controls - look them up as needed
+
+---Input Attributes
+`value`:
+- most input controls can use the `value` attribute, but the meaning varies with the `type`
+- for text-based types, `value` assigns a default value for the control
+- `checkbox` and `radio` types use `value` to set the value that the form submits for the indicated checkbox or radio group element
+- button types use `value` for the label that appears on the button
+
+`size` and `maxlength`:
+- `size` lets you control the size of an `input` element in characters
+- `maxlength` limits the maximum length of the input values
+
+`placeholder`:
+- lets you display some text when a field is empty
+- don't use placeholders as a substitute for labels
+
+`disabled`:
+- lets you disable `input` elements
+- turns on the `:disabled` CSS pseudo-class (non-disabled elements set the `:enabled` pseudo-class)
+
+`required`:
+- marks an `input` as required
+- turns on the `:required` pseudo-class
+
+`autocomplete`
+- prevents the browser from storing data for later reuse by the browser's `autocomplete` features
+- does not affect the `password` input type
+
+---Select and Textarea
+`textarea`:
+- lets the user input multiple lines of text
+- uses the `rows` and `cols` attributes to control the height and width of the text box
+
+`select`:
+- creates a drop-down list of options from which the user can select zero or more options
+- the `option` element defines one of the choices the user can make in a `select` tag
+- often have a placeholder `option` that says something like `Choose one` as a `disabled` and `selected` attribute
+- by default, lets the user choose precisely one option or leave the option unselected
+- if you add the `multiple` attribute, the user can select more than one option
+
+-----------------------------------------------------------
+    Advanced Layout
+-----------------------------------------------------------
+---Floats
+As we've seen elsewhere, you need some pretty ugly hacks when you need to collapse the whitespace between two side-by-side `inline-block` elements...floating them is one potential fix
+
+Floats:
+- tells the browser to move the element as far to the left or right as possible but to leave the remaining space available for additional content
+- elements float within their immediate container
+- if you float two elements in a row in the same direction, their vertical edges (counting their margins) will touch, providing they fit in the same row
+- any whitespace (other than margins and padding) that would otherwise appear between the elements will collapse
+- make sure all floats in a group have the same height and direction (left or right), and they will wrap logically
+
+---Containing Floats
+A typical problem with floats is that their containers will be partially overwritten by the floated elements
+
+Two ways to contain floats:
+1. `overflow: hidden` (or `overflow: auto`): there are some edge cases associated with these
+2. clearfix: employs an invisible block element as the last child element of the container and the `clear` property
+
+An example of a clearfix:
+[css]
+#columns::after { /* This rule is the clearfix */
+  clear: both;
+  content: "";
+  display: block;
+}
+[/css]
+
+---Positioning
+Offset properties:
+- `top`, `right`, `bottom`, `left`
+- each offset measures the *inward* distance from the side of the container named by the offset property
+
+The `position` Property:
+- `static`: the default and is not affected by offset properties
+- `relative`: moves an element to a position relative to where the browser would otherwise put it, but this does not remove the element from the document flow
+- `absolute`: moves the element to a new position within a container element (by default, the container is the nearest ancestor element that has a `relative`, `absolute`, or `sticky` `position` property) and removes the element from the document flow
+- `fixed`: sets an element to a fixed position within the window and does not move if the user scrolls
+
+---Flex and Grid
+Flex: a one-dimensional layout tool; you can layout a single row or column with a single flexbox
+Grid: a two-dimensional layout tool; you can place elements in a grid
+
+---CSS Frameworks
+Most common are Twitter Bootstrap and Foundation (#I think learning CSS Grid is the way to go#)
+
+---Responsive Design
+Media Queries: define styles that change based on the current size of the browser window
+
+Example media query:
+[css]
+/* CSS for all cell phones and shared cross-browser CSS */
+
+@media screen and (min-width: 481px) {
+  /* CSS for tablets and larger */
+}
+
+@media screen and (min-width: 961px) {
+  /* CSS for small desktop and laptop screens and larger */
+}
+
+@media screen and (min-width: 1501px) {
+  /* CSS for large laptop and desktop displays */
+}
+
+@media print {
+  /* CSS for printers */
+}
+[/css]
+
+- Check MDN documentation for media queries for more info.
+- Most developers consider the mobile-first approach to be best-practice
+- Chrome includes emulations of most popular devices via the dev tools
+
+Use this tag if you design your app with responsiveness:
+[html] <meta name="viewport" content="width=device-width, initial-scale=1" /> [/html]
+*But do not use it if your website has no responsiveness*
+
+Fluid and Liquid Layouts:
+- liquid layouts often employ percentage values for widths to maintain the same width ratios for content areas as the browser width changes
+- fluid layouts expand and collapse like a liquid layout to a point, then become fixed once the browser width reaches a specific size
+
+-----------------------------------------------------------
+    Design Files
+-----------------------------------------------------------
+---CSS Resets
+A reset is a bit of CSS that "resets" your CSS to a known state in a variety of different browsers.
+
+Some popular CSS resets:
+- meyerweb.com/eric/tools/css/reset/
+- necolas.github.io/normalize.css/
+- cssreset.com/scripts/undohtml-css-tantek-celik/
+
+These can easily be customized to suit your needs.
+
+###################################################################################################
+    *DOM and Asynchronous Programming with JavaScript*
+###################################################################################################
+-----------------------------------------------------------
+    The DOM
+-----------------------------------------------------------
+---The Document Object Model (DOM)
+DOM: an in-memory object representation of an HTML document. It provides a way to interact with a web page using JavaScript and provides functionality needed to build modern interactive user experiences.
+
+---A Hierarchy of Nodes
+Browsers insert possibly missing elemets like `HEAD` and `BODY` since a fundamental tenet of the web is permissiveness; they always do their best to display HTML even when it has errors.
+
+DOM nodes have different types:
+- Elements represent HTML tags
+- Text nodes represent text that appears in the document
+- Comments represent the HTML comments
+- (The DOM includes some other types that we can ignore for now)
+
+Empty nodes: text nodes that only contain whitespace (e.g., the gap between `</h1>` and `<p>` forms an empty node that contains a newline and two space characters). Developers often forget about these empty nodes since they aren't visible in the HTML, which can lead to bugs. Empty nodes are *not* reflected visually in the browser.
+
+---Node Properties
+`querySelector`: This method returns the first node in the DOM that matches a specified CSS selector.
+
+The `document` node, which represents the entire HTML document, is the top-most DOM node.
+
+Using `toString` is a handy way to determine an object's type.
+
+`nodeName`: property that contains a String that represents the node type.
+- For Elements (anything that represents an HTML tag), this is the name of the corresponding tag in uppercase. The use of uppercase is a historical throwback to a time when standard practice was to write uppercase HTML tags; contemporary HTML uses lowercase tags, but this method still returns uppercase names.
+- For text nodes -- even empty nodes -- the nodeName is "#text". For comments, it's "#comment".
+
+`nodeType`: can use to determine a node's type: returns a number that matches a node type constant.
+- ELEMENT_NODE = 1, TEXT_NODE = 3, COMMENT_NODE = 8, DOCUMENT_NODE = 9, etc.
+- Use the constant names instead of the numeric values to write clear code
+
+`nodeValue`: references the value of a node.
+- Element nodes don't have values (return null)
+- Text nodes return the textual content of the node
+
+`textContent`: represents the textual content of all nodes inside the Element.
+
+---Determining the Type of a Node
+The Element type is further broken down into dozens of subtypes:
+- All DOM objects are Nodes
+- All DOM objects have a type that inherits from Node
+- The most common DOM object types you will use are Element and Text
+
+. Event Target
+  . Node
+    . Text
+    . Comment
+    . Document
+      .HTMLDocument
+    . Element
+      . HTMLElement
+        . HTMLAnchorElement
+        . HTMLBodyElement
+        . etc.
+      . SVGElement
+        . SVGColorElement
+        . SVGRectElement
+        . etc.
+
+JavaScript provides two useful ways to determine a node type:
+1. The technique most useful on the console uses the `toString` method or the `String` constructor on the node; you can read the name from the display
+2. If you're writing a program, you should probably use the `instanceof` function or `tagName` property.
+
+---Traversing Nodes
+You should know these properties of parent nodes:
+- `firstChild`: `childNodes[0]` or `null`
+- `lastChild`: `childNodes[childNodes.length - 1]` or `null`
+- `childNodes`: *Live collection* of all child nodes (a live collection automatically updates to refelct changes in the DOM)
+
+You should know these properties of child nodes:
+- `nextSibling`: `parentNode.childNodes[n + 1]` or `null`
+- `previousSibling`: `parentNode.childNodes[n - 1]` or `null`
+- `parentNode`: Immediate parent of this node
+
+Recursive `walk` function by LS:
+[js]
+  function walk(node, callback) {
+    callback(node);
+    var i;
+    for (i = 0; i < node.childNodes.length; i++) {
+      walk(node.childNodes[i], callback);
+    }
+  }
+
+  walk(document.body, function(node) {
+    console.log(node.nodeName);
+  });
+[\js]
+
+---Element Attributes
+We can access the attributes of an Element using these methods:
+- `getAttribute(name)`
+- `setAttribute(name, newValue)`
+- `hasAttribute(name)`
+
+`getAttribute` and `setAttribute` work for all attributes, but you can access some attributes another way.
+The DOM exposes these special attributes as properties of the Element: `id`, `name`, `title`, `value`, and `className`.
+
+Working with the `class` attribute via `className` is inconvenient when elements have more than one class.
+The `classList` property references a special array-like `DOMTokenList` object that has these properties and methods:
+- `add(name)`: Add class name to element
+- `remove(name)`:  Remove class name from element
+- `toggle(name)`:  Add class name to element if it doesn't exist, remove if it does exist
+- `contains(name)`:  Return true or false depending on whether element has class name
+- `length`:  The number of classes to which element belongs
+
+The `style` attribute on an Element references a `CSSStyleDeclaration` Object, and can be used to alter any CSS property.
+When a CSS property's name contains dashes, you must use a camelCased version of the name to access that property.
+
+---Finding DOM Nodes
+The built-in method `getElementById` on `document` allows us to find an element based on its `id` attribute.
+
+However, we more often want all elements that match some criteria.
+
+#LS provides some practice problems to manually get all elements that match a certain criteria#
+
+These built-in methods provide a way to get collections of elements that meet a certain criteria:
+- `document.getElementsByTagName(tagName)`: returns `HTMLCollection` or `NodeList` of matching elements
+- `document.getElementsByClassName(className)`: returns `HTMLCollection` or `NodeList` of matching elements
+
+Note that these methods return array-like objects, not actual arrays. To loop through the elements returned by these methods, use a `for` loop or convert the object into an array and then use the higher-order array functions.
+
+Web browsers provide built-in support for selector searches with these two methods:
+1. `document.querySelector(selectors)`: returns first matching element or `null`
+2. `document.querySelectorAll(selectors)`: returns `NodeList` of matching elements
+- Learn to use these methods; they will save you a lot of time.
+- Note that both these methods are available on all elements, not just `document`.
+
+---Traversing Elements
+Earlier, we looked at some properties that you can use to traverse DOM nodes.
+However, there is another set of properties that allows you to traverse element nodes...
+Parent Element Properties:
+- `firstElementChild`: `children[0]` or `null`
+- `lastElementChild`: `children[children.length - 1]` or `null`
+- `children`: *Live collection* of all child elements
+- `childElementCount`: `children.length`
+
+Child Element Properties:
+- `nextElementSibling`: `parentNode.children[n + 1]` or `null`
+- `previousElementSibling`: `parentNode.children[n - 1]` or `null`
+
+The `textContent` property provides access to the text:
+- #Be careful# when setting `textContent`; doing so removes all child nodes from the element and replaces them with a text node that contains the value.
+- The best strategy for updating text with JavaScript is to place the text you need to update within an element; the element type doesn't matter -- even a bare `span` or `div` element will suffice. This approach makes using `textContent` simpler and safer to use.
+
+---Creating and Moving DOM Nodes
+You can create new empty nodes with the `document.create*` methods, or you can clone an existing node hierarchy:
+- `document.createElement(tagName)`: Returns a new Element node
+- `document.createTextNode(text)`: Returns a new Text node
+- `node.cloneNode(deepClone)`: Returns a copy of `node`
+  - If `deepClone` is `true`, `cloneNode` makes copies of `node` and *all its children*; otherwise, it merely copies `node`
+  - The default value for `deepClone` has changed over time, so always specify `true` or `false`
+  - The clone creates a new object -- changing one does not change the other
+
+You can append, insert, and replace nodes with methods on the node's parent:
+- `parent.appendChild(node)`: Append `node` to the end of `parent.childNodes`
+- `parent.insertBefore(node, targetNode)`: Insert `node` into `parent.childNodes` before `targetNode`
+- `parent.replaceChild(node, targetNode)`: Remove `targetNode` from `parent.childNodes` and insert `node` in its place
+
+`document.appendChild` causes an error. Use `document.body.appendChild` instead.
+
+#No Node may appear twice in the DOM#. If you try to add a node that is already in the DOM, it gets removed from the original location.
+
+These methods insert a node before, after, or within an Element:
+- `element.insertAdjacentElement(position, newElement)`: Inserts `newElement` at `position` relative to `element`
+- `element.insertAdjacentText(position, text)`:  Inserts Text node that contains `text` at `position` relative to `element`
+
+`position` must be one of the following `String` values:
+- "beforebegin": Before the element
+- "afterbegin": Before the first child of the element
+- "beforeend":After the last child of the element
+- "afterend": After the element
+
+When you remove a node from the DOM, it becomes eligible for garbage collection unless you keep a reference to the node in a variable:
+`node.remove()`: Remove `node` from the DOM
+`parent.removeChild(node)`: Remove `node` from `parent.childNodes`
+
+---The Browser Object Model (BOM)
+You can access other components of the browser with JavaScript that go beyond the page contents. These components include:
+- The windows used to display web pages
+- The browser's history
+- Sensors, including location
+
+-----------------------------------------------------------
+    Event-Driven and Asynchronous Programming
+-----------------------------------------------------------
+---Asynchronous Execution with setTimeout
+Sequential code: for each line of code, the next line of code must wait until the current line completes.
+Asynchronous code: runs partly now, then pauses and continues to run later after a delay of milliseconds, minutes, hours, or even days.
+
+`setTimeout`:
+- a function that takes two arguments: a callback function and a time to wait specified in milliseconds
+- It sets a timer that waits until the given time delay elapses, then invokes the callback function
+- No other code executes until the delay time elapses, then the callback function runs as expected
+
+Ultimately, working with asynchronous code means you must reason about both *what* the code does and *when* it does it.
+
+---Repeating Execution with setInterval
+`setInterval`:
+- Instead of invoking the callback once, it invokes it again and again at intervals until told to stop
+- returns an identifier that we can later pass to `clearInterval` to cancel the timer and stop the repeated execution of the callback
+
+---User Interfaces and Events
+Event:
+- an object that represents some occurrence; it contains information about what happened and where it happened
+- the browser can trigger events as the page loads, when the user interacts with the page, and when the browser performs some action required by the program
+
+The code within a user interface has two main tasks:
+1. Set up the user interface and display it
+2. Handle events resulting from user or browser actions
+
+Event listener: code that the browser runs in response to the event.
+
+---Page Lifecycle Events
+The (simplified) steps a browser goes through to load a page:
+HTML code received from server -> HTML parsed and JavaScript evaluated -> DOM constructed from parsed HTML -> `DOMContentLoaded` event fires on `document` -> Page displayed on screen -> Embedded assets are loaded -> `load` event fires on `window`
+
+- We typically use the `DOMContentLoaded` event when we have JavaScript code that must access the DOM.
+- The `load` event fires much later, after everything on the page loads, including images, videos, etc. This `load` event is not useful in mose cases because it may not occur for a long time after the page first appears.
+
+---User Events
+Keyboard: keydown, keyup, keypress
+Mouse: mouseenter, mouseleave, mousedown, mouseup, click
+Touch: touchdown, touchup, touchmove
+Window: scroll, resize
+Form: submit
+#This is not an exhaustive list#
+
+Keep in mind that an event's type determines the kind of code it makes sense to run within an event handler, but registering and triggering events is the same for all.
+
+---Adding Event Listeners
+There are four steps needed to setup an event listener (handler):
+1. Identify the event you need to handle.
+2. Identify the element that will receive the event.
+3. Define a function to call when this event occurs.
+4. Register the function as an event listener.
+
+We can call `addEventListener` on the object to which we want to register the listener.
+
+#The `GlobalEventHandlers` mixin provides an alternate way to register a function as an event listener for an element.#
+
+---The Event Object
+Useful properties that appear in Event objects include:
+`type`: The name of the event (e.g., 'click')
+`currentTarget`: The current object that the event object is on. It always refers to the element that has the event listener attached to it
+`target`: The initial object to receive notification of the event, e.g., the element clicked by the user
+
+Mouse Events:
+`button`: This is a read-only property that indicates which button was pressed
+`clientX`: The horizontal position of the mouse when the event occurred
+`clientY`: The vertical position of the mouse when the event occurred
+- Both `clientX` and `clientY` return values *relative to the visible area of the page*: the number of pixels from the upper-left corner of the browser's viewport
+
+Keyboard Events:
+`key`: The string value of the pressed key. *Older browsers do not support this property*
+`shiftKey`: Boolean value that indicates whether the user pressed the shift key
+`altKey`: Boolean value that indicates whether the user pressed the alt (or option)
+`ctrlKey`: Boolean value that indicates whether the user pressed the control key
+`metaKey`: Boolean value that indicates whether the user pressed the meta (or command) key
+
+---Capturing and Bubbling
+There are downsides to having event listeners attached to each element of interest on the page:
+- you must wait until the `DOMContentLoaded` event fires
+- you must add event handlers manually when you add new elements to the page after `DOMContentLoaded` fires
+- adding handlers to many elements can be slow, and can lead to complicated, difficult to maintain code
+
+A technique called *event delegation* provides a solution for these problems, but before we can learn how to use it, we first need to talk about *capturing* and *bubbling*.
+
+*Capturing* and *bubbling*:
+- phases that an event goes through after it initially fires
+- the event gets dispatched to each element twice, once during the capturing phase and once during the bubbling phase
+- the actual event listener gets called/fired in only one phase
+- by default the listener is set to fire during the "bubbling" phase
+- when event listeners fire on the target element it is also described as the *target phase*
+
+---Preventing Propagation and Default Behaviors
+- `event.stopPropagation`: stops the `event` from continuing its path along the capturing and bubbling phases
+- `event.preventDefault`: tells the browser that it shouldn't perform any actions that it might otherwise perform in response to a user's action
+
+It's good practice to call `preventDefault` or `stopPropagation` as soon as possible in an event handler:
+- emphasizes the presence of those methods to people reading the code
+- ensures that these methods run before any errors occur; not running these methods before and error occurs can lead to unexpected behavior that is hard to debug
+
+Important observations about `preventDefault`:
+1. The default behavior isn't for the element that the event listener is attached to, but rather for the `event` object.
+2. The browser waits for the event object to go through the propagation phases (capturing and bubbling) before it performs the default action of the event. If there's an event handler with a `preventDefault` call somewhere in the propagation path, the default behavior is skipped.
+
+Default behavior can still happen even if one of the listeners had a call to `preventDefault`:
+`event.stopPropagation` stops the event object from heading to a next listener which might contain a `preventDefault` method call. Consequently, `event.preventDefault` is never called and the default behavior is allowed to happen.
+
+---Event Delegation
+- Instead of adding listeners to every element you're watching, you can add a single handler to any of their parents.
+- You don't have to wait until the DOM is ready if you are able to add the event listener directly to `document` because it is available to start with.
+- The trade-off of delegation is that the listener may become more complicated if it must handle multiple situations.
+- The best approach is to start by binding event handlers directly to elements when a project is new and small.
+- jQuery, which we'll look at in an upcoming lesson, includes functionality that makes delegation comparatively easy whil avoiding the complexity drawback.
+
+---What is the Event Loop?
+- video: https://www.youtube.com/watch?v=8aGhZQkoFbQ
+
+JavaScript:
+- a single-threaded, non-blocking, asynchronous, concurrent langauge
+- has a call stack, an event loop, a callback queue, and other APIs
+V8 (Chrome's runtime):
+- has a call stack and a heap (a heap is where memory allocation happens)
+
+`setTimeout`, `DOM`, `XHR` aren't found in V8 code base. They are actually *Web APIs* that are provided by the browser.
+Other items provdied by the broswer are the *event loop* and the *callback queue*.
+
+Visual breakdown:
+Broswer
+  V8
+    Call Stack
+    Heap
+  Web APIs
+    `setTimeout`
+    `DOM`
+    `XHR`
+    etc...
+  The Event Loop
+  Callback Queue
+
+The call stack:
+- one thread == one call stack == one thing at a time
+- data structure which records where in the program we are
+- stack trace is the state of the call stack when an error occurs
+
+Blocking: code that is slow (e.g. image processing, network requests)
+The solution to blocking is asynchronous callbacks (not having to wait synchronously until the slow code runs)
+
+Concurrency and the Event Loop:
+- Whenever the *Call Stack* encounters an asynchronous callback, it is popped off the stack by essentially passing the callback to its respective *Web APIs*, which will listen for the event to occur.
+- Once the event fires, the callback is added to the *Callback Queue*.
+- From there, the *Event Loop* will push the callback to the *Call Stack*, but #only# when the *Call Stack* is empty.
+
+This explains why `setTimeout` with a delay of 0 will still be asynchronous (the event loop can't push it to the stack until the stack is empty)
+`setTimeout` is not a guaranteed time to execution, it's a #minimum# time to execution.
+
+The browser would like to repaint (render) the screen every 16.6 milliseconds (60 Hz), but it can't do a render if there is code on the stack. This is similar to the callback queue, but the render is given higher priority than the callback queue.
+The takeaway is to not put slow code on the stack (don't block it) because then the browser can't do what it needs to do, which is create a nice fluid UI.
+
+---Douglas Crockford: An Inconvenient API
+- video: https://www.youtube.com/watch?time_continue=1&v=Y2Y0U-2qJMs
+
+The Misconceived Web:
+- The original vision of the WWW was as a hyperlinked docment-retrieval system
+- It did not anticipate presentation, session, or interactivity
+
+How We Got Here:
+- Rule Breaking
+- Corporate Warfare
+- Extreme Time Pressure
+
+-----------------------------------------------------------
+    Making HTTP Requests from JavaScript
+-----------------------------------------------------------
+---Introduction
+XMLHttpRequest:
+- one of the browser APIs that provide network programming functionality to JavaScript applications
+- libraries or utility functions often wrap this web API
+
+---Network Programming in JavaScript
+Page Navigation: user clicks link in a page -> browser sends HTTP request to server -> server returns entire HTML page -> browser parses and displays new page
+- When a user clicks a link, the web browser automatically requests the page
+- When the browser receives a response, it renders it in the viewport
+
+AJAX: Asynchronous JavaScript and XML
+- provides a way to replace only part of a web page instead of reloading an entire HTML page
+
+Two ways how AJAX differs from the page-navigation example above:
+1. The web browser doesn't make an automatic HTTP request; instead, JavaScript code initializes it, typically from an event listener
+2. When the browser receives a response, JavaScript code takes the response's body and updates the pgae as needed
+
+#When requesting a resource using JavaScript, the developer must write code that initiates the request and handles the response#
+
+AJAX Flow: user action triggers event listener -> JavaScript sends HTTP request to server using XMLHttpRequest -> server returns chunk of HTML code -> JavaScript code inserts new HTML into page
+
+Single Page Applications:
+- modern applications that fetch data in a serialized format and create the DOM entirely from JavaScript running in a client's browser
+- instead of fetching bits of HTML generated by a server, this model does all interactions by passing data to and from the server, often encoded as JSON
+
+---Making a Request with XMLHttpRequest
+XMLHttpRequest:
+- object used to send a HTTP request with JavaScript
+- part of the browser API, not the JavaScript language
+- name comes from original use, which was to fetch XML documents over HTTP
+- today, typically loads HTML or JSON and can use other protocols
+
+[js]
+var request = new XMLHttpRequest(); // Instantiate new XMLHttpRequest object
+request.open('GET', '/path');       // Set HTTP method and URL on request
+request.send();                     // Send request
+[\js]
+
+`request.send` is asynchronous, so code execution continues without waiting for it to complete.
+
+Become familiar with the following `XMLHttpRequest` methods:
+- `open(method, url)`: Open a connection to url using method
+- `send(data)`: Send the request, optionally sending along data
+- `setRequestHeader(header, value)`: Set HTTP header to value
+- `abort()`: Cancel an active request
+- `getResponseHeader(header)`: Return the response's value for header
+
+Setting headers using the `XMLHttpRequest.setRequestHeader` method must only be done once the `XMLHttpRequest.open` method has been called.
+
+Become familiar with the following `XMLHttpRequest` properties:
+- `timeout`: Maximum time a request can take to complete (in milliseconds)
+- `readyState`: What state the request is in (see below)
+- `responseText`: Raw text of the response's body
+- `response`: Parsed content of response, not meaningful in all situations
+
+---XMLHttpRequest Events
+To run some code when an event occurs on an `XMLHttpRequest` object, we can use the same `addEventListener` method that we use for handling user or page events.
+
+Two main events fire during an `XMLHttpRequest` cycle:
+1. `loadstart`: Request sent to server
+2. `loadend`: Response loading done and all other events have fired. Last event to fire.
+
+Before `loadend` triggers, another event will fire based on whether the request succeeded:
+- `load`: A complete response loaded
+- `abort`: The request was interrupted before it could complete
+- `error`: An error occurred
+- `timeout`: A response wasn't received before the timeout period ended
+
+Keep in mind that a browser considers any request that receives a complete response as successful, even if the response has a non-200 status code or represents an application error.
+#Whether `load` or another event fires is determined by whether the HTTP request-response cycle loads a complete response. It does not consider the response's semantic meaning to the application.
+It is the responsibility of the application code to determine whether a `request` was successful from its perspective by inspecting the response within a `load` event handler.
+
+---Data Serialization
+- JavaScript applications that run in a web browser must *serialize* data when communicating with remote systems
+- Serialization lets both the client and server transfer data in a format that preserves information without interfering with the communication protocol
+- URL encoding for query strings is a common serialization format
+- JavaScript provides a built-in function, `encodeURIComponent`, that lets you encode a name or value using URL encoding
+- You can append a properly encoded query string to a GET request's path
+- URL encoding also works with POST requests, but you must include a `Content-Type` header with a value of `application/x-www-form-urlencoded` and place the encoded name-value string in the request body
+
+- For forms that include file uploads or that use `FormData` objects to collect data, POST requests use multipart form formats
+- This format isn't strictly an encoding format since we don't encode anything
+- Each name-value pair is placed in a separate section of the request body
+- A *boundary delimiter* defined by the `Content-Type` request header separates each part:
+`Content-Type: multipart/form-data; boundary=----WebKitFormBoundarywDbHM6i57QWyAWro`
+
+JSON (JavaScript Object Notation):
+- a popular format used by APIs
+- can exchange arrays, objects, strings, numbers, and boolean values over the network
+- does not provide native support for complex data types like dates and times
+- a `GET` request can return JSON, but you must use `POST` to send JSON data to the server
+- to use JSON as the request serialization format, the `Content-Type` is required to have a value of `application/json; charset=utf-8` (the `charset` is optional)
+
+---Example: Loading HTML via XHR
+- We can use an `XMLHttpRequest` object to fetch  content and insert it in an existing web page without a full page reload
+- We can attach event listeners to content embedded in the page to circumvent the browser's default behavior and create custom interactions
+
+---Example: Submitting a Form via XHR
+Three steps to submitting a form using JavaScript:
+1. Serialize the form data
+2. Send the request using `XMLHttpRequest`
+3. Handle the response
+
+`FormData`:
+- a built-in API to assist in the process of URL-encoding the names and values of each `input` element
+- makes it easy to serialize a form's data
+- `FormData` uses the *multipart* format
+
+---Example: Loading JSON via XHR
+- the `responseType` property tells the browser how to handle the data it receives
+- valid values for `responseType`: `text`, `json`, `arraybuffer`, `blob`, and `document`
+- setting `responseType` lets us avoid extra error-handling code that we may need using `JSON.parse`
+
+---Example: Sending JSON via XHR
+Same three steps as submitting a form, but with a couple of adjustments:
+1. Serialize the data *into valid JSON*
+2. Send the request using `XMLHttpRequest` *with a* `Content-Type: application/json` *header*
+3. Handle the response
+
+---Cross-Domain XMLHttpRequests with CORS
+- the scheme, hostname, and port of a URL define its origin
+- a cross-origin request occurs when the page tries to access a resource from a different origin
+- a cross-domain request is a request from one domain (hostname) to another domain
+- by default, an `XHR` object can't send cross-origin requests because of security problems
+- all browsers implement a security feature called the same-origin policy
+
+CORS - Cross-Origin Resource Sharing:
+- a W3C specification that defines how the browser and server must communicate when accessing resources across origins
+- the idea is to let the two systems know enough about each other to determine whether the response should succeed or fail
+- applications use custom HTTP request and response headers to implement this mechanism
+- every `XMLHttpRequest` sent by the browser must have an `Origin` header that contains the origin of the requesting page
+- the server uses this header to determine whether it should send a corresponding header in the response
+- the browser automatically adds the `Origin` header as part of an `XHR`
+- if the server determines the origin is allowed to see the response, it sends the response with an `Access-Control-Allow-Origin` header that contains the same origin
+- even if the server sends the correct response, but without the `Access-Control-Allow-Origin` header with the appropriate value, the browser will raise an error
+
+---Project: Search Autocomplete, Part 5 - Throttling XHR requests
+Making requests that you don't need is bad practicel; it puts a huge strain on the server, which is a huge concern in a production environment.
+
+Throttling:
+- waits for some specified time before sending a request to the server
+- if, in the interim, that request becomes irrelevant due to a newer request, we discard the original request and start a new delay period for the newer request
+- many JS libraries provide this capability, often with a funciton named `debounce`
+
+Custom version of `debounce`:
+[js]
+function debounce(func, delay) {
+  var timeout;
+
+  return function() {
+    var args = arguments;
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(function() {
+      func.apply(null, args);
+    }, delay);
+  };
+}
+[\js]
+
+By using `debounce`, we dramatically reduce the number of AJAX requests sent by our application.
+
+-----------------------------------------------------------
+    jQuery
+-----------------------------------------------------------
+---Introduction
+jQuery:
+- a JavaScript library that provides a convenient and consistent API across most browsers and platforms
+- can use JavaScript and the DOM API to accomplish much of what jQuery provides, but differences between DOM implementations have historically made it difficult to share code between browsers
+- many projects still use jQuery, and that will probably be the case for a long time to come
+
+---Read: Introduction to jQuery
+jQuery:
+- takes a lot of the browser support code and wraps it in universal methods that work with all browsers
+- by far the most popular JavaScript library available
+- at its core, it's a function that wraps a collection of DOM elements and some convenience methods into an object
+
+DOM ready callback:
+[js]
+$(document).ready(function() {
+  // DOM loaded and ready, referenced image on img tags are not ready
+});
+[/js]
+
+`ready` doesn't wait for the browser to load images included via `<img>` tags. In some cases, you must delay execution until the window finishes loading:
+[js]
+$(window).load(function() {
+  // DOM loaded and ready, referenced image on img tags loaded and ready
+});
+[\js]
+
+Even shorter way to write a DOM ready callback:
+[js]
+$(function() {
+  // DOM is now loaded
+});
+[\js]
+
+The jQuery function, `$()`:
+- if the argument passed to the function is a string or DOM element, it wraps a collection of jQuery objects and returns them
+- if the argument is a function, jQuery uses that function as a callback when the document is ready
+- `$` is the alias of `jQuery`
+
+Airbnb recommends prefixing names that reference jQuery objects with a `$` to instantly distinguish from other objects.
+
+Check the `jQuery` property of a variable to determine if that variable references a jQuery object.
+
+Whenever you have a CSS property that includes one or more hyphens, you can omit the hyphens and capitalize the next letter instead (camelCase).
+
+---Read: jQuery Events
+The `on` method, like most jQuery methods, has more than one calling format:
+- the most common is where the first argument is the event type and the second is the callback function
+
+In order to access jQuery's convenience methods, we need to pass non-jQuery objects to the jQuery function
+
+jQuery has many convenience methods. Here's an example:
+[js] $('a').on('click', function(event) {}); [/js]
+vs.
+[js] $('a').click(function(e) {}); [/js]
+
+The `.on()` method attaches event handlers to the currently selected set of elements in the jQuery object.
+
+From jQuery docs:
+The `.find()` and `.children()` methods are similar, but the latter only travels a single level down the DOM tree.
+
+---Read: jQuery DOM Traversal
+To look outward from an object:
+1. `.parent()`: used with and without a selector
+2. `.closest()`: allows you to look further out than the immediate parent
+
+`parent` never looks at the current element for consideration, while `closest` sees if the current element is a match.
+
+The `closest` method is very useful for finding the first ancestor element that meets the criteria passed in to the method.
+
+The `nextAll` (`prevAll`) method will return all siblings after (before) the current element, with an optional selector passed in.
+
+Use `siblings` with an optional selector to get all the current element's siblings.
+
+---Practice Problems: jQuery Events
+Similar to `on`, jQuery has a complimentary method called `off` that allows you to unbind an event by its type.
+
+The `trigger` method can be called with any of the events, and if the event exists it will call the callback. This is a great way to avoid repeating code.
+
+---Assignment: Grocery List
+To have a stylesheet be used only for print, change the media attribute on the `link` element to "print" rather than "screen" or "all".
+
+[js]
+var $form = $(`form`);
+
+// Both of these statements return the form DOM element
+$form[0];
+$form.get(0);
+[/js]
+
+The big advantage to using jQuery's `get` method is that you can pass in negative values to count backwards from the end of the collection.
+
+---Assignment: Team Member Profile Modals
+Modal:
+- acts like a separate sub-window of content that can be closed in order to return to the main content, all without leaving the page
+- always use CSS positioning to place the modal and an optional overlay element over the top of the content
+- the overlay acts as a blocking element to prevent interacting with the page underneath the modal
+- it is good practice to have at least a close link and a close action bound to clicking on the overlay that will remove the modal and the overlay
+
+---Lecture: Chrome Debugging Tools for Front End Development
+`console` has more methods than just `log()`!
+
+There are several command line API methods available in the console that are super useful:
+-`copy()`
+-`inspect()`
+-`getEventListeners()`
+-`keys()`
+-`values()`
+-`$()` (assuming jQuery is not loaded in your browser)
+-`$$()`
+
+Blackboxing a script in the Sources tab will prevent the debugger from stepping into that file.
+Can permanently blackbox files in settings.
+
+-----------------------------------------------------------
+    Putting it All Together
+-----------------------------------------------------------
+---Read: jQuery Animations
+jQuery provides us with a well-organized and succint way of animating CSS properties and elements, such as modals that fade in, menus that slide-out, and elements that move around on the screen.
+
+These convenience methods all work the same way: you can call them on a jQuery collection with or without arguments and jQuery will handle changing the CSS properties using an animation loop.
+
+`.fadeIn`, `.fadeOut`, `.fadeTo`, and `.fadeToggle` are all methods that handle animating the `opacity` property of elements. All but `.fadeTo` can be called without arguments.
+
+By default, all animation methods will use a duration of 400 milliseconds, and will update every 13 milliseconds.
+
+The duration can be changed by passing in a different time in milliseconds or by using the two keywords, "slow" and "fast", which represent values of 600 and 200 milliseconds.
+
+Other than our `fadeTo` call, the second argument for these methods can be a callback that is called when the animation is complete. Within these callbacks, the context is the DOM element that was animated. If you want to have a callback on the `fadeTo` methods, pass it in as the third argument.
+
+Just like the fade methods, there are slide methods that can be used in the same manner. With all of these methods, the easing function used to determine the severity of the change between frames can also be changed (default is "swing", but can be changed to "linear").
+
+These methods can all take an options object instead of multiple arguments as well, making it easier to not only know what each argument is for, but also to call the same method with differing values for each option.
+
+If you ever need to animate (most of) the other CSS properties you would use the `.animate` method.
+
+This method takes its arguments in two different forms:
+1. an object that represents the CSS properties to be animated and what values to end on for each, the duration, the optional easing method, and the callback
+[js]
+$p.animate({
+  left: 500,
+  top: 250
+}, 400, function() {
+  $(this).text('All done!');
+});
+[/js]
+
+2. two objects: The first contains the final CSS properties, while the second is an options object that contains the duration, easing, and callback
+[js]
+$p.animate({
+  left: 500,
+  top: 250
+}, {
+  duration: 1000,
+  complete: function() {
+    $(this).text('All done!');
+  }
+});
+[/js]
+
+Pretty much every CSS property that allows for a numeric value can be animated using this method (complex values like colors cannot).
+
+All properties that can use a pixel measurement are animated using pixel values unless you specify a measurement with `em` or `%` at the end of it.
+
+If you chain two animations together, the first will run and the second will only start once the first is completed.
+
+jQuery has a method named `.delay` that you can place between animation methods.
+
+The `stop` method will stop all current and future animations in the queue if you pass in a value of true as the first argument.
+
+`.finish` will not only stop the current animation and all queued animations, it will also jump to the end of the frame of every one of the queued and currently running animations on the element.
+
+If you ever want to turn off all animations and instead have the results take effect immediately, you can turn off effects globally by setting `$.fx.off` to true.
+
+---HTML Data Attributes
+With the introduction of HTML5 came the ability to create custom data attributes:
+- can be added to any HTML element
+- bear no significance other than to store data for you
+- always start with `data-` and need at least one character after the hyphen
+- the value you give to the attribute can be anything that can be contained within a string
+- no limit to the number of data attributes that can be added to an element
+
+In jQuery, can read the value of a data attribute using two different methods:
+1. `.attr`: use if you want to get or set the value of an HTML data attribute
+2. `.data`: use if you want to set and retrieve custom data on an element after the page has been rendered
+
+You can work with data attributes using native DOM APIs:
+- a DOM element will have a a property called `dataset` that is a specialized object of key-value pairs
+- the keys are the data attribute names and the values are the values of the attributes
