@@ -68,8 +68,8 @@
     `Event-Driven and Asynchronous Programming`
     `Making HTTP Requests from JavaScript`
     `jQuery`
-    !Putting it All Together
-    Advanced jQuery and Dynamic Content Creation
+    `Putting it All Together`
+    !Advanced jQuery and Dynamic Content Creation
     New JavaScript Features
 
 #Advanced Electives
@@ -1345,3 +1345,10 @@ In jQuery, can read the value of a data attribute using two different methods:
 You can work with data attributes using native DOM APIs:
 - a DOM element will have a a property called `dataset` that is a specialized object of key-value pairs
 - the keys are the data attribute names and the values are the values of the attributes
+
+-----------------------------------------------------------
+    Advanced jQuery and Dynamic Content Creation
+-----------------------------------------------------------
+---jQuery Event Delegation
+
+
