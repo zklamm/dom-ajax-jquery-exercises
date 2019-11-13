@@ -1357,3 +1357,36 @@ LS Video:
 - can pass an optional data object to the `on()` method and reference properties on this object (which is called `data`)
 - can create your own events with the `Event()` constructor
 
+---Assignment: Managing Collections in JavaScript
+- the `blur` event is when an element in the DOM loses focus
+- the basics to a single page application are that changes are taking place within the page without refreshing the page
+
+---HTML Templating With JavaScript
+Handlebars:
+- a client-side templating library that has no dependencies of any kind
+- allows you to have property names surrounded by two opening and closing curly braces
+- can be placed anywhere within the HTML string
+- has the ability to check properties for whether or not they are truthy values
+- with any Handlebars-executed template code, we prefix it with a `#` sign
+
+Example:
+[html]
+<script id='productTemplate' type='text/x-handlebars'>
+  <li>
+    <h3>{{name}}</h3>
+    <dl>
+      <dt>Quantity:</dt>
+      <dd>{{quantity}}</dd>
+      <dt>Price:</dt>
+      <dd>
+        ${{price}}
+        {{#if on_sale}}
+        <strong>SALE!</strong>
+        {{/if}}
+      </dd>
+    </dl>
+  </li>
+</script>
+[/html]
+
+- if you give a script element a type other than `text/javascript`, the browser won't try to execute it as JavaScript
