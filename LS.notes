@@ -70,7 +70,7 @@
     `jQuery`
     `Putting it All Together`
     !Advanced jQuery and Dynamic Content Creation
-    New JavaScript Features
+    !New JavaScript Features
 
 #Advanced Electives
 ---Frameworks and Integrations
@@ -1390,3 +1390,21 @@ Example:
 [/html]
 
 - if you give a script element a type other than `text/javascript`, the browser won't try to execute it as JavaScript
+
+-----------------------------------------------------------
+    New JavaScript Features
+-----------------------------------------------------------
+---Babel Guide to ES2015 (ES6)
+Arrows:
+- a function shorthand using the `=>` syntax
+- support both expression and statement bodies
+- unlike functions, arrows share the same lexical `this` as their surrounding code
+- if an arrow is inside another function, it shares the "arguments" variable of its parent function
+
+Classes:
+- syntactic sugar over the prototype-based OO pattern
+- having a single convenient declarative form makes class patterns easier to use, and encourages interoperability
+- classes support prototype-based inheritance, super calls, instance and static methods and constructors
+
+Enhanced Object Literals:
+- support setting the prototype at construction, shorthand for `foo: foo` assignments, defining methods and making super calls
