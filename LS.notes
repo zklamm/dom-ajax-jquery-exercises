@@ -1408,3 +1408,15 @@ Classes:
 
 Enhanced Object Literals:
 - support setting the prototype at construction, shorthand for `foo: foo` assignments, defining methods and making super calls
+
+---Let and Const
+- both `let` and `const` define *block level* variablesk, which means that the variable exists only within the block it is defined in and not the entire enclosing function
+- `let`, like `var`, allows variables to be reassigned
+- variables assigned with `const` *cannot* be reassigned, but the objects they reference can still be mutated
+- as a general rule, you should prefer `let` and `const` over `var` for new projects if you are able to use ES6 features
+
+---Promises
+- promises are another solution to the problem solved by callbacks, and a way to register behavior that needs to run after an event
+- unlike callbacks, though, promises are objects that represent an *eventual value*
+- having an object within a program that represents an eventual value allows for a variety of powerful abstractions to be built
+- they provide behavior that is cumbersome to create with event listeners
