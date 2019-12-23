@@ -1,41 +1,62 @@
-function retrieveSchedules() {
-  var request = new XMLHttpRequest();
+async function getSchedules() {
+  let schedules = fetch('http://localhost:3000/api/schedules')
+  .then(request => request.json())
+  .catch(err => console.error(err));
 
-  request.open('GET', 'http://localhost:3000/api/schedules');
-  request.timeout = 5000;
-  request.responseType = 'json';
+  let timer = new Promise(function(resolve, reject) {
+    setTimeout(resolve, 5000, 'Timeout');
+  });
 
-  request.addEventListener('load', function(e) {
-    var schedules = request.response;
-    var staffs = [];
-    var tally = [];
-
-    if (schedules.length > 0) {
-      schedules.forEach(function(schedule) {
-        var key = "staff" + String(schedule.staff_id);
-        if (staffs.indexOf(key) === -1) {
-          staffs.push(key);
-          tally.push(1);
-        } else {
-          tally[staffs.indexOf(key)] += 1;
-        }
-      });
-
-      alert(tally.map(function(_, index) {
-        return staffs[index] + ": " + tally[index];
-      }).join("\n"));
+  Promise.race([timer, schedules])
+  .then(function(value) {
+    if (value !== 'Timeout') {
+      let schedules = getAvailableSchedules(value);
+      schedules = convertStaffAndCount(schedules);
+      appendParagraphs(schedules);
     } else {
-      alert('There are currently no schedules available for booking.');
+      alert('We are experiencing heavy traffic. Please try again.');
     }
-  });
 
-  request.addEventListener('timeout', function(e) {
-    alert('It is taking longer than usual. Please try again later.')
+    return;
   });
-
-  request.addEventListener('loadend', function() {
-    alert('The request has completed.')
-  });
-
-  request.send();
 }
+
+function getAvailableSchedules(allSchedules) {
+  return allSchedules.filter((schedule) => schedule.student_email === null);
+}
+
+function convertStaffAndCount(allSchedules) {
+  let staffCounts = {};
+
+  allSchedules.forEach(function(schedule) {
+    if (!staffCounts[schedule.staff_id]) {
+      staffCounts[schedule.staff_id] = 0;
+    }
+
+    staffCounts[schedule.staff_id] += 1;
+  });
+
+  return staffCounts;
+}
+
+function appendParagraphs(schedules) {
+  staffIDS = Object.keys(schedules);
+
+  if (staffIDS.length === 0) {
+    let idParagraph = document.createElement('p');
+    idParagraph.textContent = 'No Staff members have spots available.';
+    document.getElementById('content').appendChild(idParagraph);
+  } else {
+    staffIDS.forEach(function(id) {
+      let idParagraph = document.createElement('p');
+      idParagraph.textContent = `The Staff member with ID #${id} has ${schedules[id]} spots available.`;
+      document.getElementById('content').appendChild(idParagraph);
+    });    
+  }
+
+  return;
+}
+
+document.addEventListener('DOMContentLoaded', function(e) {
+  getSchedules();
+});
