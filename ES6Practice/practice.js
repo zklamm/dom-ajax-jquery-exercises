@@ -1,31 +1,45 @@
-// input: ary
-// output: new ary where first element of input ary is now at the end
-// assume: return undefined if input is not ary
-//         return [] if input is []
-// logic:
-//   use guard clauses for assumptions
-//   first = ary[0]
-//   rest = ary.slice(1)
-//   return rest.push(first);
+document.addEventListener('DOMContentLoaded', () => {
+  let store = document.querySelector('#store');
+  let request = new XMLHttpRequest();
+  request.open('GET', 'https://ls-230-web-store-demo.herokuapp.com/products');
+  request.addEventListener('load', () => store.innerHTML = request.response);
+  request.send();
 
-function rotateArray(ary) {
-  // debugger;
-  if (!Array.isArray(ary)) return;
-  if (ary.length === 0) return [];
+  store.addEventListener('click', e => {
+    let target = e.target;
+    if (target.tagName !== 'A') return;
+    e.preventDefault();
+    let request = new XMLHttpRequest();
+    request.open('GET', `https://ls-230-web-store-demo.herokuapp.com${target.getAttribute('href')}`);
+    request.addEventListener('load', () => store.innerHTML = request.response);
+    request.send();
+  });
 
-  const first = ary[0];
-  const rest = ary.slice(1);
-  return rest.push(first);
-}
+  store.addEventListener('submit', e => {
+    e.preventDefault();
+    let form = e.target;
+    let data = new FormData(form);
+    let request = new XMLHttpRequest();
+    request.open('POST', `https://ls-230-web-store-demo.herokuapp.com${form.getAttribute('action')}`);
+    request.setRequestHeader('Authorization', 'token AUTH_TOKEN');
+    request.addEventListener('load', () => store.innerHTML = request.response);
+    request.send(data);
+  });
 
-// function rotateArray(array) {
-//   if (!Array.isArray(array)) {
-//     return;
-//   }
+  const createProduct = productData => {
+    let json = JSON.stringify(productData);
+    let request = new XMLHttpRequest();
 
-//   if (array.length === 0) {
-//     return [];
-//   }
+    request.open('POST', 'https://ls-230-web-store-demo.herokuapp.com/v1/products');
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.setRequestHeader('Authorization', 'token AUTH_TOKEN');
+    request.addEventListener('load', () => console.log(`This product was added: ${request.responseText}`));
+    request.send(json);
+  }
 
-//   return array.slice(1).concat(array[0]);
-// }
+  createProduct({
+    name: 'Purple Pen',
+    sku: 'purplep100',
+    price: 4,
+  });
+});

@@ -1,0 +1,24 @@
+-----------------------------------------------------------
+    Continuous Integration and Delivery with TeamCity 2017
+-----------------------------------------------------------
+#Instructor: Aref Karimi
+
+---Getting started with TeamCity
+TeamCity: a Continuous Integration and Delivery tool which supports many programming languages, environments and server types
+
+Continuous Integration:
+- a software development practice to make sure that changes made by different developers will integrate well togther
+- TeamCity build server is watching Source Control and as soon as it detects a change, it builds the code that is going to be commited
+- You can avoid committing broken code to Source Control
+
+TeamCity features:
+- can build multiple projects concurrently on different platforms
+- each project may include code of a different language and the build may be done in a different operating system
+- run unit tests and see the test results on the fly
+- run code coverage and code analysis on .NET and Java projects
+
+---Your TeamCity CI/CD architecture
+- can trigger a build manually by going to the TeamCity Server or automatically whenever source control detects change
+- TeamCity server then connects to the build agent if it exists (if it doesn't exist and you have set up your CI with TeamCity on the cloud on AWS, then it can launch a new build agent in the cloud)
+- the build agent will go to your source control system, build the code, run the unit tests/code coverage checks, and then creates a build artifact (usually in a zip package)
+- keep your TeamCity server and build agents on separate machines

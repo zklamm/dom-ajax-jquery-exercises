@@ -1006,7 +1006,7 @@ AJAX: Asynchronous JavaScript and XML
 
 Two ways how AJAX differs from the page-navigation example above:
 1. The web browser doesn't make an automatic HTTP request; instead, JavaScript code initializes it, typically from an event listener
-2. When the browser receives a response, JavaScript code takes the response's body and updates the pgae as needed
+2. When the browser receives a response, JavaScript code takes the response's body and updates the page as needed
 
 #When requesting a resource using JavaScript, the developer must write code that initiates the request and handles the response#
 
@@ -1128,7 +1128,7 @@ CORS - Cross-Origin Resource Sharing:
 - even if the server sends the correct response, but without the `Access-Control-Allow-Origin` header with the appropriate value, the browser will raise an error
 
 ---Project: Search Autocomplete, Part 5 - Throttling XHR requests
-Making requests that you don't need is bad practicel; it puts a huge strain on the server, which is a huge concern in a production environment.
+Making requests that you don't need is bad practice; it puts a huge strain on the server, which is a huge concern in a production environment.
 
 Throttling:
 - waits for some specified time before sending a request to the server
@@ -1142,9 +1142,8 @@ function debounce(func, delay) {
 
   return function() {
     var args = arguments;
-    if (timeout) {
-      clearTimeout(timeout);
-    }
+    if (timeout) clearTimeout(timeout);
+
     timeout = setTimeout(function() {
       func.apply(null, args);
     }, delay);
