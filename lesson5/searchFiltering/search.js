@@ -104,18 +104,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const items = Array.from(document.querySelectorAll('main li'));
   const categories = document.querySelectorAll('input');
 
-  const toggle = items => {
-    items.forEach(item => {
-      item.hidden ? item.hidden = false : item.hidden = true;
-    });
+  function toggle(items) {
+    items.forEach(item => item.hidden = !item.hidden);
   };
 
   categories.forEach(category => {
     category.addEventListener('change', e => {
       const checkbox = e.target;
       const checked = checkbox.checked;
-      const category = checkbox.value;
-      const categoryItems = catalog.filter(item => item.category === category);
+      const categoryValue = checkbox.value;
+      const categoryItems = catalog.filter(item => item.category === categoryValue);
 
       categoryItems.forEach(categoryItem => {
         toggle(items.filter(item => +item.dataset.id === categoryItem.id));
