@@ -14,10 +14,8 @@ $(() => {
   $('a').click(e => {
     e.preventDefault();
 
-    if ($('li').length > 1) {
-      $(e.target).closest('li').remove();
-    } else {
-      $('ul').remove();
-    }
+    $('li').length > 1
+      ? $(e.target).closest('li').remove()
+      : $('ul').remove();
   });
 });
