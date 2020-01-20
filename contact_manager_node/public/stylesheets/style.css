@@ -1,0 +1,6 @@
+@import url('reset.css');
+
+header {
+  background: linear-gradient(#573d7c, #70549a);
+  height: 137px;
+}

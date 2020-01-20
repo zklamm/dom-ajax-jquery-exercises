@@ -21,3 +21,9 @@ $(function() {
   var posts = [post, post2];
   $('body').append(postsTemplate({ posts: posts }));
 });
+
+
+function helloLater(n) {
+  const delayInSeconds = n * 1000;
+  setTimeout(() => console.log('Hello, world!'), delayInSeconds);
+}
