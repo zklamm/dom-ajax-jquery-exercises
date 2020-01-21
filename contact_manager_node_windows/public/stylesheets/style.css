@@ -1,28 +1,46 @@
 @import url('reset.css');
 body {
-  font-family: sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
 }
 
 header {
   background: linear-gradient(#573d7c, #70549a);
-  color: #ffffff;
+  color: #fff;
   height: 137px;
   text-align: center;
 }
-header h1, h2 {
-  font-weight: lighter;
-}
 header h1 {
   font-size: 2.25rem;
-  padding: 29px 0 11px 0;
+  font-weight: 500;
+  padding: 28px 0 9px 0;
 }
 header h2 {
   color: #cdbfdd;
   font-size: 1.25rem;
+  font-weight: 300;
 }
 
 main {
   font-size: 1.5rem;
+}
+main h2 {
+  color: #333;
+  font-weight: 500;
+  padding: 10px;
+}
+main a {
+  border: 1px solid #573d7c;
+  border-radius: 5px;
+  color: #573d7c;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px 16px;
+}
+main a:hover {
+  background-color: #573d7c;
+  color: #fff;
+  text-decoration: none;
 }
 
 #feature-bar, #contacts {
@@ -31,15 +49,24 @@ main {
   border: 1px solid #e3e3e3;
   border-radius: 5px;
   text-align: center;
-  padding: 19px;
+  padding: 19px 0;
   margin: 0 auto 25px auto;
 }
-#feature-bar {
+/*#feature-bar {
   display: flex;
   justify-content: space-around;
   width: 1170px;
+}*/
+#feature-bar {
+  display: grid;
+  grid-template-columns: 233px 1fr 363px 1fr 168px;
+  width: 1170px;
 }
-#feature-bar button {
+#feature-bar a {
+  grid-column-start: 2;
+}
+#feature-bar input {
+  grid-column-start: 4;
 }
 #contacts {
   width: 1150px;
@@ -52,17 +79,15 @@ footer {
   width: 1150px;
 }
 
-button {
-  cursor: pointer;
-  font-size: 1rem;
-  height: 45px;
-  width: 125px;
-}
-
-button:hover {
-  background-color: blue;
+input {
+  width: 265px;
 }
 
 a {
+  color: #428cca;
   text-decoration: none;
+}
+a:hover {
+  color: #2a6496;
+  text-decoration: underline;
 }
