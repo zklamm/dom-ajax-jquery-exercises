@@ -7,24 +7,67 @@
   <title>Document</title>
   <script src="/javascripts/jquery.js"></script>
   <script src="/javascripts/handlebars.js"></script>
-  <link rel="stylesheet" href="stylesheets/style.css" />
+  <script src="/javascripts/app.js"></script>
+  <link rel="stylesheet" href="stylesheets/grid.css" />
 </head>
 <body>
   <header>
-    <h1>Contact Manager</h1>
+    <h1><a href="#home">Contact Manager</a></h1>
     <h2>Using Backbone.js, Localstorage, RequireJS, Handlebar and Bootstrap</h2>
   </header>
   <main>
-    <div id="feature-bar">
-      <a>Add Contact</a>
-      <input type="text" placeholder="Search" />
+    <div id="featureBar" class="grayBackground">
+      <a class="btn" tabindex="0">Add Contact</a>
+      <input id="search" type="text" placeholder="Search" />
     </div>
-    <div id="contacts">
-      <h2>There is no contacts.</h2>
-      <a>Add Contact</a>
+
+    <div id="contactsList" class="responsiveWidth">
+      <ul>
+        <li>
+          <h3>Zac Klammer</h3>
+          <dl>
+            <dt>Phone Number:</dt>
+            <dd>936.524.0138</dd>
+            <dt>Email:</dt>
+            <dd>zklamm@gmail.com</dd>
+          </dl>
+          <a href="#" class="btn btnSmall">Edit</a>
+          <a href="#" class="btn btnSmall">Delete</a>
+        </li>
+        <li>
+          <h3>Lindsey N Klammer</h3>
+          <dl>
+            <dt>Phone Number:</dt>
+            <dd>936.524.0138</dd>
+            <dt>Email:</dt>
+            <dd>zklamm@gmail.com</dd>
+          </dl>
+          <a href="#" class="btn btnSmall">Edit</a>
+          <a href="#" class="btn btnSmall">Delete</a>
+        </li>
+      </ul>
     </div>
+      <!-- <div id="emptyContacts" class="grayBackground responsiveWidth">
+        <h2>There is no contacts.</h2>
+        <a class="btn" tabindex="0">Add Contact</a>
+      </div> -->
+
+    <div id="createContact" hidden>
+      <h1>Create Contact</h1>
+      <form>
+        <label for="fullName">Full name:</label>
+        <input type="text" name="fullName" id="fullName">
+        <label for="email">Email address:</label>
+        <input type="text" name="email" id="email">
+        <label for="phone">Telephone number:</label>
+        <input type="text" name="telephone" id="phone">
+        <a href="#" class="submit">Submit</a>
+        <a href="#" class="cancel">Cancel</a>
+      </form>
+    </div>
+
   </main>
-  <footer>
+  <footer class="responsiveWidth">
     <p>
       Developed by
       <a href="https://www.devsaran.com">Devsaran.com</a>

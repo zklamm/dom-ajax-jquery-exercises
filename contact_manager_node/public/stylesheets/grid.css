@@ -1,0 +1,183 @@
+@import url('reset.css');
+
+body {
+  color: #333;
+  font: 14px 'Helvetica Neue', sans-serif;
+  text-align: center;
+}
+
+header {
+  background: linear-gradient(#573D7C, #6F5499);
+  color: #fff;
+  padding: 30px 0;
+  text-align: center;
+}
+header h1 {
+  font-size: 2.25rem;
+  font-weight: 500;
+  line-height: 39.6px;
+  margin: 0 0 10px;
+}
+header h2 {
+  color: #C9BBDF;
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 28px;
+  margin: 0 35px;
+}
+header a {
+  color: #fff;
+  text-decoration: none;
+}
+
+main ul {
+  text-align: left;
+}
+main li {
+  margin: 0 141px 0 0;
+}
+main h3 {
+  margin: 20px 0 10px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+main dl {
+  padding: 13px 0;
+}
+main dt {
+  font-weight: 600;
+}
+main dd {
+  padding-bottom: 5px;
+}
+
+footer {
+  border-top: 1px solid #eee;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 55px 0 0;
+  padding: 21px 0 0;
+}
+footer a {
+  color: #428CCA;
+  text-decoration: none;
+}
+footer a:hover {
+  color: #2A6496;
+  text-decoration: underline;
+}
+
+.responsiveWidth {
+  display: inline-block;
+  width: 94%;
+}
+
+.grayBackground {
+  background: #F5F5F5;
+  border: 1px solid #E3E3E3;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 19px 19px;
+}
+
+.btn {
+  text-align: center;
+  box-sizing: border-box;
+  display: inline-block;
+  border: 1px solid #573D7C;
+  border-radius: 6px;
+  color: #573D7C;
+  font-size: 18px;
+  grid-area: add;
+  padding: 11px 0 10px;
+  width: 136px;
+}
+.btn:focus, .btn:hover {
+  background: #573D7C;
+  color: #fff;
+}
+
+.btnSmall {
+  font-size: .9rem;
+  text-decoration: none;
+  padding: 5px;
+  width: auto;
+}
+
+#featureBar {
+  display: grid;
+  grid-template-areas:
+    "add"
+    "search";
+  justify-items: center;
+  margin: 0 0 19px;
+}
+#featureBar input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font: inherit;
+  grid-area: search;
+  height: 34px;
+  padding: 0 13px;
+  width: 50%;
+}
+#featureBar input::placeholder {
+  color: #999;
+}
+
+#emptyContacts {
+  margin: 10px 15px 5px;
+}
+#emptyContacts h2 {
+  margin: 19px 0 8px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+#contactsList li {
+  display: inline-block;
+}
+
+@media screen and (min-width: 765px) {
+  .responsiveWidth {
+    width: 720px;
+  }
+
+  #featureBar {
+    display: inline-grid;
+    grid-template-areas: "add search";
+    grid-template-columns: 1fr 1fr;
+    width: 750px;
+  }
+  #featureBar input {
+    align-self: start;
+    width: 160px;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .responsiveWidth {
+    width: 940px;
+  }
+
+  #featureBar {
+    width: 970px;
+  }
+  #featureBar input {
+    width: 215px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .responsiveWidth {
+    width: 1140px;
+  }
+
+  #featureBar {
+    width: 1170px;
+  }
+  #featureBar input {
+    width: 266px;
+  }
+}

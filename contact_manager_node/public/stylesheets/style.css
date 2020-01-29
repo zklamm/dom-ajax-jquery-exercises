@@ -1,4 +1,5 @@
 @import url('reset.css');
+
 body {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 14px;
@@ -7,13 +8,20 @@ body {
 header {
   background: linear-gradient(#573d7c, #70549a);
   color: #fff;
-  height: 137px;
   text-align: center;
+  padding: 0 0 32px 0;
 }
 header h1 {
   font-size: 2.25rem;
   font-weight: 500;
   padding: 28px 0 9px 0;
+}
+header a {
+  text-decoration: none;
+  color: #fff;
+}
+header a:hover {
+  cursor: pointer;
 }
 header h2 {
   color: #cdbfdd;
@@ -31,11 +39,12 @@ main h2 {
 }
 main a {
   border: 1px solid #573d7c;
-  border-radius: 5px;
+  border-radius: 6px;
   color: #573d7c;
   cursor: pointer;
+  display: inline-block;
   font-size: 18px;
-  padding: 10px 16px;
+  padding: 11px 16px 10px;
 }
 main a:hover {
   background-color: #573d7c;
@@ -43,51 +52,72 @@ main a:hover {
   text-decoration: none;
 }
 
-#feature-bar, #contacts {
+footer {
+  border-top: 1px solid #eee;
+  text-align: center;
+  padding: 21px;
+  margin: 60px 150px 0;
+}
+footer a {
+  color: #428cca;
+  text-decoration: none;
+}
+footer a:hover {
+  color: #2a6496;
+  text-decoration: underline;
+}
+footer p {
+  color: #333;
+}
+
+#featureBar, #emptyContacts {
   box-sizing: border-box;
   background: #f5f5f5;
   border: 1px solid #e3e3e3;
   border-radius: 5px;
   text-align: center;
-  padding: 19px 0;
-  margin: 0 auto 25px auto;
+  padding: 19px;
 }
-/*#feature-bar {
-  display: flex;
-  justify-content: space-around;
-  width: 1170px;
-}*/
-#feature-bar {
+
+#featureBar {
   display: grid;
-  grid-template-columns: 233px 1fr 363px 1fr 168px;
-  width: 1170px;
+  grid-template-columns: 214px 137px 1fr 267px 149px;
+  margin: 0 135px 30px;
 }
-#feature-bar a {
+#featureBar a {
   grid-column-start: 2;
 }
-#feature-bar input {
+
+#emptyContacts {
+  margin: 0 150px;
+}
+#emptyContacts h2 {
+  margin: 9px 0 4px;
+}
+#emptyContacts a {
+  margin-top: -10px;
+}
+
+#search {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #999;
+  font-size: .9rem;
+  font-weight: 400;
   grid-column-start: 4;
+  height: 34px;
+  padding: 0 12px;
+  vertical-align: top;
 }
-#contacts {
-  width: 1150px;
+#search::placeholder {
+  color: #999;
 }
 
-footer {
-  border-top: 1px solid #f5f5f5;
-  margin: auto;
+#createContact {
   text-align: center;
-  width: 1150px;
 }
-
-input {
-  width: 265px;
-}
-
-a {
-  color: #428cca;
-  text-decoration: none;
-}
-a:hover {
-  color: #2a6496;
-  text-decoration: underline;
+#createContact h1 {
+  border-bottom: 1px solid #eee;
+  color: #333;
 }
