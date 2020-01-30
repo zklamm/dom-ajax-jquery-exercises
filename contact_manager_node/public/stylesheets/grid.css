@@ -1,5 +1,9 @@
 @import url('reset.css');
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   color: #333;
   font: 14px 'Helvetica Neue', sans-serif;
@@ -32,14 +36,19 @@ header a {
 
 main ul {
   text-align: left;
+  display: grid;
+  grid-column-gap: 30px;
+  grid-row-gap: 19px;
+  margin: 0 0 15px;
 }
 main li {
-  margin: 0 141px 0 0;
+  border-bottom: 1px solid #eee;
 }
 main h3 {
-  margin: 20px 0 10px;
+  margin: 21px 0 12px;
   font-size: 1.5rem;
   font-weight: 500;
+  line-height: 26px;
 }
 main dl {
   padding: 13px 0;
@@ -48,15 +57,14 @@ main dt {
   font-weight: 600;
 }
 main dd {
-  padding-bottom: 5px;
+  padding: 2px 0 3px;
 }
 
 footer {
   border-top: 1px solid #eee;
-  box-sizing: border-box;
   display: inline-block;
-  margin: 55px 0 0;
-  padding: 21px 0 0;
+  margin: 55px 0 11px;
+  padding: 21px 0;
 }
 footer a {
   color: #428CCA;
@@ -76,13 +84,11 @@ footer a:hover {
   background: #F5F5F5;
   border: 1px solid #E3E3E3;
   border-radius: 4px;
-  box-sizing: border-box;
   padding: 19px 19px;
 }
 
 .btn {
   text-align: center;
-  box-sizing: border-box;
   display: inline-block;
   border: 1px solid #573D7C;
   border-radius: 6px;
@@ -90,7 +96,7 @@ footer a:hover {
   font-size: 18px;
   grid-area: add;
   padding: 11px 0 10px;
-  width: 136px;
+  width: 136.5px;
 }
 .btn:focus, .btn:hover {
   background: #573D7C;
@@ -98,10 +104,12 @@ footer a:hover {
 }
 
 .btnSmall {
+  border-radius: 4px;
   font-size: .9rem;
   text-decoration: none;
-  padding: 5px;
+  padding: 7px;
   width: auto;
+  margin: 6px 16px 20px 0;
 }
 
 #featureBar {
@@ -119,7 +127,7 @@ footer a:hover {
   font: inherit;
   grid-area: search;
   height: 34px;
-  padding: 0 13px;
+  padding: 0 12px;
   width: 50%;
 }
 #featureBar input::placeholder {
@@ -140,6 +148,10 @@ footer a:hover {
 }
 
 @media screen and (min-width: 765px) {
+  main ul {
+    grid-template-columns: repeat(3, 220px);
+  }
+
   .responsiveWidth {
     width: 720px;
   }
@@ -157,6 +169,10 @@ footer a:hover {
 }
 
 @media screen and (min-width: 990px) {
+  main ul {
+    grid-template-columns: repeat(4, 212.5px);
+  }
+
   .responsiveWidth {
     width: 940px;
   }
@@ -170,6 +186,10 @@ footer a:hover {
 }
 
 @media screen and (min-width: 1200px) {
+  main ul {
+    grid-template-columns: repeat(4, 262.5px);
+  }
+
   .responsiveWidth {
     width: 1140px;
   }
