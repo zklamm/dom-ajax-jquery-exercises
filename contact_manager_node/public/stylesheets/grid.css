@@ -1,5 +1,8 @@
 @import url('reset.css');
 
+/***********************************************/
+/*GENERAL*/
+
 * {
   box-sizing: border-box;
 }
@@ -9,6 +12,23 @@ body {
   font: 14px 'Helvetica Neue', sans-serif;
   text-align: center;
 }
+
+a {
+  text-decoration: none;
+}
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  box-shadow: inset 0 1px #eee;
+  font: inherit;
+  height: 34px;
+  padding: 0 12px;
+}
+
+/***********************************************/
+/*HEADER*/
 
 header {
   background: linear-gradient(#573D7C, #6F5499);
@@ -31,9 +51,17 @@ header h2 {
 }
 header a {
   color: #fff;
-  text-decoration: none;
 }
 
+/***********************************************/
+/*MAIN*/
+
+main h1 {
+  font-size: 30px;
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+  padding: 0 0 7px;
+}
 main ul {
   text-align: left;
   display: grid;
@@ -60,6 +88,9 @@ main dd {
   padding: 2px 0 3px;
 }
 
+/***********************************************/
+/*FOOTER*/
+
 footer {
   border-top: 1px solid #eee;
   display: inline-block;
@@ -68,12 +99,32 @@ footer {
 }
 footer a {
   color: #428CCA;
-  text-decoration: none;
 }
 footer a:hover {
   color: #2A6496;
   text-decoration: underline;
 }
+
+/***********************************************/
+/*OTHER*/
+
+form {
+  margin: 28px 0 0;
+}
+form * {
+  display: block;
+  text-align: left;
+}
+form label {
+  margin: 0 0 2px;
+}
+form input {
+  margin: 0 0 33px;
+  width: 100%;
+}
+
+/***********************************************/
+/*CLASSES*/
 
 .responsiveWidth {
   display: inline-block;
@@ -106,11 +157,21 @@ footer a:hover {
 .btnSmall {
   border-radius: 4px;
   font-size: .9rem;
-  text-decoration: none;
   padding: 7px;
   width: auto;
   margin: 6px 16px 20px 0;
 }
+
+.submit, .cancel {
+  display: block;
+  width: auto;
+}
+.submit {
+  margin: -8px 0 0;
+}
+
+/***********************************************/
+/*IDs*/
 
 #featureBar {
   display: grid;
@@ -121,13 +182,7 @@ footer a:hover {
   margin: 0 0 19px;
 }
 #featureBar input {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font: inherit;
   grid-area: search;
-  height: 34px;
-  padding: 0 12px;
   width: 50%;
 }
 #featureBar input::placeholder {
@@ -147,9 +202,51 @@ footer a:hover {
   display: inline-block;
 }
 
+#createContact {
+  margin: 38px 0 0;
+}
+#createContact label {
+  font-weight: 600;
+}
+
+/***********************************************/
+/*TABLETS*/
+
 @media screen and (min-width: 765px) {
   main ul {
     grid-template-columns: repeat(3, 220px);
+  }
+
+  form {
+    display: inline-grid;
+    grid-template-areas:
+      "label1 name   name"
+      "label2 email  email"
+      "label3 phone  phone"
+      ".      submit cancel";
+    grid-column-gap: 30px;
+    grid-row-gap: 25px;
+    margin: 0 0 0 -32px;
+    padding: 20px 0 0;
+  }
+    label[for="fullName"] {grid-area: label1;}
+    label[for="email"]    {grid-area: label2;}
+    label[for="phone"]    {grid-area: label3;}
+    #fullName             {grid-area: name;}
+    #email                {grid-area: email;}
+    #phone                {grid-area: phone;}
+    .submit               {grid-area: submit; margin: 0;}
+    .cancel               {grid-area: cancel;}
+  form input {
+    padding: 6px 12px;
+    width: 345px;
+    margin: 0;
+  }
+  form label {
+    padding: 0 0 1px;
+    margin: 0;
+    align-self: center;
+    justify-self: right;
   }
 
   .responsiveWidth {
@@ -168,9 +265,20 @@ footer a:hover {
   }
 }
 
+/***********************************************/
+/*LAPTOPS*/
+
 @media screen and (min-width: 990px) {
   main ul {
     grid-template-columns: repeat(4, 212.5px);
+  }
+
+  form {
+    padding-left: 4px;
+    margin-left: 0;
+  }
+  form input {
+    width: 455px;
   }
 
   .responsiveWidth {
@@ -185,9 +293,19 @@ footer a:hover {
   }
 }
 
+/***********************************************/
+/*DESKTOPS*/
+
 @media screen and (min-width: 1200px) {
   main ul {
     grid-template-columns: repeat(4, 262.5px);
+  }
+
+  form {
+    padding-left: 37px;
+  }
+  form input {
+    width: 555px;
   }
 
   .responsiveWidth {
