@@ -7,7 +7,9 @@ $(() => {
     templates[$script.attr('data-template')] = Handlebars.compile($script.html());
   });
 
-  // debugger
+  Handlebars.registerPartial('contact', templates.contact);
+  Handlebars.registerPartial('noContacts', templates.noContacts);
+
 
   const app = {
     toggleForm(e) {
@@ -15,7 +17,6 @@ $(() => {
 
       $('#featureBar').slideToggle();
       $('#contactsList').slideToggle();
-      $('#emptyContacts').slideToggle();
       $('#createContact').slideToggle({
         start() {
           $(this).css('display', 'inline-block');
@@ -23,14 +24,32 @@ $(() => {
       });
     },
 
+    submit(e) {
+      e.preventDefault();
+
+      $.ajax({
+        url: 'api/contacts',
+        dataType: 'json',
+        method: 'POST',
+        data: $('form').serialize(),
+      }).done(json => {
+        console.log(json);
+      });
+    },
+
     bind() {
-      $('.add, .cancel').on('click', this.toggleForm.bind(this));
+      $('.add, .cancel, .submit').on('click', this.toggleForm.bind(this));
+      $('.submit').on('click', this.submit.bind(this));
     },
 
     init() {
       this.bind();
     },
   };
+
+  function renderContacts() {
+    $('#contactsList').html(templates.contacts({contacts: contacts}));
+  }
 
   $.ajax({
     url: 'api/contacts'
@@ -39,8 +58,4 @@ $(() => {
     renderContacts();
     app.init();
   });
-
-  function renderContacts() {
-    $('#contactsList').html(templates.contacts());
-  }
 });

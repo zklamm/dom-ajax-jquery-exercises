@@ -17,6 +17,23 @@ a {
   text-decoration: none;
 }
 
+button {
+  border: 1px solid #573D7C;
+  background-color: transparent;
+  border-radius: 6px;
+  color: #573D7C;
+  display: inline-block;
+  font-size: 18px;
+  grid-area: add;
+  padding: 11px 0 10px;
+  text-align: center;
+  width: 136.5px;
+}
+button:focus, button:hover {
+  background: #573D7C;
+  color: #fff;
+}
+
 input {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -60,6 +77,11 @@ main h1 {
   font-size: 30px;
   font-weight: 500;
   padding: 0 0 7px;
+}
+main h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 19px 0 8px;
 }
 main ul {
   display: grid;
@@ -114,6 +136,10 @@ form * {
   display: block;
   text-align: left;
 }
+form button {
+  text-align: center;
+  width: 100%;
+}
 form label {
   margin: 0 0 2px;
 }
@@ -137,23 +163,7 @@ form input {
   padding: 19px 19px;
 }
 
-.btn {
-  border: 1px solid #573D7C;
-  border-radius: 6px;
-  color: #573D7C;
-  display: inline-block;
-  font-size: 18px;
-  grid-area: add;
-  padding: 11px 0 10px;
-  text-align: center;
-  width: 136.5px;
-}
-.btn:focus, .btn:hover {
-  background: #573D7C;
-  color: #fff;
-}
-
-.btnSmall {
+.small {
   border-radius: 4px;
   font-size: .9rem;
   margin: 6px 16px 20px 0;
@@ -161,10 +171,6 @@ form input {
   width: auto;
 }
 
-.submit, .cancel {
-  display: block;
-  width: auto;
-}
 .submit {
   margin: -8px 0 0;
 }
@@ -192,21 +198,12 @@ form input {
   color: #999;
 }
 
-#emptyContacts {
-  margin: 10px 15px 5px;
-}
-#emptyContacts h2 {
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin: 19px 0 8px;
-}
-
 #contactsList li {
   display: inline-block;
 }
 
 #createContact {
-  margin: 38px 0 0;
+  margin: 40px 0 0;
 }
 #createContact label {
   font-weight: 600;
@@ -300,6 +297,10 @@ form input {
 /*DESKTOPS*/
 
 @media screen and (min-width: 1200px) {
+  main {
+    margin: 0 auto;
+    max-width: 1400px;
+  }
   main ul {
     grid-template-columns: repeat(4, 262.5px);
   }

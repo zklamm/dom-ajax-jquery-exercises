@@ -17,72 +17,41 @@
   </header>
   <main>
     <div id="featureBar" class="grayBackground">
-      <a class="btn add" tabindex="0">Add Contact</a>
+      <button class="add" tabindex="0" role="button">Add Contact</button>
       <input id="search" type="text" placeholder="Search" />
     </div>
 
     <div id="contactsList" class="responsiveWidth">
       <script type="text/x-handlebars" data-template="contacts">
-        <ul>
-          <li>
-            <h3>Zac Klammer</h3>
-            <dl>
-              <dt>Phone Number:</dt>
-              <dd>936.524.0138</dd>
-              <dt>Email:</dt>
-              <dd>zklamm@gmail.com</dd>
-            </dl>
-            <a href="#" class="btn btnSmall">Edit</a>
-            <a href="#" class="btn btnSmall">Delete</a>
-          </li>
-          <li>
-            <h3>Lindsey N Klammer</h3>
-            <dl>
-              <dt>Phone Number:</dt>
-              <dd>936.524.0138</dd>
-              <dt>Email:</dt>
-              <dd>zklamm@gmail.com</dd>
-            </dl>
-            <a href="#" class="btn btnSmall">Edit</a>
-            <a href="#" class="btn btnSmall">Delete</a>
-          </li>
-          <li>
-            <h3>Zac Klammer</h3>
-            <dl>
-              <dt>Phone Number:</dt>
-              <dd>936.524.0138</dd>
-              <dt>Email:</dt>
-              <dd>zklamm@gmail.com</dd>
-            </dl>
-            <a href="#" class="btn btnSmall">Edit</a>
-            <a href="#" class="btn btnSmall">Delete</a>
-          </li>
-          <li>
-            <h3>Zac Klammer</h3>
-            <dl>
-              <dt>Phone Number:</dt>
-              <dd>936.524.0138</dd>
-              <dt>Email:</dt>
-              <dd>zklamm@gmail.com</dd>
-            </dl>
-            <a href="#" class="btn btnSmall">Edit</a>
-            <a href="#" class="btn btnSmall">Delete</a>
-          </li>
-          <li>
-            <h3>I have a very very very very long name</h3>
-            <dl>
-              <dt>Phone Number:</dt>
-              <dd>936.524.0138</dd>
-              <dt>Email:</dt>
-              <dd>zklamm@gmail.com</dd>
-            </dl>
-            <a href="#" class="btn btnSmall">Edit</a>
-            <a href="#" class="btn btnSmall">Delete</a>
-          </li>
-        </ul>
-        <div id="emptyContacts" class="grayBackground responsiveWidth">
+        {{#if contacts}}
+          <ul>
+            {{#each contacts}}
+              {{> contact}}
+            {{/each}}
+          </ul>
+        {{else}}
+          {{> noContacts}}
+        {{/if}}
+      </script>
+
+      <script type="text/x-handlebars" data-template="contact">
+        <li>
+          <h3>{{full_name}}</h3>
+          <dl>
+            <dt>Phone Number:</dt>
+            <dd>{{phone_number}}</dd>
+            <dt>Email:</dt>
+            <dd>{{email}}</dd>
+          </dl>
+          <button class="small">Edit</button>
+          <button class="small">Delete</button>
+        </li>
+      </script>
+
+      <script type="text/x-handlebars" data-template="noContacts">
+        <div class="grayBackground">
           <h2>There is no contacts.</h2>
-          <a class="btn add" tabindex="0">Add Contact</a>
+          <button class="add" tabindex="0">Add Contact</button>
         </div>
       </script>
     </div>
@@ -91,13 +60,15 @@
       <h1>Create Contact</h1>
       <form>
         <label for="fullName">Full name:</label>
-        <input type="text" name="fullName" id="fullName">
+        <input type="text" name="full_name" id="fullName" />
         <label for="email">Email address:</label>
-        <input type="text" name="email" id="email">
+        <input type="text" name="email" id="email" />
         <label for="phone">Telephone number:</label>
-        <input type="text" name="telephone" id="phone">
-        <a href="#" class="btn submit">Submit</a>
-        <a href="#" class="btn cancel">Cancel</a>
+        <input type="text" name="phone_number" id="phone" />
+        <label for="tags">Tags:</label>
+        <input type="text" name="tags" id="tags" />
+        <button class="submit">Submit</button>
+        <button class="cancel">Cancel</button>
       </form>
     </div>
 
