@@ -10,13 +10,11 @@ $(() => {
   Handlebars.registerPartial('contact', templates.contact);
   Handlebars.registerPartial('noContacts', templates.noContacts);
 
-
   const app = {
     toggleForm(e) {
       e.preventDefault();
 
-      $('#featureBar').slideToggle();
-      $('#contactsList').slideToggle();
+      $('#featureBar, #contactsList').slideToggle();
       $('#createContact').slideToggle({
         start() {
           $(this).css('display', 'inline-block');
@@ -24,17 +22,50 @@ $(() => {
       });
     },
 
-    submit(e) {
-      e.preventDefault();
+    validName() {
+      const name = $('#fullName').val();
+      return !!name;
+    },
 
+    validEmail() {
+      const email = $('#email').val();
+      // if (!email) return false;
+
+      return !!email;
+    },
+
+    validPhone() {
+      const phone = $('#phone').val();
+      return !!phone;
+    },
+
+    isFormValid() {
+      return this.validName() && this.validEmail() && this.validPhone();
+    },
+
+    sendData() {
       $.ajax({
         url: 'api/contacts',
         dataType: 'json',
         method: 'POST',
         data: $('form').serialize(),
       }).done(json => {
+        $('form').trigger('reset');
         console.log(json);
       });
+    },
+
+    showCorrections() {
+    },
+
+    submit(e) {
+      e.preventDefault();
+
+      if (this.isFormValid()) {
+        this.sendData();
+      } else {
+        this.showCorrections();
+      }
     },
 
     bind() {

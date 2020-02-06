@@ -225,6 +225,7 @@ form input {
       "label1 name   name"
       "label2 email  email"
       "label3 phone  phone"
+      "label4 tags   tags"
       ".      submit cancel";
     margin: 0 0 0 -32px;
     padding: 20px 0 0;
@@ -232,9 +233,11 @@ form input {
     label[for="fullName"] {grid-area: label1;}
     label[for="email"]    {grid-area: label2;}
     label[for="phone"]    {grid-area: label3;}
+    label[for="tag"]      {grid-area: label4;}
     #fullName             {grid-area: name;}
     #email                {grid-area: email;}
     #phone                {grid-area: phone;}
+    #tags                 {grid-area: tags;}
     .submit               {grid-area: submit; margin: 0;}
     .cancel               {grid-area: cancel;}
   form input {

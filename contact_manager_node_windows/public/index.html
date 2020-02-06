@@ -8,7 +8,7 @@
   <script src="/javascripts/jquery.js"></script>
   <script src="/javascripts/handlebars.js"></script>
   <script src="/javascripts/app.js"></script>
-  <link rel="stylesheet" href="stylesheets/grid.css" />
+  <link rel="stylesheet" href="stylesheets/main.css" />
 </head>
 <body>
   <header>
@@ -17,7 +17,7 @@
   </header>
   <main>
     <div id="featureBar" class="grayBackground">
-      <button class="add" tabindex="0" role="button">Add Contact</button>
+      <button class="add" tabindex="0">Add Contact</button>
       <input id="search" type="text" placeholder="Search" />
     </div>
 
@@ -58,13 +58,13 @@
 
     <div id="createContact" class="responsiveWidth hidden">
       <h1>Create Contact</h1>
-      <form>
+      <form method="post" action="">
         <label for="fullName">Full name:</label>
         <input type="text" name="full_name" id="fullName" />
         <label for="email">Email address:</label>
-        <input type="text" name="email" id="email" />
+        <input type="email" name="email" id="email" required />
         <label for="phone">Telephone number:</label>
-        <input type="text" name="phone_number" id="phone" />
+        <input type="tel" name="phone_number" id="phone" />
         <label for="tags" name=tags>Tags:</label>
         <input type="text" name="tags" id="tags" />
         <button class="submit">Submit</button>
