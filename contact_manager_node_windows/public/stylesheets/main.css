@@ -17,23 +17,6 @@ a {
   text-decoration: none;
 }
 
-button {
-  border: 1px solid #573D7C;
-  background-color: transparent;
-  border-radius: 6px;
-  color: #573D7C;
-  display: inline-block;
-  font-size: 18px;
-  grid-area: add;
-  padding: 11px 0 10px;
-  text-align: center;
-  width: 136.5px;
-}
-button:focus, button:hover {
-  background: #573D7C;
-  color: #fff;
-}
-
 input {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -136,7 +119,7 @@ form * {
   display: block;
   text-align: left;
 }
-form button {
+form .btn {
   text-align: center;
   width: 100%;
 }
@@ -150,6 +133,23 @@ form input {
 
 /***********************************************/
 /*CLASSES*/
+
+.btn {
+  border: 1px solid #573D7C;
+  background-color: transparent;
+  border-radius: 6px;
+  color: #573D7C;
+  display: inline-block;
+  font-size: 18px;
+  grid-area: add;
+  padding: 11px 0 10px;
+  text-align: center;
+  width: 136.5px;
+}
+.btn:focus, .btn:hover {
+  background: #573D7C;
+  color: #fff;
+}
 
 .responsiveWidth {
   display: inline-block;

@@ -11,6 +11,68 @@ $(() => {
   Handlebars.registerPartial('noContacts', templates.noContacts);
 
   const app = {
+    // toggleForm(e) {
+    //   // e.preventDefault();
+
+    //   $('#featureBar, #contactsList').slideToggle();
+    //   $('#createContact').slideToggle({
+    //     start() {
+    //       $(this).css('display', 'inline-block');
+    //     }
+    //   });
+    // },
+
+    // validName() {
+    //   const name = $('#fullName').val();
+    //   return !!name;
+    // },
+
+    // validEmail() {
+    //   const email = $('#email').val();
+    //   // if (!email) return false;
+
+    //   return !!email;
+    // },
+
+    // validPhone() {
+    //   const phone = $('#phone').val();
+    //   return !!phone;
+    // },
+
+    // isFormValid() {
+    //   return this.validName() && this.validEmail() && this.validPhone();
+    // },
+
+    // sendData() {
+    //   $.ajax({
+    //     url: 'api/contacts',
+    //     dataType: 'json',
+    //     method: 'POST',
+    //     data: $('form').serialize(),
+    //   }).done(json => {
+    //     $('form').trigger('reset');
+    //     console.log(json);
+    //   });
+    // },
+
+    // showCorrections() {
+    // },
+
+    // submit(e) {
+    //   // e.preventDefault();
+
+    //   if (this.isFormValid()) {
+    //     this.sendData();
+    //   } else {
+    //     this.showCorrections();
+    //   }
+    // },
+
+    // bind() {
+    //   $('.add, .cancel, .submit').on('click', this.toggleForm.bind(this));
+    //   $('.submit').on('submit', this.submit.bind(this));
+    // },
+
     toggleForm(e) {
       e.preventDefault();
 
@@ -22,28 +84,9 @@ $(() => {
       });
     },
 
-    validName() {
-      const name = $('#fullName').val();
-      return !!name;
-    },
+    submit(e) {
+      e.preventDefault();
 
-    validEmail() {
-      const email = $('#email').val();
-      // if (!email) return false;
-
-      return !!email;
-    },
-
-    validPhone() {
-      const phone = $('#phone').val();
-      return !!phone;
-    },
-
-    isFormValid() {
-      return this.validName() && this.validEmail() && this.validPhone();
-    },
-
-    sendData() {
       $.ajax({
         url: 'api/contacts',
         dataType: 'json',
@@ -51,25 +94,12 @@ $(() => {
         data: $('form').serialize(),
       }).done(json => {
         $('form').trigger('reset');
-        console.log(json);
+        this.toggleForm(e);
       });
     },
 
-    showCorrections() {
-    },
-
-    submit(e) {
-      e.preventDefault();
-
-      if (this.isFormValid()) {
-        this.sendData();
-      } else {
-        this.showCorrections();
-      }
-    },
-
     bind() {
-      $('.add, .cancel, .submit').on('click', this.toggleForm.bind(this));
+      $('.add, .cancel').on('click', this.toggleForm.bind(this));
       $('.submit').on('click', this.submit.bind(this));
     },
 
