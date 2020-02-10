@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   const app = {
-    dds: Array.from(document.querySelectorAll('dd')),
     form: document.querySelector('form'),
     submissionError: document.querySelector('#submissionError'),
-    alphas: document.querySelectorAll('#firstName, #lastName'),
-    numerics: document.querySelectorAll('#phone, .creditCard'),
+    dds: Array.from(document.querySelectorAll('dd')),
+    inputs: Array.from(document.querySelectorAll('input')),
+    alphas: Array.from(document.querySelectorAll('#firstName, #lastName')),
+    numerics: Array.from(document.querySelectorAll('#phone, .creditCard')),
+    autotabs: Array.from(document.querySelectorAll('.autotab')),
 
     focused(e) {
       e.currentTarget.className = 'focused';
@@ -64,11 +66,33 @@ document.addEventListener('DOMContentLoaded', () => {
       this.filterKeys(e, /[^\-\d]/);
     },
 
+    nextTab(e) {
+      const numDigits = e.target.value.length;
+      if (numDigits === 4) {
+        e.target.nextElementSibling.focus();
+      }
+    },
+
+    getUrlString() {
+      const fields = this.inputs.slice(0, this.inputs.length - 1);
+      const keys = [];
+      const values = [];
+
+      fields.forEach(field => {
+        keys.push(field.name);
+        values.push(field.value);
+      });
+
+      console.log(keys, values);
+    },
+
     signUp(e) {
       e.preventDefault();
 
       if (this.form.checkValidity()) {
-        this.form.submit();
+        this.getUrlString();
+        let p = document.createElement('p');
+        // p.innerText = 
       } else {
         this.renderFormInvalid();
       }
@@ -87,6 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
       this.numerics.forEach(numeric => {
         numeric.addEventListener('keydown', this.onlyNumeric.bind(this));
       });
+
+      this.autotabs.forEach(autotab => {
+        autotab.addEventListener('input', this.nextTab.bind(this));
+      })
 
       this.form.addEventListener('submit', this.signUp.bind(this));
     },
