@@ -1,0 +1,85 @@
+@import url('reset.css');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #5BBF44;
+  font-size: 18px;
+}
+
+main {
+  margin: 0 auto;
+  width: 800px;
+}
+
+h1 {
+  color: #fff;
+  font-size: 24px;
+  margin: 70px auto 0;
+}
+
+form {
+  margin: 15px 0;
+}
+
+fieldset {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+dt {
+  padding: 20px 0 5px;
+}
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 38px;
+  font-size: 18px;
+  outline: none;
+  width: 300px;
+  padding: 3px 10px;
+}
+
+input::placeholder {
+  font-size: 18px;
+}
+
+input[type="submit"] {
+  border: none;
+  background-color: #5BBF44;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  height: 28px;
+  margin: 20px 0 0;
+  padding: 0 10px;
+  width: 87px;
+}
+
+.focused input:focus {
+  border: 1px solid #5EBF49;
+}
+
+.empty input, .mismatch input {
+  border: 1px solid #A93333;
+}
+
+.empty :nth-child(2),
+.mismatch :last-child,
+.invalid {
+  display: inline;
+  color: #A93333;
+  margin: 0 0 0 30px;
+}
+
+.creditCard {
+  width: 65px;
+}
+
+.invalid {
+  margin: 0;
+}

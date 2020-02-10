@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Validation</title>
+  <script src="app.js"></script>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <main>
+    <h1>Sign up Form</h1>
+    <form method="post" action="#" novalidate>
+      <fieldset>
+        <p id="submissionError" hidden>
+          Form cannot be submitted until errors are corrected.
+        </p>
+        <dl>
+          <dt><label for="firstName">First Name</label></dt>
+          <dd>
+            <input type="text" name="firstName" id="firstName" required />
+            <span hidden>First Name is a required field.</span>
+          </dd>
+
+          <dt><label for="lastName">Last Name</label></dt>
+          <dd>
+            <input type="text" name="lastName" id="lastName" required />
+            <span hidden>Last Name is a required field.</span>
+          </dd>
+
+          <dt><label for="email">Email</label></dt>
+          <dd>
+            <input type="email" name="email" id="email"
+                   placeholder="someone@example.com"
+                   pattern=".+@.+" required />
+            <span hidden>Email is a required field.</span>
+            <span hidden>Please Enter a valid Email.</span>
+          </dd>
+
+          <dt><label for="password">Password</label></dt>
+          <dd>
+            <input type="password" name="password" id="password"
+                   pattern=".{10,}" required />
+            <span hidden>Password is a required field.</span>
+            <span hidden>Password must be at least 10 characters long.</span>
+          </dd>
+
+          <dt><label for="phone">Phone Number</label></dt>
+          <dd>
+            <input type="text" name="phone" id="phone"
+                   placeholder="111-222-3333"
+                   pattern="\d\d\d-\d\d\d-\d\d\d\d" />
+            <span hidden>Please Enter a valid Phone Number.</span>
+          </dd>
+
+          <dt><label for="cc1">Credit Card</label></dt>
+          <dd>
+            <input type="text" name="creditCard" id="cc1" class="creditCard" />
+            -
+            <input type="text" name="creditCard" id="cc2" class="creditCard" />
+            -
+            <input type="text" name="creditCard" id="cc3" class="creditCard" />
+            -
+            <input type="text" name="creditCard" id="cc4" class="creditCard" />
+          </dd>
+        </dl>
+
+        <input type="submit" value="Sign Up">
+      </fieldset>
+    </form>
+  </main>
+</body>
+</html>
