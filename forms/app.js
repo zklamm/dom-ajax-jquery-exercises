@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     dds: Array.from(document.querySelectorAll('dd')),
     form: document.querySelector('form'),
     submissionError: document.querySelector('#submissionError'),
-    names: document.querySelectorAll('#firstName, #lastName'),
+    alphas: document.querySelectorAll('#firstName, #lastName'),
+    numerics: document.querySelectorAll('#phone, .creditCard'),
 
     focused(e) {
       e.currentTarget.className = 'focused';
@@ -30,10 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     blurred(e) {
-      const input = e.target;
-      const dd = e.currentTarget;
-
-      this.setNewClass(dd, input);
+      this.setNewClass(e.currentTarget, e.target);
 
       if (this.form.checkValidity()) {
         this.submissionError.className = '';
@@ -43,18 +41,27 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFormInvalid() {
       for (let i = 0; i < this.dds.length; i += 1) {
         const dd = this.dds[i];
-        this.setNewClass(dd, dd.firstElementChild);
+        if (dd.className !== 'focused') {
+          this.setNewClass(dd, dd.firstElementChild);
+        }
       }
 
       this.submissionError.className = 'invalid';
     },
 
-    onlyAlpha(e) {
-      const regex = /[a-zA-Z'\s]/;
-
-      if (!regex.test(e.key)) {
+    filterKeys(e, regex) {
+      const key = e.key;
+      if (regex.test(key) && key !== 'Tab' && key !== 'Backspace') {
         e.preventDefault();
       }
+    },
+
+    onlyAlpha(e) {
+      this.filterKeys(e, /[^a-zA-Z'\s]/);
+    },
+
+    onlyNumeric(e) {
+      this.filterKeys(e, /[^\-\d]/);
     },
 
     signUp(e) {
@@ -67,21 +74,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     },
 
-    bind() {
+    init() {
       this.dds.forEach(dd => {
         dd.addEventListener('focusin', this.focused.bind(this));
         dd.addEventListener('focusout', this.blurred.bind(this));
       });
 
-      this.names.forEach(name => {
-        name.addEventListener('keypress', this.onlyAlpha.bind(this));
+      this.alphas.forEach(alpha => {
+        alpha.addEventListener('keydown', this.onlyAlpha.bind(this));
+      });
+
+      this.numerics.forEach(numeric => {
+        numeric.addEventListener('keydown', this.onlyNumeric.bind(this));
       });
 
       this.form.addEventListener('submit', this.signUp.bind(this));
-    },
-
-    init() {
-      this.bind();
     },
   };
 
