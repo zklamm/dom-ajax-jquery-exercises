@@ -32,3 +32,4 @@ m
                                                             00F
                                                             F0F
 
+subtract until one of rgb is 0
