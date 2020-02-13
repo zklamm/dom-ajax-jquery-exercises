@@ -1,0 +1,12 @@
+@import url('reset.css');
+
+#colors {
+  height: 830px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(31, 1fr);
+}
+
+div {
+  color: #777;
+}

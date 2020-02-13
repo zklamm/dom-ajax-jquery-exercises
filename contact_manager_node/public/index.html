@@ -8,7 +8,7 @@
   <script src="/javascripts/jquery.js"></script>
   <script src="/javascripts/handlebars.js"></script>
   <script src="/javascripts/app.js"></script>
-  <link rel="stylesheet" href="stylesheets/grid.css" />
+  <link rel="stylesheet" href="stylesheets/main.css" />
 </head>
 <body>
   <header>
@@ -21,7 +21,7 @@
       <input id="search" type="text" placeholder="Search" />
     </div>
 
-    <div id="contactsList" class="responsiveWidth">
+    <div id="contactsList" class="responsive">
       <script type="text/x-handlebars" data-template="contacts">
         {{#if contacts}}
           <ul>
@@ -35,16 +35,20 @@
       </script>
 
       <script type="text/x-handlebars" data-template="contact">
-        <li>
+        <li data-id={{id}}>
           <h3>{{full_name}}</h3>
           <dl>
             <dt>Phone Number:</dt>
             <dd>{{phone_number}}</dd>
             <dt>Email:</dt>
             <dd>{{email}}</dd>
+            {{#if tags}}
+              <dt>Tags:</dt>
+              <dd>{{tags}}</dd>
+            {{/if}}
           </dl>
-          <button class="small">Edit</button>
-          <button class="small">Delete</button>
+          <button class="small edit">Edit</button>
+          <button class="small delete">Delete</button>
         </li>
       </script>
 
@@ -56,24 +60,37 @@
       </script>
     </div>
 
-    <div id="createContact" class="responsiveWidth hidden">
-      <h1>Create Contact</h1>
-      <form>
-        <label for="fullName">Full name:</label>
-        <input type="text" name="full_name" id="fullName" />
-        <label for="email">Email address:</label>
-        <input type="text" name="email" id="email" />
-        <label for="phone">Telephone number:</label>
-        <input type="text" name="phone_number" id="phone" />
-        <label for="tags">Tags:</label>
-        <input type="text" name="tags" id="tags" />
-        <button class="submit">Submit</button>
-        <button class="cancel">Cancel</button>
-      </form>
+    <div id="createContact" class="responsive hidden">
+      <script type="text/x-handlebars" data-template="createContact">
+        {{#if json}}
+          <h1>Edit Contact</h1>
+        {{else}}
+          <h1>Create Contact</h1>
+        {{/if}}
+        <form>
+          <label for="fullName">Full name:</label>
+          <input type="text" name="full_name" id="fullName" required
+                 value="{{full_name}}" />
+          <small class="hidden">Please enter the name field.</small>
+          <label for="email">Email address:</label>
+          <input type="email" name="email" id="email" required
+                 value="{{email}}" />
+          <small class="hidden">Please enter the valid email field.</small>
+          <label for="phone">Telephone number:</label>
+          <input type="text" name="phone_number" id="phone" required
+                 value="{{phone_number}}" />
+          <small class="hidden">Please enter the phone field.</small>
+          <label for="tags">Tags:</label>
+          <input type="text" name="tags" id="tags"
+                 value="{{tags}}" />
+          <button class="submit">Submit</button>
+          <button class="cancel">Cancel</button>
+        </form>
+      </script>
     </div>
 
   </main>
-  <footer class="responsiveWidth">
+  <footer class="responsive">
     <p>
       Developed by
       <a href="https://www.devsaran.com">Devsaran.com</a>

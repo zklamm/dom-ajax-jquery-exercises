@@ -23,13 +23,15 @@ button {
   border-radius: 6px;
   color: #573D7C;
   display: inline-block;
+  font-family: 'Helvetica Neue', sans-serif;
   font-size: 18px;
   grid-area: add;
   padding: 11px 0 10px;
   text-align: center;
   width: 136.5px;
 }
-button:focus, button:hover {
+button:focus,
+button:hover {
   background: #573D7C;
   color: #fff;
 }
@@ -42,6 +44,13 @@ input {
   font: inherit;
   height: 34px;
   padding: 0 12px;
+}
+
+small {
+  display: none;
+  font-size: 11.9px;
+  margin-bottom: 8px;
+  text-align: left;
 }
 
 /***********************************************/
@@ -130,28 +139,17 @@ footer a:hover {
 /*OTHER*/
 
 form {
-  margin: 28px 0 0;
+  padding: 1px;
 }
 form * {
   display: block;
-  text-align: left;
-}
-form button {
-  text-align: center;
-  width: 100%;
-}
-form label {
-  margin: 0 0 2px;
-}
-form input {
-  margin: 0 0 33px;
   width: 100%;
 }
 
 /***********************************************/
 /*CLASSES*/
 
-.responsiveWidth {
+.responsive {
   display: inline-block;
   width: 94%;
 }
@@ -171,12 +169,21 @@ form input {
   width: auto;
 }
 
-.submit {
-  margin: -8px 0 0;
-}
-
 .hidden {
   display: none;
+}
+
+label.error {
+  color: #B94A48;
+}
+
+small.error {
+  display: block;
+  color: #B94A48;
+}
+
+input.error {
+  border: 1px solid #B94A48;
 }
 
 /***********************************************/
@@ -203,10 +210,16 @@ form input {
 }
 
 #createContact {
-  margin: 40px 0 0;
+  margin: 38px 0 0;
 }
 #createContact label {
+  text-align: left;
   font-weight: 600;
+  padding: 27px 0 2px;
+}
+#createContact input {
+  margin-bottom: 6px;
+  color: #555;
 }
 
 /***********************************************/
@@ -217,40 +230,34 @@ form input {
     grid-template-columns: repeat(3, 220px);
   }
 
-  form {
-    display: inline-grid;
-    grid-column-gap: 30px;
-    grid-row-gap: 25px;
-    grid-template-areas:
-      "label1 name   name"
-      "label2 email  email"
-      "label3 phone  phone"
-      ".      submit cancel";
-    margin: 0 0 0 -32px;
-    padding: 20px 0 0;
-  }
-    label[for="fullName"] {grid-area: label1;}
-    label[for="email"]    {grid-area: label2;}
-    label[for="phone"]    {grid-area: label3;}
-    #fullName             {grid-area: name;}
-    #email                {grid-area: email;}
-    #phone                {grid-area: phone;}
-    .submit               {grid-area: submit; margin: 0;}
-    .cancel               {grid-area: cancel;}
-  form input {
-    margin: 0;
-    padding: 6px 12px;
-    width: 345px;
-  }
-  form label {
-    align-self: center;
-    justify-self: right;
-    margin: 0;
-    padding: 0 0 1px;
+  #createContact {
+    /*padding-left: 20px;*/
   }
 
-  .responsiveWidth {
+  #createContact label {
+    display: inline-block;
+    text-align: right;
+    width: 30%;
+  }
+  #createContact input {
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 120px;
+    width: 345px;
+  }
+  #createContact small {
+    text-align: center;
+  }
+
+  .responsive {
     width: 720px;
+  }
+
+  .submit,
+  .cancel {
+    display: inline-block;
+    margin: 0 auto;
+    width: 155px;
   }
 
   #featureBar {
@@ -273,15 +280,16 @@ form input {
     grid-template-columns: repeat(4, 212.5px);
   }
 
-  form {
-    margin-left: 0;
-    padding-left: 4px;
-  }
-  form input {
+  #createContact input {
     width: 455px;
   }
 
-  .responsiveWidth {
+  .submit,
+  .cancel {
+    width: 212px;
+  }
+
+  .responsive {
     width: 940px;
   }
 
@@ -305,14 +313,16 @@ form input {
     grid-template-columns: repeat(4, 262.5px);
   }
 
-  form {
-    padding-left: 37px;
-  }
-  form input {
+  #createContact input {
     width: 555px;
   }
 
-  .responsiveWidth {
+  .submit,
+  .cancel {
+    width: 260px;
+  }
+
+  .responsive {
     width: 1140px;
   }
 
