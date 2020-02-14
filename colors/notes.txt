@@ -13,7 +13,7 @@ m
 
 000 100 200 300 400 500 600 700 800 900 A00 B00 C00 D00 E00 F00 F11 F22 F33 F44 F55 F66 F77 F88 F99 FAA FBB FCC FDD FEE FFF
                                                             F10 FF1100
-                                                            F20
+                                                            F20 
                                                             F30
                                                             F40
                                                             F50
@@ -33,3 +33,49 @@ m
                                                             F0F
 
 subtract until one of rgb is 0
+
+ff
+d2
+
+
+
+
+255 255
+0   17
+
+they are all divided by 15
+
+ffffff
+ff  ee
+ff  dd
+ff  cc
+ff  bb
+ff  aa
+ff  99
+ff  88
+ff  77
+ff  66
+ff  55
+ff  44
+ff  33
+ff  22
+ff  11
+ff1100
+
+
+
+15.8666   16
+14.7333   15
+13.6      14
+12.4666   13
+11.333    12
+10.2      11
+9.0666    10
+7.9333    9
+6.8       8
+5.666     7
+4.5333    6
+3.4       5
+2.2666    4
+1.1333    3
+

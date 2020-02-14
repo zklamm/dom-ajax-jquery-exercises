@@ -4,7 +4,7 @@
   height: 830px;
   display: grid;
   grid-auto-flow: column;
-  grid-template-rows: repeat(31, 1fr);
+  grid-template-rows: repeat(35, 1fr);
 }
 
 div {
