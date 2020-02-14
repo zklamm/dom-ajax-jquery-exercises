@@ -1,7 +1,7 @@
 @import url('reset.css');
 
 #colors {
-  height: 830px;
+  height: 1365px;
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(35, 1fr);

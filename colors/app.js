@@ -17,29 +17,86 @@ document.addEventListener('DOMContentLoaded', () => {
     magentaToRed:  [], //sub blue
   };
 
+  const colors = [];
+
+// RED
   let [ rLight, gLight, bLight, rDark, gDark, bDark ] = shadeIncrements.red;
 
-  while (gLight > 0) {
+  for (let i = 0; i < 15; i += 1) {
     transitions.redToYellow.push([rLight, gLight, bLight, rDark, gDark, bDark]);
     gLight -= 1;
     gDark += 1;
   }
 
-  // while (rLight > 0) {
-  //   rLight -= 1;
-  //   rDark -= 1;
-  //   transitions.blueToMagenta.push([rLight, gLight, bLight, rDark, gDark, bDark]);
-  // }
-
-  const colors = [];
-
   transitions.redToYellow.forEach(transition => {
     colors.push(getShades(transition));
   });
 
+// YELLOW
+  [ rLight, gLight, bLight, rDark, gDark, bDark ] = shadeIncrements.yellow;
+  for (let i = 0; i < 15; i += 1) {
+    transitions.yellowToGreen.push([rLight, gLight, bLight, rDark, gDark, bDark]);
+    rLight += 1;
+    rDark -= 1;
+  }
+
+  transitions.yellowToGreen.forEach(transition => {
+    colors.push(getShades(transition));
+  });
+
+// GREEN
+[ rLight, gLight, bLight, rDark, gDark, bDark ] = shadeIncrements.green;
+for (let i = 0; i < 15; i += 1) {
+  transitions.greenToCyan.push([rLight, gLight, bLight, rDark, gDark, bDark]);
+  bLight -= 1;
+  bDark += 1;
+}
+
+transitions.greenToCyan.forEach(transition => {
+  colors.push(getShades(transition));
+});
+
+// CYAN
+[ rLight, gLight, bLight, rDark, gDark, bDark ] = shadeIncrements.cyan;
+for (let i = 0; i < 15; i += 1) {
+  transitions.cyanToBlue.push([rLight, gLight, bLight, rDark, gDark, bDark]);
+  gLight += 1;
+  gDark -= 1;
+}
+
+transitions.cyanToBlue.forEach(transition => {
+  colors.push(getShades(transition));
+});
+
+// BLUE
+  [ rLight, gLight, bLight, rDark, gDark, bDark ] = shadeIncrements.blue;
+  for (let i = 0; i < 15; i += 1) {
+    transitions.blueToMagenta.push([rLight, gLight, bLight, rDark, gDark, bDark]);
+    rLight -= 1;
+    rDark += 1;
+  }
+
+  transitions.blueToMagenta.forEach(transition => {
+    colors.push(getShades(transition));
+  });
+
+// MAGENTA
+  [ rLight, gLight, bLight, rDark, gDark, bDark ] = shadeIncrements.magenta;
+  for (let i = 0; i < 15; i += 1) {
+    transitions.magentaToRed.push([rLight, gLight, bLight, rDark, gDark, bDark]);
+    bLight += 1;
+    bDark -= 1;
+  }
+
+  transitions.magentaToRed.forEach(transition => {
+    colors.push(getShades(transition));
+  });
+
+
+
   colors.forEach((shades, idx) => {
     shades.forEach((hex) => {
-      let div = document.createElement('div');
+      const div = document.createElement('div');
       div.id = `column${idx}_color_${hex}`;
       document.querySelector('#colors').appendChild(div);
       document.querySelector(`#${div.id}`).style.backgroundColor = `#${hex}`;
