@@ -1,7 +1,7 @@
 @import url('reset.css');
 
-#colors {
-  height: 1365px;
+#colorGrid {
+  height: 830px;
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(35, 1fr);

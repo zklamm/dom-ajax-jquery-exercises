@@ -1,149 +1,163 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const shadeIncrements = {
-    red:     [ 0, 15, 15, 15,  0,  0],
-    yellow:  [ 0,  0, 15, 15, 15,  0],
-    green:   [15,  0, 15,  0, 15,  0],
-    cyan:    [15,  0,  0,  0, 15, 15],
-    blue:    [15, 15,  0,  0,  0, 15],
-    magenta: [ 0, 15,  0, 15,  0, 15],
+  class Hue {
+    constructor(r, g, b) {
+      this.rgb = [r, g, b];
+      this.r = r;
+      this.g = g;
+      this.b = b;
+    }
+
+    toHexTriplet() {
+      return this.rgb.map(value => {
+        return value.toString(16).padStart(2, '0');
+      }).join('');
+    }
+
+    getTints(resolution) {
+
+    }
+
+    getShades(resolution) {
+
+    }
+  }
+
+  class ColorGrid {
+    constructor(startHue = [255, 0, 0]) {
+      this.startHue = startHue;
+    }
+
+    populate() {
+
+    }
+
+    render() {
+      populate();
+    }
+  }
+
+
+  const colorGrid = {
+    whiteToHue: {
+      red:     [ 0, 15, 15],
+      yellow:  [ 0,  0, 15],
+      green:   [15,  0, 15],
+      cyan:    [15,  0,  0],
+      blue:    [15, 15,  0],
+      magenta: [ 0, 15,  0],
+    },
+
+    hueToBlack: {
+      red:     [15,  0,  0],
+      yellow:  [15, 15,  0],
+      green:   [ 0, 15,  0],
+      cyan:    [ 0, 15, 15],
+      blue:    [ 0,  0, 15],
+      magenta: [15,  0, 15],
+    },
+
+    rainbowTints: {
+      red:     [ 0, -1,  0],
+      yellow:  [ 1,  0,  0],
+      green:   [ 0,  0, -1],
+      cyan:    [ 0,  1,  0],
+      blue:    [-1,  0,  0],
+      magenta: [ 0,  0,  1],
+    },
+
+    rainbowShades: {
+      red:     [ 0,  1,  0],
+      yellow:  [-1,  0,  0],
+      green:   [ 0,  0,  1],
+      cyan:    [ 0, -1,  0],
+      blue:    [ 1,  0,  0],
+      magenta: [ 0,  0, -1],
+    },
+
+    columns: [],
+    white: [255, 255, 255],
+
+    getTints(rTint, gTint, bTint) {
+      const tints = [];
+      let [ r, g, b ] = this.white;
+
+      while (r > 0 && g > 0 && b > 0) {
+        tints.push([r, g, b]);
+        r -= rTint;
+        g -= gTint;
+        b -= bTint;
+      }
+
+      tints.push([r, g, b]);
+      return tints;
+    },
+
+    getShades([ r, g, b ], rShade, gShade, bShade) {
+      const shades = [];
+
+      while (r > 0 || g > 0 || b > 0) {
+        r -= rShade;
+        g -= gShade;
+        b -= bShade;
+        shades.push([r, g, b]);
+      }
+
+      return shades;
+    },
+
+    toHexTriplets(colors) {
+      return colors.map(color => {
+        return color.map(rgbComponent => {
+          return rgbComponent.toString(16).padStart(2, '0');
+        }).join('');
+      });
+    },
+
+    getColumn(rTint, gTint, bTint, rShade, gShade, bShade) {
+      const tints = this.getTints(rTint, gTint, bTint);
+      const hue = tints[tints.length - 1];
+      const shades = this.getShades(hue, rShade, gShade, bShade);
+      return this.toHexTriplets(tints.concat(shades));
+    },
+
+    populateGrid() {
+      for (const hue in this.whiteToHue) {
+        let [ rTint, gTint, bTint ] = this.whiteToHue[hue];
+        let [ rShade, gShade, bShade ] = this.hueToBlack[hue];
+
+        for (let i = 0; i < 15; i += 1) {
+          this.columns.push(this.getColumn(rTint, gTint, bTint, rShade, gShade, bShade));
+          rTint += this.rainbowTints[hue][0];
+          gTint += this.rainbowTints[hue][1];
+          bTint += this.rainbowTints[hue][2];
+          rShade += this.rainbowShades[hue][0];
+          gShade += this.rainbowShades[hue][1];
+          bShade += this.rainbowShades[hue][2];
+        }
+      }
+    },
+
+    renderGrid() {
+      this.columns.forEach((column, idx) => {
+        column.forEach(color => {
+          const cell = document.createElement('div');
+          cell.id = `column_${idx + 1}_color_${color}`;
+          document.querySelector('#colorGrid').appendChild(cell);
+          document.querySelector(`#${cell.id}`).style.backgroundColor = `#${color}`;
+          // debugger;
+          const sum = (accumulator, currentValue) => accumulator + currentValue;
+          // color = color.match(/.{2}/g).map(hex => parseInt(hex, 16)).reduce(sum);
+          // color = color.match(/.{2}/g).map(hex => parseInt(hex, 16)).join('.');
+          document.querySelector(`#${cell.id}`).textContent = `_${color}_`;
+        });
+      });
+    },
+
+    init() {
+      this.populateGrid();
+      this.renderGrid();
+    }
   };
 
-  const transitions = {
-    redToYellow:   [], //add green
-    yellowToGreen: [], //sub red
-    greenToCyan:   [], //add blue
-    cyanToBlue:    [], //sub green
-    blueToMagenta: [], //add red
-    magentaToRed:  [], //sub blue
-  };
-
-  const colors = [];
-
-// RED
-  let [ rLight, gLight, bLight, rDark, gDark, bDark ] = shadeIncrements.red;
-
-  for (let i = 0; i < 15; i += 1) {
-    transitions.redToYellow.push([rLight, gLight, bLight, rDark, gDark, bDark]);
-    gLight -= 1;
-    gDark += 1;
-  }
-
-  transitions.redToYellow.forEach(transition => {
-    colors.push(getShades(transition));
-  });
-
-// YELLOW
-  [ rLight, gLight, bLight, rDark, gDark, bDark ] = shadeIncrements.yellow;
-  for (let i = 0; i < 15; i += 1) {
-    transitions.yellowToGreen.push([rLight, gLight, bLight, rDark, gDark, bDark]);
-    rLight += 1;
-    rDark -= 1;
-  }
-
-  transitions.yellowToGreen.forEach(transition => {
-    colors.push(getShades(transition));
-  });
-
-// GREEN
-[ rLight, gLight, bLight, rDark, gDark, bDark ] = shadeIncrements.green;
-for (let i = 0; i < 15; i += 1) {
-  transitions.greenToCyan.push([rLight, gLight, bLight, rDark, gDark, bDark]);
-  bLight -= 1;
-  bDark += 1;
-}
-
-transitions.greenToCyan.forEach(transition => {
-  colors.push(getShades(transition));
+  colorGrid.init();
 });
-
-// CYAN
-[ rLight, gLight, bLight, rDark, gDark, bDark ] = shadeIncrements.cyan;
-for (let i = 0; i < 15; i += 1) {
-  transitions.cyanToBlue.push([rLight, gLight, bLight, rDark, gDark, bDark]);
-  gLight += 1;
-  gDark -= 1;
-}
-
-transitions.cyanToBlue.forEach(transition => {
-  colors.push(getShades(transition));
-});
-
-// BLUE
-  [ rLight, gLight, bLight, rDark, gDark, bDark ] = shadeIncrements.blue;
-  for (let i = 0; i < 15; i += 1) {
-    transitions.blueToMagenta.push([rLight, gLight, bLight, rDark, gDark, bDark]);
-    rLight -= 1;
-    rDark += 1;
-  }
-
-  transitions.blueToMagenta.forEach(transition => {
-    colors.push(getShades(transition));
-  });
-
-// MAGENTA
-  [ rLight, gLight, bLight, rDark, gDark, bDark ] = shadeIncrements.magenta;
-  for (let i = 0; i < 15; i += 1) {
-    transitions.magentaToRed.push([rLight, gLight, bLight, rDark, gDark, bDark]);
-    bLight += 1;
-    bDark -= 1;
-  }
-
-  transitions.magentaToRed.forEach(transition => {
-    colors.push(getShades(transition));
-  });
-
-
-
-  colors.forEach((shades, idx) => {
-    shades.forEach((hex) => {
-      const div = document.createElement('div');
-      div.id = `column${idx}_color_${hex}`;
-      document.querySelector('#colors').appendChild(div);
-      document.querySelector(`#${div.id}`).style.backgroundColor = `#${hex}`;
-      // document.querySelector(`#${div.id}`).textContent = hex;
-    });
-  });
-});
-
-function getShades(transition) {
-  const [ rLight, gLight, bLight, rDark, gDark, bDark ] = transition;
-  const lights = colorize([255, 255, 255], rLight, gLight, bLight);
-  const peak = lights[lights.length - 1];
-  const darks = blacken(peak, rDark, gDark, bDark);
-  return toHex(lights.concat(darks));
-}
-
-function toHex(shades) {
-  return shades.map(shade => {
-    return shade.map(component => {
-      return component.toString(16).padStart(2, '0');
-    }).join('');
-  });
-}
-
-function colorize([ r, g, b ], rLight, gLight, bLight) {
-  const shades = [];
-
-  while (r > 0 && g > 0 && b > 0) {
-    shades.push([r, g, b]);
-    r -= rLight;
-    g -= gLight;
-    b -= bLight;
-  }
-
-  shades.push([r, g, b]);
-  return shades;
-}
-
-function blacken([ r, g, b ], rDark, gDark, bDark) {
-  const shades = [];
-
-  while (r > 0 || g > 0 || b > 0) {
-    r -= rDark;
-    g -= gDark;
-    b -= bDark;
-    shades.push([r, g, b]);
-  }
-
-  return shades;
-}

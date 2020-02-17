@@ -1,81 +1,10 @@
-r subtract 17 from the second and third columns until they reach 0. once they reach 0, subtract 17 from first column until it reaches 0
-14
-y
-14
-g
-14
-c
-14
-b
-14
-m
-14
-
-000 100 200 300 400 500 600 700 800 900 A00 B00 C00 D00 E00 F00 F11 F22 F33 F44 F55 F66 F77 F88 F99 FAA FBB FCC FDD FEE FFF
-                                                            F10 FF1100
-                                                            F20 
-                                                            F30
-                                                            F40
-                                                            F50
-                                                            F60
-                                                            F70
-                                                            F80
-                                                            F90
-                                                            FA0
-                                                            FB0
-                                                            FC0
-                                                            FD0
-                                                            FE0
-000 110 220 330 440 550 660 770 880 990 AA0 BB0 CC0 DD0 EE0 FF0 FF1 FF2 FF3 FF4 FF5 FF6 FF7 FF8 FF9 FFA FFB FFC FFD FFE FFF
-                                                            0F0
-                                                            0FF
-                                                            00F
-                                                            F0F
-
-subtract until one of rgb is 0
-
-ff
-d2
+grid
+column
+color
 
 
-
-
-255 255
-0   17
-
-they are all divided by 15
 
 ffffff
-ff  ee
-ff  dd
-ff  cc
-ff  bb
-ff  aa
-ff  99
-ff  88
-ff  77
-ff  66
-ff  55
-ff  44
-ff  33
-ff  22
-ff  11
-ff1100
-
-
-
-15.8666   16
-14.7333   15
-13.6      14
-12.4666   13
-11.333    12
-10.2      11
-9.0666    10
-7.9333    9
-6.8       8
-5.666     7
-4.5333    6
-3.4       5
-2.2666    4
-1.1333    3
-
+fffefe
+...
+ff0000  ff0100 ... ffff00
