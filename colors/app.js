@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   const Color = {
-    toHexTriplet() {
-      return `#${this.rgb.map(value => {
-        return value.toString(16).padStart(2, '0');
-      }).join('')}`;
-    },
+    // toHexTriplet() {
+    //   return `#${this.rgb.map(value => {
+    //     return value.toString(16).padStart(2, '0');
+    //   }).join('')}`;
+    // },
 
     init({ r, g, b }) {
       this.rgb = [r, g, b];
@@ -20,12 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
     hues: [],
     currentHue: {r: 255, g: 0, b: 0},
     gradients: {
-      redToYellow:   {r:  0, g:  1, b:  0},
-      yellowToGreen: {r: -1, g:  0, b:  0},
-      greenToCyan:   {r:  0, g:  0, b:  1},
-      cyanToBlue:    {r:  0, g: -1, b:  0},
-      blueToMagenta: {r:  1, g:  0, b:  0},
-      magentaToRed:  {r:  0, g:  0, b: -1},
+      redToYellow:   [ 0,  1,  0],
+      yellowToGreen: [-1,  0,  0],
+      greenToCyan:   [ 0,  0,  1],
+      cyanToBlue:    [ 0, -1,  0],
+      blueToMagenta: [ 1,  0,  0],
+      magentaToRed:  [ 0,  0, -1],
     },
 
     getCondition(gradient) {
@@ -38,14 +38,17 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     addHues(gradient) {
-      do {
-        let increment = this.gradients[gradient];
-        let hue = Object.create(Color).init(this.currentHue);
+      // let increment = this.gradients[gradient];
+      let [ rGradient, gGradient, bGradient ] = this.gradients[gradient];
 
-        this.hues.push(hue);
-        this.currentHue.r += this.resolution * increment.r;
-        this.currentHue.g += this.resolution * increment.g;
-        this.currentHue.b += this.resolution * increment.b;
+      do {
+        // let hue = this.currentHue;
+        let [ r, g, b ] = this.currentHue;
+
+        this.hues.push([r, g, b]);
+        this.currentHue.r += this.resolution * rGradient;
+        this.currentHue.g += this.resolution * gGradient;
+        this.currentHue.b += this.resolution * bGradient;
       } while (this.getCondition(gradient));
     },
 
@@ -56,56 +59,91 @@ document.addEventListener('DOMContentLoaded', () => {
         this.addHues(gradient);
       }
 
-      return this;
+      return this.hues;
     },
   };
 
   const Column = {
     whiteToBlack: [],
-// 255 254 0
-    addTints() {
 
-      let tint = Object.assign({}, this.hue);
-      for (let i = 0; i < this.resolution; i += 1) {
-        this.whiteToBlack.unshift(tint);
-        tint.r += this.rTintIncrements;
-        tint.g += this.gTintIncrements;
-        tint.b += this.bTintIncrements;
-      }
-        debugger
+    addTints() {
+      this.tint.r += this.rTintIncrement;
+      this.tint.g += this.gTintIncrement;
+      this.tint.b += this.bTintIncrement;
+      this.whiteToBlack.unshift(Object.create(Color).init(this.tint));
     },
 
     addShades() {
+      this.shade.r -= this.rShadeIncrement;
+      this.shade.g -= this.gShadeIncrement;
+      this.shade.b -= this.bShadeIncrement;
+      this.whiteToBlack.push(Object.create(Color).init(this.shade));
+    },
 
+    addTintsAndShades() {
+      for (let i = 0; i < this.resolution; i += 1) {
+        this.addTints();
+        this.addShades();
+      }
     },
 
     init(hue, resolution) {
-      this.hue = hue;
       this.whiteToBlack.push(hue);
-      this.rTintIncrements =  (255 - hue.r) / resolution;
-      this.gTintIncrements =  (255 - hue.g) / resolution;
-      this.bTintIncrements =  (255 - hue.b) / resolution;
       this.resolution = resolution;
+      this.tint = Object.assign({}, hue);
+      this.rTintIncrement =  (255 - hue.r) / resolution;
+      this.gTintIncrement =  (255 - hue.g) / resolution;
+      this.bTintIncrement =  (255 - hue.b) / resolution;
+      this.shade = Object.assign({}, hue);
+      this.rShadeIncrement =  hue.r / resolution;
+      this.gShadeIncrement =  hue.g / resolution;
+      this.bShadeIncrement =  hue.b / resolution;
 
-      this.addTints();
-      this.addShades();
+      this.addTintsAndShades();
 
-      return this;
+      return this.whiteToBlack;
     },
   };
 
   const ColorGrid = {
-    init(rainbowResolution) {
-      this.rainbow = Rainbow.init(rainbowResolution);
-      // this.createColumns();
+    grid: [],
 
-      return this;
+    createColumns() {
+      this.rainbow.forEach(hue => {
+        this.grid.push(Object.create(Column).init(hue, this.whiteToBlackResolution));
+      });
+    },
+
+    renderGrid() {
+      this.grid.forEach((column, idx) => {
+        column.forEach(color => {
+          const cell = document.createElement('div');
+          cell.id = `column_${idx + 1}_color_${color.r}_${color.g}_${color.b}`;
+          document.querySelector('#colorGrid').appendChild(cell);
+          debugger
+          document.querySelector(`#${cell.id}`).style.backgroundColor = `rgb(${color.r},${color.g},${color.b})`;
+          // debugger;
+          // const sum = (accumulator, currentValue) => accumulator + currentValue;
+          // color = color.match(/.{2}/g).map(hex => parseInt(hex, 16)).reduce(sum);
+          // color = color.match(/.{2}/g).map(hex => parseInt(hex, 16)).join('.');
+          // document.querySelector(`#${cell.id}`).textContent = `_${color}_`;
+        });
+      });
+    },
+
+    init(rainbowResolution, whiteToBlackResolution) {
+      this.rainbow = Rainbow.init(rainbowResolution);
+      this.whiteToBlackResolution = whiteToBlackResolution;
+      this.createColumns();
+          debugger
+      this.renderGrid();
     }
   };
 
-Column.init(Object.create(Color).init({r:255,g:1,b:0}), 17);
+// Column.init(Object.create(Color).init({r:255,g:1,b:0}), 17);
+ColorGrid.init(255, 3);
 
-ColorGrid.init(1);
+
   // const colorGrid = {
   //   whiteToHue: {
   //     red:     [ 0, 15, 15],
