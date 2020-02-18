@@ -1,10 +1,7 @@
-grid
-column
-color
 
 
 
-ffffff
-fffefe
-...
-ff0000  ff0100 ... ffff00
+
+
+255 0 0
+

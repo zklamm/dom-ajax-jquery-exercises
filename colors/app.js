@@ -62,31 +62,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const Column = {
     whiteToBlack: [],
-
+// 255 254 0
     addTints() {
 
+      let tint = Object.assign({}, this.hue);
+      for (let i = 0; i < this.resolution; i += 1) {
+        this.whiteToBlack.unshift(tint);
+        tint.r += this.rTintIncrements;
+        tint.g += this.gTintIncrements;
+        tint.b += this.bTintIncrements;
+      }
+        debugger
     },
 
     addShades() {
 
     },
 
-    init(hue) {
+    init(hue, resolution) {
+      this.hue = hue;
       this.whiteToBlack.push(hue);
+      this.rTintIncrements =  (255 - hue.r) / resolution;
+      this.gTintIncrements =  (255 - hue.g) / resolution;
+      this.bTintIncrements =  (255 - hue.b) / resolution;
+      this.resolution = resolution;
+
       this.addTints();
       this.addShades();
+
+      return this;
     },
   };
 
   const ColorGrid = {
-    init(resolution) {
-      this.rainbow = Rainbow.init(resolution);
+    init(rainbowResolution) {
+      this.rainbow = Rainbow.init(rainbowResolution);
       // this.createColumns();
-debugger
 
       return this;
     }
   };
+
+Column.init(Object.create(Color).init({r:255,g:1,b:0}), 17);
 
 ColorGrid.init(1);
   // const colorGrid = {
