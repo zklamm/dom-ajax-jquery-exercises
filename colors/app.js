@@ -1,21 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // const Color = {
-  //   // toHexTriplet() {
-  //   //   return `#${this.rgb.map(value => {
-  //   //     return value.toString(16).padStart(2, '0');
-  //   //   }).join('')}`;
-  //   // },
-
-  //   init({ r, g, b }) {
-  //     this.rgb = [r, g, b];
-  //     this.r = r;
-  //     this.g = g;
-  //     this.b = b;
-
-  //     return this;
-  //   },
-  // };
-
   const Rainbow = {
     hues: [],
     currentHue: [255, 0, 0],
@@ -102,42 +85,31 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const ColorGrid = {
-    grid: [],
-
-    createColumns() {
-      this.rainbow.forEach(hue => {
-        debugger
-        this.grid.push(Object.create(Column).init(hue, this.whiteToBlackResolution));
-      });
-    },
-
     renderGrid() {
       this.grid.forEach((column, idx) => {
-        column.forEach(color => {
+        column.forEach(([ r, g, b ]) => {
           const cell = document.createElement('div');
-          cell.id = `column_${idx + 1}_color_${color.r}_${color.g}_${color.b}`;
+          cell.id = `column_${idx + 1}_color_${r}_${g}_${b}`;
           document.querySelector('#colorGrid').appendChild(cell);
-          debugger
-          document.querySelector(`#${cell.id}`).style.backgroundColor = `rgb(${color.r},${color.g},${color.b})`;
-          // debugger;
-          // const sum = (accumulator, currentValue) => accumulator + currentValue;
-          // color = color.match(/.{2}/g).map(hex => parseInt(hex, 16)).reduce(sum);
-          // color = color.match(/.{2}/g).map(hex => parseInt(hex, 16)).join('.');
+          // debugger
+          document.querySelector(`#${cell.id}`).style.backgroundColor = `rgb(${r},${g},${b})`;
           // document.querySelector(`#${cell.id}`).textContent = `_${color}_`;
         });
       });
     },
 
     init(rainbowResolution, whiteToBlackResolution) {
-      this.rainbow = Rainbow.init(rainbowResolution);
-      this.whiteToBlackResolution = whiteToBlackResolution;
-      this.createColumns();
+        debugger
+      this.grid = Rainbow.init(rainbowResolution).map(hue => {
+        return Object.assign({}, Column).init(whiteToBlackResolution);
+        // return Object.create(Column).init(hue, whiteToBlackResolution);
+      });
+
       this.renderGrid();
     }
   };
 
-// Column.init(Object.create(Color).init({r:255,g:1,b:0}), 17);
-ColorGrid.init(255, 3);
+ColorGrid.init(15, 3);
 
 
   // const colorGrid = {
