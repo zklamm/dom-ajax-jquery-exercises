@@ -1,24 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const Color = {
-    // toHexTriplet() {
-    //   return `#${this.rgb.map(value => {
-    //     return value.toString(16).padStart(2, '0');
-    //   }).join('')}`;
-    // },
+  // const Color = {
+  //   // toHexTriplet() {
+  //   //   return `#${this.rgb.map(value => {
+  //   //     return value.toString(16).padStart(2, '0');
+  //   //   }).join('')}`;
+  //   // },
 
-    init({ r, g, b }) {
-      this.rgb = [r, g, b];
-      this.r = r;
-      this.g = g;
-      this.b = b;
+  //   init({ r, g, b }) {
+  //     this.rgb = [r, g, b];
+  //     this.r = r;
+  //     this.g = g;
+  //     this.b = b;
 
-      return this;
-    },
-  };
+  //     return this;
+  //   },
+  // };
 
   const Rainbow = {
     hues: [],
-    currentHue: {r: 255, g: 0, b: 0},
+    currentHue: [255, 0, 0],
     gradients: {
       redToYellow:   [ 0,  1,  0],
       yellowToGreen: [-1,  0,  0],
@@ -28,28 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
       magentaToRed:  [ 0,  0, -1],
     },
 
-    getCondition(gradient) {
-      if (gradient === 'redToYellow')   return this.currentHue.g < 255;
-      if (gradient === 'yellowToGreen') return this.currentHue.r > 0;
-      if (gradient === 'greenToCyan')   return this.currentHue.b < 255;
-      if (gradient === 'cyanToBlue')    return this.currentHue.g > 0;
-      if (gradient === 'blueToMagenta') return this.currentHue.r < 255;
-      if (gradient === 'magentaToRed')  return this.currentHue.b > 0;
+    getCondition(gradient, r, g, b) {
+      if (gradient === 'redToYellow')   return g < 255;
+      if (gradient === 'yellowToGreen') return r > 0;
+      if (gradient === 'greenToCyan')   return b < 255;
+      if (gradient === 'cyanToBlue')    return g > 0;
+      if (gradient === 'blueToMagenta') return r < 255;
+      if (gradient === 'magentaToRed')  return b > 0;
     },
 
     addHues(gradient) {
-      // let increment = this.gradients[gradient];
       let [ rGradient, gGradient, bGradient ] = this.gradients[gradient];
+      let [ r, g, b ] = this.currentHue;
 
       do {
-        // let hue = this.currentHue;
-        let [ r, g, b ] = this.currentHue;
-
         this.hues.push([r, g, b]);
-        this.currentHue.r += this.resolution * rGradient;
-        this.currentHue.g += this.resolution * gGradient;
-        this.currentHue.b += this.resolution * bGradient;
-      } while (this.getCondition(gradient));
+        r += this.resolution * rGradient;
+        g += this.resolution * gGradient;
+        b += this.resolution * bGradient;
+      } while (this.getCondition(gradient, r, g, b));
+
+      this.currentHue = [r, g, b];
     },
 
     init(resolution) {
@@ -66,38 +65,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const Column = {
     whiteToBlack: [],
 
-    addTints() {
-      this.tint.r += this.rTintIncrement;
-      this.tint.g += this.gTintIncrement;
-      this.tint.b += this.bTintIncrement;
-      this.whiteToBlack.unshift(Object.create(Color).init(this.tint));
-    },
-
-    addShades() {
-      this.shade.r -= this.rShadeIncrement;
-      this.shade.g -= this.gShadeIncrement;
-      this.shade.b -= this.bShadeIncrement;
-      this.whiteToBlack.push(Object.create(Color).init(this.shade));
-    },
-
     addTintsAndShades() {
+      let [ rTint, gTint, bTint ] = this.tint;
+      let [ rShade, gShade, bShade ] = this.shade;
+
       for (let i = 0; i < this.resolution; i += 1) {
-        this.addTints();
-        this.addShades();
+        rTint += this.rTintGradient;
+        gTint += this.gTintGradient;
+        bTint += this.bTintGradient;
+        this.whiteToBlack.unshift([rTint, gTint, bTint]);
+        rShade += this.rShadeGradient;
+        gShade += this.gShadeGradient;
+        bShade += this.bShadeGradient;
+        this.whiteToBlack.push([rShade, gShade, bShade]);
       }
     },
 
     init(hue, resolution) {
+      let [ r, g, b ] = hue;
+
       this.whiteToBlack.push(hue);
       this.resolution = resolution;
-      this.tint = Object.assign({}, hue);
-      this.rTintIncrement =  (255 - hue.r) / resolution;
-      this.gTintIncrement =  (255 - hue.g) / resolution;
-      this.bTintIncrement =  (255 - hue.b) / resolution;
-      this.shade = Object.assign({}, hue);
-      this.rShadeIncrement =  hue.r / resolution;
-      this.gShadeIncrement =  hue.g / resolution;
-      this.bShadeIncrement =  hue.b / resolution;
+      this.tint = hue.slice();
+      this.rTintGradient =  (255 - r) / resolution;
+      this.gTintGradient =  (255 - g) / resolution;
+      this.bTintGradient =  (255 - b) / resolution;
+      this.shade = hue.slice();
+      this.rShadeGradient = (0 - r) / resolution;
+      this.gShadeGradient = (0 - g) / resolution;
+      this.bShadeGradient = (0 - b) / resolution;
 
       this.addTintsAndShades();
 
@@ -110,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createColumns() {
       this.rainbow.forEach(hue => {
+        debugger
         this.grid.push(Object.create(Column).init(hue, this.whiteToBlackResolution));
       });
     },
@@ -135,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
       this.rainbow = Rainbow.init(rainbowResolution);
       this.whiteToBlackResolution = whiteToBlackResolution;
       this.createColumns();
-          debugger
       this.renderGrid();
     }
   };
