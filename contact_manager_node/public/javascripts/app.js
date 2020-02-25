@@ -13,12 +13,13 @@ $(() => {
 
   const app = {
     $requiredFields: $('#fullName, #email, #phone'),
-    form: document.querySelector('form'),
 
     toggleForm(e) {
       e.preventDefault();
+      const form = document.querySelector('form');
+
       this.removeErrors();
-      this.form.reset();
+      form.reset();
       $('#featureBar, #contactsList').slideToggle();
       $('#createContact').slideToggle({
         start() {
@@ -37,16 +38,25 @@ $(() => {
       }
     },
 
-    editContact(e) {
-      const id = $(e.target).closest('li').attr('data-id');
+    updateContact() {
+      $.ajax({
+        url: `api/contacts/${this.id}`,
+        dataType: 'json',
+        method: 'PUT',
+        data: $('form').serialize(),
+      }).done(this.getContacts());
+    },
 
+    editContact(e) {
+      this.id = $(e.target).closest('li').attr('data-id');
       this.toggleForm(e);
 
       $.ajax({
-        url: `api/contacts/${id}`
+        url: `api/contacts/${this.id}`
       }).done(json => {
-        // debugger
-        $('#createContact').html(templates.createContact({json}))
+        $('#createContact').html(templates.createContact(json))
+        $('.submit').on('click', this.submit.bind(this));
+        $('.cancel').on('click', this.toggleForm.bind(this));
       });
     },
 
@@ -91,12 +101,18 @@ $(() => {
     },
 
     submit(e) {
-      if (this.form.checkValidity()) {
+      const form = document.querySelector('form');
+      const $isCreateContact = $('#createContact h1').val() === 'Create Contact';
+      if (form.checkValidity()) {
         e.preventDefault();
         this.removeErrors();
-        this.createContact();
+        if ($isCreateContact) {
+          this.createContact();
+        } else {
+          this.updateContact(e);
+        }
         this.toggleForm(e);
-        this.form.reset();
+        form.reset();
       } else {
         this.showErrors();
       }
