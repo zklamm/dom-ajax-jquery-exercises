@@ -53,28 +53,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getTintsAndShades(hue, resolution) {
-    const whiteToBlack = [hue];
     let [ r, g, b ] = hue;
-    const tint = hue.slice();
+    let [ rTint, gTint, bTint ] = hue.slice();
+    let [ rShade, gShade, bShade ] = hue.slice();
+    const whiteToBlack = [hue];
     const rTintGradient =  (255 - r) / resolution;
     const gTintGradient =  (255 - g) / resolution;
     const bTintGradient =  (255 - b) / resolution;
-    const shade = hue.slice();
     const rShadeGradient = (0 - r) / resolution;
     const gShadeGradient = (0 - g) / resolution;
     const bShadeGradient = (0 - b) / resolution;
-
-    let [ rTint, gTint, bTint ] = tint;
-    let [ rShade, gShade, bShade ] = shade;
 
     for (let i = 0; i < resolution; i += 1) {
       rTint += rTintGradient;
       gTint += gTintGradient;
       bTint += bTintGradient;
-      whiteToBlack.unshift([rTint, gTint, bTint]);
       rShade += rShadeGradient;
       gShade += gShadeGradient;
       bShade += bShadeGradient;
+      whiteToBlack.unshift([rTint, gTint, bTint]);
       whiteToBlack.push([rShade, gShade, bShade]);
     }
 
@@ -82,33 +79,37 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const ColorGrid = {
+    colorize(hue, idx) {
+      const cell = document.createElement('div');
+      let [ r, g, b ] = hue;
+
+      r = Math.ceil(r);
+      g = Math.ceil(g);
+      b = Math.ceil(b);
+      cell.id = `c${idx + 1}_${r}_${g}_${b}`;
+      cell.style.backgroundColor = `rgb(${r},${g},${b})`;
+
+      return cell;
+    },
+
     renderGrid() {
-      let total = 0;
-      this.grid.forEach((column, idx) => {
-        column.forEach(([ r, g, b ]) => {
-          const cell = document.createElement('div');
-          const grid = document.querySelector('#colorGrid');
-total += 1;
-          r = Math.ceil(r);
-          g = Math.ceil(g);
-          b = Math.ceil(b);
-          cell.id = `c${idx + 1}_${r}_${g}_${b}`;
-          cell.style.backgroundColor = `rgb(${r},${g},${b})`;
-          grid.appendChild(cell);
-          grid.style.gridTemplateRows = `repeat(${this.rows}, 1fr)`
+      this.columns.forEach((column, idx) => {
+        column.forEach((hue) => {
+          this.grid.appendChild(this.colorize(hue, idx));
         });
       });
-      console.log(total);
     },
 
     init(resolution) {
       const rainbow = getRainbow(resolution);
 
-      this.rows = (resolution * 2) + 1;
-      this.grid = rainbow.map(hue => getTintsAndShades(hue, resolution));
+      this.numberOfRows = (resolution * 2) + 1;
+      this.columns = rainbow.map(hue => getTintsAndShades(hue, resolution));
+      this.grid = document.querySelector('#colorGrid');
+      this.grid.style.gridTemplateRows = `repeat(${this.numberOfRows}, 1fr)`;
       this.renderGrid();
     }
   };
 
-  ColorGrid.init(150);
+  ColorGrid.init(2);
 });

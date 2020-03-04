@@ -54,41 +54,47 @@
 
       <script type="text/x-handlebars" data-template="noContacts">
         <div class="grayBackground">
-          <h2>There is no contacts.</h2>
-          <button class="add" tabindex="0">Add Contact</button>
+          <h2>
+            There is no contacts{{#if query}} starting with {{query}}{{/if}}.
+          </h2>
+          {{#if query}}
+          {{else}}
+            <button class="add" tabindex="0">Add Contact</button>
+          {{/if}}
         </div>
       </script>
     </div>
 
-    <div id="createContact" class="responsive hidden">
-      <script type="text/x-handlebars" data-template="createContact">
-        {{#if full_name}}
-          <h1>Edit Contact</h1>
-        {{else}}
-          <h1>Create Contact</h1>
-        {{/if}}
-        <form>
-          <label for="fullName">Full name:</label>
-          <input type="text" name="full_name" id="fullName" required
-                 value="{{full_name}}" />
-          <small class="hidden">Please enter the name field.</small>
-          <label for="email">Email address:</label>
-          <input type="email" name="email" id="email" required
-                 value="{{email}}" />
-          <small class="hidden">Please enter the valid email field.</small>
-          <label for="phone">Telephone number:</label>
-          <input type="text" name="phone_number" id="phone" required
-                 value="{{phone_number}}" />
-          <small class="hidden">Please enter the phone field.</small>
-          <label for="tags">Tags:</label>
-          <input type="text" name="tags" id="tags"
-                 value="{{tags}}" />
-          <button class="submit">Submit</button>
-          <button class="cancel">Cancel</button>
-        </form>
-      </script>
+    <div id="createContact" class="responsive hidden createOrEdit">
     </div>
-
+    <div id="editContact" class="responsive hidden createOrEdit">
+    </div>
+    <script type="text/x-handlebars" data-template="form">
+      {{#if id}}
+        <h1>Edit Contact</h1>
+      {{else}}
+        <h1>Create Contact</h1>
+      {{/if}}
+      <form>
+        <label for="fullName{{id}}">Full name:</label>
+        <input type="text" name="full_name" id="fullName{{id}}" required
+               value="{{full_name}}" />
+        <small class="hidden">Please enter the name field.</small>
+        <label for="email{{id}}">Email address:</label>
+        <input type="email" name="email" id="email{{id}}" required
+               value="{{email}}" />
+        <small class="hidden">Please enter the valid email field.</small>
+        <label for="phone{{id}}">Telephone number:</label>
+        <input type="text" name="phone_number" id="phone{{id}}" required
+               value="{{phone_number}}" />
+        <small class="hidden">Please enter the phone field.</small>
+        <label for="tags{{id}}">Tags:</label>
+        <input type="text" name="tags" id="tags{{id}}"
+               value="{{tags}}" />
+        <button class="submit">Submit</button>
+        <button class="cancel">Cancel</button>
+      </form>
+    </script>
   </main>
   <footer class="responsive">
     <p>

@@ -209,15 +209,15 @@ input.error {
   display: inline-block;
 }
 
-#createContact {
+.createOrEdit {
   margin: 38px 0 0;
 }
-#createContact label {
+.createOrEdit label {
   text-align: left;
   font-weight: 600;
   padding: 27px 0 2px;
 }
-#createContact input {
+.createOrEdit input {
   margin-bottom: 6px;
   color: #555;
 }
@@ -230,22 +230,18 @@ input.error {
     grid-template-columns: repeat(3, 220px);
   }
 
-  #createContact {
-    /*padding-left: 20px;*/
-  }
-
-  #createContact label {
+  .createOrEdit label {
     display: inline-block;
     text-align: right;
     width: 30%;
   }
-  #createContact input {
+  .createOrEdit input {
     display: inline-block;
     margin-left: 30px;
     margin-right: 120px;
     width: 345px;
   }
-  #createContact small {
+  .createOrEdit small {
     text-align: center;
   }
 
@@ -280,7 +276,7 @@ input.error {
     grid-template-columns: repeat(4, 212.5px);
   }
 
-  #createContact input {
+  .createOrEdit input {
     width: 455px;
   }
 
@@ -313,7 +309,7 @@ input.error {
     grid-template-columns: repeat(4, 262.5px);
   }
 
-  #createContact input {
+  .createOrEdit input {
     width: 555px;
   }
 

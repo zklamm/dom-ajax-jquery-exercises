@@ -1,12 +1,6 @@
-@import url('reset.css');
-
 #colorGrid {
-  height: 830px;
+  border: 1px solid #777;
+  height: 800px;
   display: grid;
   grid-auto-flow: column;
-  grid-template-rows: repeat(7, 1fr);
-}
-
-div {
-  color: #777;
 }
