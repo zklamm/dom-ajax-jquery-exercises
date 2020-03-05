@@ -10,6 +10,26 @@ $(() => {
   Handlebars.registerPartial('noContacts', templates.noContacts);
 
   const UI = {
+    getTagFriendlyContacts(contacts) {
+      return contacts.map(contact => {
+        contact.tags = contact.tags.split(',');
+        return contact;
+      });
+    },
+
+    renderContactsList(contacts, query='') {
+      const tagFriendly = this.getTagFriendlyContacts(contacts);
+
+      $('#contactsList').html(templates.contacts({
+        contacts: tagFriendly,
+        query: query,
+      }));
+
+      if (!query && !contacts) {
+        $('#contactsList').append(templates.noContacts());
+      }
+    },
+
     addErrors($input) {
       $input.addClass('error');
       $input.prev('label').addClass('error');
@@ -98,7 +118,7 @@ $(() => {
       $.ajax({
         url: 'api/contacts'
       }).done(json => {
-        this.renderContactsList(json);
+        UI.renderContactsList(json);
         this.bindButtons();
       });
     },
@@ -146,26 +166,6 @@ $(() => {
       $('.tag').on('click', this.search.bind(this));
     },
 
-    getTagFriendlyContacts(contacts) {
-      return contacts.map(contact => {
-        contact.tags = contact.tags.split(',');
-        return contact;
-      });
-    },
-
-    renderContactsList(contacts, query='') {
-      const tagFriendly = this.getTagFriendlyContacts(contacts);
-
-      $('#contactsList').html(templates.contacts({
-        contacts: tagFriendly,
-        query: query,
-      }));
-
-      if (!query && !contacts) {
-        $('#contactsList').append(templates.noContacts());
-      }
-    },
-
     filterNameMatches(contacts, query) {
       return contacts.filter(contact => {
         const name = contact.full_name.toUpperCase();
@@ -173,28 +173,34 @@ $(() => {
       });
     },
 
-    filterTagMatches(contacts, tag) {
+    filterTagMatches(contacts, query) {
       return contacts.filter(contact => {
-        return contact.tags.includes(tag);
+        return contact.tags.split(',').includes(query);
+
+        // return contact.tags.includes(tag);
+        // return !!contact.tags.split(',').filter(tag => {
+        //   return tag === query;
+        // });
       });
+    },
+
+    filterMatches(e, contacts, query) {
+      if (e.type === 'click') {
+        query = $(e.target).text();
+        return this.filterTagMatches(contacts, query);
+      } else {
+        return this.filterNameMatches(contacts, query);
+      }
     },
 
     search(e) {
       $.ajax({
         url: 'api/contacts'
       }).done(json => {
-        let query;
-        let filtered;
+        const query = $('#search').val();
+        const filtered = this.filterMatches(e, json, query);
 
-        if (e.type === 'click') {
-          query = $(e.target).text();
-          filtered = this.filterTagMatches(json, query);
-        } else {
-          query = $('#search').val();
-          filtered = this.filterNameMatches(json, query);
-        }
-
-        this.renderContactsList(filtered, query);
+        UI.renderContactsList(filtered, query);
         this.bindButtons();
       });
     },
