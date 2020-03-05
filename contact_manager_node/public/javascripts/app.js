@@ -12,7 +12,11 @@ $(() => {
   const UI = {
     getTagFriendlyContacts(contacts) {
       return contacts.map(contact => {
-        contact.tags = contact.tags.split(',');
+        if (contact.tags === '') {
+          contact.tags = null;
+        } else {
+          contact.tags = contact.tags.split(',');
+        }
         return contact;
       });
     },
@@ -176,11 +180,6 @@ $(() => {
     filterTagMatches(contacts, query) {
       return contacts.filter(contact => {
         return contact.tags.split(',').includes(query);
-
-        // return contact.tags.includes(tag);
-        // return !!contact.tags.split(',').filter(tag => {
-        //   return tag === query;
-        // });
       });
     },
 
