@@ -173,6 +173,21 @@ form * {
   display: none;
 }
 
+.tag {
+  color: #fff;
+  cursor: pointer;
+  background-color: #573D7C;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 1px;
+  padding: 4px;
+  text-align: center;
+}
+.tag:hover {
+  background-color: #fff;
+  color: #573D7C;
+}
+
 label.error {
   color: #B94A48;
 }

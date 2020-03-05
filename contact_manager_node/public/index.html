@@ -13,11 +13,13 @@
 <body>
   <header>
     <h1><a href="#home">Contact Manager</a></h1>
-    <h2>Using Backbone.js, Localstorage, RequireJS, Handlebar and Bootstrap</h2>
+    <h2>
+      Using Backbone.js, Localstorage, RequireJS, Handlebar and Bootstrap
+    </h2>
   </header>
   <main>
     <div id="featureBar" class="grayBackground">
-      <button class="add" tabindex="0" role="button">Add Contact</button>
+      <button class="add" tabindex="0">Add Contact</button>
       <input id="search" type="text" placeholder="Search" />
     </div>
 
@@ -42,10 +44,9 @@
             <dd>{{phone_number}}</dd>
             <dt>Email:</dt>
             <dd>{{email}}</dd>
-            {{#if tags}}
-              <dt>Tags:</dt>
-              <dd>{{tags}}</dd>
-            {{/if}}
+            {{#each tags}}
+              <p class="tag">{{this}}</p>
+            {{/each}}
           </dl>
           <button class="small edit">Edit</button>
           <button class="small delete">Delete</button>
