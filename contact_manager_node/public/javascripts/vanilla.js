@@ -95,12 +95,26 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const API = {
+    url: 'api',
+
+    createContact() {
+
+    },
+
     getContacts() {
       return fetch(`${this.url}/contacts`);
     },
 
-    init() {
-      this.url = 'api';
+    getContact(id) {
+      return fetch(`${this.url}/contact/${id}`);
+    },
+
+    updateContact(id) {
+
+    },
+
+    deleteContact(id) {
+
     },
   };
 
@@ -158,7 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
           this.contacts = this.getTagFriendlyContacts(json);
           UI.renderContactsList(this.contacts);
           this.bindBtns();
-        });
+        })
+        .catch(error => console.log(error));
     },
 
     initCollaborators() {
