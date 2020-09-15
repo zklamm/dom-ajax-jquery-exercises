@@ -1,6 +1,0 @@
-#colorGrid {
-  border: 1px solid #777;
-  height: 800px;
-  display: grid;
-  grid-auto-flow: column;
-}
